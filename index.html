@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Goya Arquitetura</title>
+<meta name="description" content="Goya Arquitetura: projeto, construção e consultoria em taipa de pilão e arquitetura com terra.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f6;
+    --ink: #2e241f;
+    --muted: #8a7f78;
+    --line: #e6e1da;
+    --earth: #a0674a;
+    --side: 220px;
+    --pad: clamp(16px, 4vw, 56px);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Inter", system-ui, sans-serif; font-weight: 300;
+    font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  /* ---------- Sidebar (estilo CoDA) ---------- */
+  .side {
+    position: fixed; inset: 0 auto 0 0; width: var(--side);
+    padding: 56px 0 40px 40px; display: flex; flex-direction: column; z-index: 10;
+  }
+  .logo { font-size: 30px; font-weight: 500; letter-spacing: -0.02em; line-height: 1; }
+  .logo small { display: block; font-size: 10px; font-weight: 400; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+  .nav { margin-top: 64px; display: flex; flex-direction: column; gap: 10px; }
+  .nav a {
+    font-size: 13px; letter-spacing: .14em; text-transform: uppercase; font-weight: 400;
+    color: var(--muted); transition: color .2s;
+  }
+  .nav a:hover, .nav a.on { color: var(--ink); }
+  .side-foot { margin-top: auto; display: flex; gap: 14px; }
+  .side-foot a { width: 20px; height: 20px; color: var(--muted); transition: color .2s; }
+  .side-foot a:hover { color: var(--ink); }
+  .side-foot svg { width: 100%; height: 100%; }
+
+  .burger { display: none; }
+
+  main { margin-left: var(--side); padding: 56px var(--pad) 80px 0; min-height: 100vh; }
+  /* Página única: seções empilhadas; o detalhe do projeto é uma vista à parte */
+  .sec { scroll-margin-top: 40px; }
+  .sec + .sec { padding-top: clamp(96px, 12vw, 160px); }
+  #projeto { display: none; }
+  body.detail #onepage { display: none; }
+  body.detail #projeto { display: block; animation: fade .6s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  /* Revelação ao rolar */
+  .rv { opacity: 0; transform: translateY(32px); transition: opacity 1s ease, transform 1s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0s); }
+  .rv.in { opacity: 1; transform: none; }
+  .hero.rv { transform: none; }
+  .hero img { transform: scale(1.08); transition: transform 2.4s cubic-bezier(.2,.7,.2,1); }
+  .hero.in img { transform: none; }
+  .title.rv { transform: translateX(24px); }
+  .title.rv.in { transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .rv, .rv.in, .hero img { opacity: 1; transform: none !important; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  .title {
+    font-size: clamp(22px, 2.4vw, 30px); font-weight: 300; letter-spacing: .08em;
+    text-transform: uppercase; text-align: right; margin: 0 0 28px;
+  }
+  .eyebrow { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
+
+  /* ---------- Home ---------- */
+  .hero { position: relative; aspect-ratio: 16 / 8.5; overflow: hidden; background: var(--line); }
+  .claim {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: end;
+    padding: 72px 0 88px; border-bottom: 1px solid var(--line);
+  }
+  .claim h1 {
+    font-size: clamp(30px, 3.6vw, 50px); font-weight: 300; line-height: 1.12; letter-spacing: -0.015em;
+  }
+  .claim h1 em { font-style: normal; color: var(--earth); }
+  .claim p { color: var(--muted); max-width: 460px; justify-self: end; }
+
+  .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .svc { padding: 44px 32px 44px 0; border-right: 1px solid var(--line); }
+  .svc + .svc { padding-left: 32px; }
+  .svc:last-child { border-right: 0; }
+  .svc .n { font-size: 12px; color: var(--earth); letter-spacing: .1em; }
+  .svc h3 { font-size: 20px; font-weight: 400; letter-spacing: .1em; text-transform: uppercase; margin: 18px 0 12px; }
+  .svc p { color: var(--muted); font-size: 15px; }
+  .more {
+    display: inline-flex; gap: 10px; align-items: center; margin-top: 56px;
+    font-size: 12px; letter-spacing: .18em; text-transform: uppercase; font-weight: 400;
+    border-bottom: 1px solid var(--ink); padding-bottom: 4px;
+  }
+  .more:hover { color: var(--earth); border-color: var(--earth); }
+
+  /* ---------- Projetos ---------- */
+  .filters { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 22px; margin-bottom: 32px; }
+  .filters button {
+    background: none; border: 0; font: inherit; font-size: 12px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--muted); cursor: pointer; padding: 4px 0;
+    border-bottom: 1px solid transparent; font-weight: 400;
+  }
+  .filters button.on, .filters button:hover { color: var(--ink); border-color: var(--ink); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px 20px; }
+  .card { cursor: default; }
+  .card.hide { display: none; }
+  .card .ph { aspect-ratio: 4 / 5; overflow: hidden; background: var(--line); position: relative; }
+  .card .ph img { transition: transform .8s ease, filter .6s; }
+  .card:hover .ph img { transform: scale(1.04); }
+  .tag {
+    position: absolute; top: 14px; left: 14px; background: var(--bg); color: var(--ink);
+    font-size: 10px; letter-spacing: .2em; text-transform: uppercase; padding: 6px 10px; font-weight: 500;
+  }
+  .card h3 { font-size: 15px; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; margin-top: 16px; }
+  .card .meta { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .card p { font-size: 14px; color: var(--muted); margin-top: 10px; max-width: 42ch; }
+
+  .erro { grid-column: 1 / -1; color: var(--muted); }
+  .more-wrap { display: flex; justify-content: center; margin-top: 56px; }
+  .plus {
+    width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--ink); background: none;
+    cursor: pointer; position: relative; transition: background .25s, transform .4s;
+  }
+  .plus[hidden] { display: none; }
+  .plus span::before, .plus span::after {
+    content: ""; position: absolute; left: 50%; top: 50%; width: 18px; height: 1px; background: var(--ink);
+    transform: translate(-50%, -50%); transition: background .25s;
+  }
+  .plus span::after { transform: translate(-50%, -50%) rotate(90deg); }
+  .minus span::after { display: none; }
+  .plus:hover { background: var(--ink); transform: rotate(90deg); }
+  .minus:hover { transform: none; }
+  .plus:hover span::before, .plus:hover span::after { background: var(--bg); }
+
+  /* ---------- Sobre ---------- */
+  .about { display: grid; grid-template-columns: 1fr 1.25fr; gap: clamp(32px, 5vw, 80px); align-items: start; }
+  .about .ph { aspect-ratio: 3 / 4; overflow: hidden; background: var(--line); }
+  .about h2 { font-size: clamp(26px, 2.6vw, 36px); font-weight: 300; letter-spacing: -0.01em; margin: 10px 0 24px; }
+  .about p + p { margin-top: 16px; }
+  .about .bio { color: #54473f; }
+  .creds { margin-top: 88px; }
+  .creds h3 { font-size: 13px; letter-spacing: .2em; text-transform: uppercase; font-weight: 400; margin-bottom: 8px; }
+  .row {
+    display: grid; grid-template-columns: 180px 1fr 120px; gap: 24px; padding: 26px 0;
+    border-top: 1px solid var(--line); align-items: baseline;
+  }
+  .row:last-child { border-bottom: 1px solid var(--line); }
+  .row .k { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--earth); font-weight: 500; }
+  .row strong { font-weight: 400; display: block; }
+  .row span { color: var(--muted); font-size: 14px; }
+  .row .y { text-align: right; color: var(--muted); font-size: 14px; }
+
+  /* ---------- Contato ---------- */
+  .contact { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 5vw, 80px); }
+  .contact h2 { font-size: clamp(30px, 3.4vw, 46px); font-weight: 300; line-height: 1.15; letter-spacing: -0.015em; }
+  .contact .lead { color: var(--muted); margin-top: 20px; max-width: 420px; }
+  .clist { border-top: 1px solid var(--line); }
+  .clist a, .clist div {
+    display: grid; grid-template-columns: 120px 1fr auto; gap: 16px; align-items: baseline;
+    padding: 24px 0; border-bottom: 1px solid var(--line); transition: padding .25s, color .2s;
+  }
+  .clist a:hover { padding-left: 10px; color: var(--earth); }
+  .clist .k { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
+  .clist .v { font-size: 17px; font-weight: 400; }
+  .clist .arr { color: var(--muted); }
+  .wa {
+    display: inline-flex; align-items: center; gap: 10px; margin-top: 36px; background: var(--ink); color: var(--bg);
+    padding: 16px 26px; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; font-weight: 400; transition: background .2s;
+  }
+  .wa:hover { background: var(--earth); }
+
+  footer { margin-top: 96px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+  /* ---------- Projeto (detalhe) ---------- */
+  a.card { display: block; cursor: pointer; }
+  .d-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 28px; }
+  .d-head .title { margin: 0; }
+  .back { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); font-weight: 400; white-space: nowrap; }
+  .back:hover { color: var(--ink); }
+  .d-hero { position: relative; aspect-ratio: 16 / 8.5; overflow: hidden; background: var(--line); }
+  .d-info { display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(32px, 5vw, 80px); padding: 64px 0 72px; }
+  .d-lead { font-size: clamp(20px, 1.9vw, 26px); line-height: 1.35; margin: 16px 0 24px; color: var(--ink); }
+  .d-mem p:not(.d-lead) { color: #54473f; max-width: 62ch; }
+  .d-mem p + p { margin-top: 14px; }
+  .d-ficha { background: #f2efe9; padding: 28px 28px 20px; align-self: start; }
+  .d-ficha dl { margin-top: 14px; }
+  .d-ficha dl div { padding: 12px 0; border-top: 1px solid var(--line); }
+  .d-ficha dt { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
+  .d-ficha dd { font-size: 15px; font-weight: 400; }
+  .gallery { columns: 2; column-gap: 16px; }
+  .gallery button { display: block; width: 100%; margin: 0 0 16px; padding: 0; border: 0; background: var(--line); cursor: zoom-in; break-inside: avoid; overflow: hidden; }
+  .gallery img { height: auto; transition: transform .8s ease, opacity .3s; }
+  .gallery button:hover img { transform: scale(1.02); }
+  .next { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-top: 56px; padding: 32px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .next strong { font-size: clamp(20px, 2vw, 28px); font-weight: 300; letter-spacing: .06em; text-transform: uppercase; transition: color .2s; }
+  .next:hover strong { color: var(--earth); }
+  .similar { margin-top: 72px; }
+  .similar > h3 { font-size: 13px; letter-spacing: .2em; text-transform: uppercase; font-weight: 400; margin-bottom: 24px; }
+
+  .lb { position: fixed; inset: 0; z-index: 50; background: rgba(24, 19, 16, .96); display: none; align-items: center; justify-content: center; padding: 56px 72px; }
+  .lb.on { display: flex; }
+  .lb img { width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain; }
+  .lb button { position: absolute; background: none; border: 0; color: #f2efe9; font: inherit; cursor: pointer; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; padding: 12px; }
+  .lb-x { top: 12px; right: 16px; }
+  .lb-prev, .lb-next { top: 50%; transform: translateY(-50%); font-size: 24px !important; }
+  .lb-prev { left: 12px; } .lb-next { right: 12px; }
+  .lb-count { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: #b5aaa2; font-size: 12px; letter-spacing: .16em; }
+
+  /* ---------- Responsivo ---------- */
+  @media (max-width: 1100px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 860px) {
+    :root { --side: 0px; }
+    .side {
+      position: sticky; top: 0; width: 100%; height: auto; flex-direction: row; align-items: center;
+      padding: 18px 16px; background: var(--bg); border-bottom: 1px solid var(--line); inset: 0 0 auto 0;
+    }
+    .logo { font-size: 24px; }
+    .logo small { display: none; }
+    .burger { display: block; margin-left: auto; background: none; border: 0; font: inherit; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink); cursor: pointer; }
+    .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); margin: 0; padding: 12px 16px 24px; border-bottom: 1px solid var(--line); gap: 14px; }
+    .side.open .nav { display: flex; }
+    .side-foot { display: none; }
+    main { margin: 0; padding: 24px 16px 64px; }
+    .title { text-align: left; }
+    .filters { justify-content: flex-start; }
+    .claim, .about, .contact { grid-template-columns: 1fr; }
+    .claim { padding: 44px 0 52px; gap: 20px; }
+    .claim p { justify-self: start; }
+    .services { grid-template-columns: 1fr; }
+    .svc, .svc + .svc { padding: 32px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+    .hero { aspect-ratio: 4 / 5; }
+    .row { grid-template-columns: 1fr; gap: 6px; }
+    .d-info { grid-template-columns: 1fr; padding: 40px 0 48px; }
+    .d-head { flex-direction: column-reverse; align-items: flex-start; }
+    .d-hero { aspect-ratio: 4 / 5; }
+    .gallery { columns: 1; }
+    .lb { padding: 56px 8px; }
+    .row .y { text-align: left; }
+    .clist a, .clist div { grid-template-columns: 1fr auto; }
+    .clist .k { grid-column: 1 / -1; }
+  }
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<aside class="side" id="side">
+  <a href="#home" class="logo">goya<small>arquitetura</small></a>
+  <button class="burger" id="burger" aria-label="Abrir menu">Menu</button>
+  <nav class="nav" id="nav">
+    <a href="#projetos" data-p="projetos">Projetos</a>
+    <a href="#sobre" data-p="sobre">Sobre</a>
+    <a href="#contato" data-p="contato">Contato</a>
+  </nav>
+  <div class="side-foot">
+    <a href="https://www.instagram.com/goya.terra/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>
+    </a>
+    <a href="https://wa.me/5519996153063" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/><path d="M9 9.5c.3 2 2.5 4.2 4.5 4.5l1.2-1.2 1.8.8-.4 1.6c-3.6.4-7.9-3.9-7.5-7.5l1.6-.4.8 1.8z" stroke-width="1.1"/></svg>
+    </a>
+    <a href="mailto:goya@goyarq.com.br" aria-label="E-mail">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 6l9 7 9-7"/></svg>
+    </a>
+  </div>
+</aside>
+
+<main>
+<div id="onepage">
+
+  <!-- ===================== HOME ===================== -->
+  <section class="sec" id="home">
+    <div class="hero rv">
+      <img src="imagens/site/abertura.jpg" alt="Casa Jardins Capri, paredes de taipa de pilão">
+    </div>
+
+    <div class="claim">
+      <h1 class="rv">Arquitetura feita de <em>terra</em>, do desenho ao canteiro.</h1>
+      <p class="rv" style="--d:.15s">Uma década construindo em taipa de pilão na Austrália, agora aplicada ao contexto brasileiro. Projetos detalhados para a materialidade da terra, obras acompanhadas de perto e equipes capacitadas no local.</p>
+    </div>
+
+    <div class="services">
+      <div class="svc rv" style="--d:0.00s">
+        <span class="n">01</span>
+        <h3>Projeto</h3>
+        <p>Arquitetura residencial e institucional com projeto executivo pensado para a taipa de pilão: formas, juntas, reforços e conexões com madeira e metal.</p>
+      </div>
+      <div class="svc rv" style="--d:0.15s">
+        <span class="n">02</span>
+        <h3>Construção</h3>
+        <p>Administração e acompanhamento de obra, execução de paredes em terra e de instalações artísticas, com foco na qualidade do canteiro.</p>
+      </div>
+      <div class="svc rv" style="--d:0.30s">
+        <span class="n">03</span>
+        <h3>Consultoria</h3>
+        <p>Suporte a escritórios e construtoras: testes de solo e misturas, desenho de formas e capacitação da equipe de obra local.</p>
+      </div>
+    </div>
+
+    <a href="#projetos" class="more rv">Ver projetos <span>→</span></a>
+  </section>
+
+  <!-- ===================== PROJETOS ===================== -->
+  <section class="sec" id="projetos">
+    <h2 class="title rv">Projetos</h2>
+    <div class="filters rv" id="filters">
+      <button class="on" data-f="all">Todos</button>
+      <button data-f="arquitetura">Arquitetura</button>
+      <button data-f="consultoria">Consultoria</button>
+      <button data-f="arte">Arte</button>
+      <button data-f="obra">Obra</button>
+    </div>
+
+    <div class="grid" id="grid"></div>
+    <div class="more-wrap">
+      <button class="plus" id="plus" aria-label="Carregar mais projetos"><span></span></button>
+      <button class="plus minus" id="minus" aria-label="Mostrar menos projetos"><span></span></button>
+    </div>
+  </section>
+
+  <!-- ===================== SOBRE ===================== -->
+  <section class="sec" id="sobre">
+    <h2 class="title rv">Sobre</h2>
+    <div class="about">
+      <div class="ph rv">
+        <img src="imagens/site/rodrigo.jpg" alt="Rodrigo Rocha em obra de taipa de pilão">
+      </div>
+      <div class="rv" style="--d:.15s">
+        <span class="eyebrow">Fundador</span>
+        <h2>Rodrigo Rocha</h2>
+        <div class="bio">
+          <p>Arquiteto e urbanista pela Escola da Cidade, Rodrigo passou quase dez anos na Austrália, onde foi construtor de taipa de pilão na Olnee Constructions, arquiteto e administrador de obras na Earth House Australia e integrou o escritório Steffen Welsch Architects, em Melbourne.</p>
+          <p>De volta ao Brasil, fundou a Goya para levar a taipa de pilão contemporânea ao contexto local, projetando, construindo e formando equipes. É integrante da Associação Casa Floresta, núcleo de pesquisa ligado à floresta e aos povos originários.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="creds">
+      <h3 class="rv">Credenciais</h3>
+      <div class="row rv">
+        <span class="k">Imprensa</span>
+        <div><strong>Revista Exame</strong><span>Destaque na imprensa de negócios</span></div>
+        <span class="y">&nbsp;</span>
+      </div>
+      <div class="row rv">
+        <span class="k">Júri</span>
+        <div><strong>FIBRA Award, Paris</strong><span>Júri honorário do primeiro prêmio mundial de arquitetura contemporânea em terra e fibras vegetais (Amàco, CRAterre, Dominique Gauzin-Müller e Anna Heringer)</span></div>
+        <span class="y">2019</span>
+      </div>
+      <div class="row rv">
+        <span class="k">Formação</span>
+        <div><strong>Arquitetura e Urbanismo, Escola da Cidade</strong><span>Intercâmbio na Universidad de los Andes, Bogotá (2010)</span></div>
+        <span class="y">2011</span>
+      </div>
+      <div class="row rv">
+        <span class="k">Formação</span>
+        <div><strong>Permacultura (PDC), UNESP Botucatu</strong><span>Formação complementar</span></div>
+        <span class="y">2011</span>
+      </div>
+      <div class="row rv">
+        <span class="k">Formação</span>
+        <div><strong>Pós-graduação Conceber e Construir</strong><span>Estruturas leves e pré-fabricação</span></div>
+        <span class="y">2022</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTATO ===================== -->
+  <section class="sec" id="contato">
+    <h2 class="title rv">Contato</h2>
+    <div class="contact">
+      <div class="rv">
+        <h2>Vamos conversar sobre o seu projeto em terra.</h2>
+        <p class="lead">Projetos, obras, consultorias e capacitação de equipes em todo o Brasil.</p>
+        <a class="wa" href="https://wa.me/5519996153063" target="_blank" rel="noopener">Chamar no WhatsApp →</a>
+      </div>
+      <div class="clist rv" style="--d:.15s">
+        <a href="https://wa.me/5519996153063" target="_blank" rel="noopener"><span class="k">WhatsApp</span><span class="v">(19) 99615-3063</span><span class="arr">↗</span></a>
+        <a href="mailto:goya@goyarq.com.br"><span class="k">E-mail</span><span class="v">goya@goyarq.com.br</span><span class="arr">↗</span></a>
+        <a href="https://maps.google.com/?q=Rua+Formosa,+51,+Centro+Hist%C3%B3rico,+S%C3%A3o+Paulo,+SP" target="_blank" rel="noopener"><span class="k">Endereço</span><span class="v">Rua Formosa, 51<br>Centro Histórico, São Paulo, SP</span><span class="arr">↗</span></a>
+        <a href="https://www.instagram.com/goya.terra/" target="_blank" rel="noopener"><span class="k">Instagram</span><span class="v">@goya.terra</span><span class="arr">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+  <!-- ===================== PROJETO (detalhe) ===================== -->
+  <section id="projeto"></section>
+
+  <footer>
+    <span>© Goya Arquitetura</span>
+    <span>Taipa de pilão e arquitetura com terra</span>
+  </footer>
+</main>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Galeria de fotos">
+  <img alt="">
+  <button class="lb-x" aria-label="Fechar">Fechar ✕</button>
+  <button class="lb-prev" aria-label="Foto anterior">←</button>
+  <button class="lb-next" aria-label="Próxima foto">→</button>
+  <span class="lb-count"></span>
+</div>
+
+<script>
+  // ---------- Conteúdo: os projetos vêm de content/projetos.json (editado pelo painel) ----------
+  const img = src => (src || "").replace(/^\//, "");          // caminho relativo: funciona em qualquer endereço
+  const W = src => img(src), F = src => img(src);
+  const slugify = t => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  let projetos = [];
+  async function carregaProjetos() {
+    const r = await fetch("content/projetos.json", { cache: "no-cache" });
+    const data = await r.json();
+    const usados = new Set();
+    projetos = (data.projetos || []).filter(p => p && p.nome).map(p => {
+      let slug = slugify(p.nome), n = 2;
+      while (usados.has(slug)) slug = slugify(p.nome) + "-" + n++;
+      usados.add(slug);
+      return {
+        slug, nome: p.nome, cat: (p.categoria || "arquitetura").toLowerCase(),
+        local: p.local || "", ano: p.ano || "",
+        img: p.capa || (p.fotos || [])[0] || "",
+        txt: p.resumo || "", lead: p.destaque || "",
+        memoria: (p.memoria || "").split(/\n\s*\n/).map(t => t.trim()).filter(Boolean),
+        ficha: (p.ficha || []).filter(f => f && f.rotulo).map(f => [f.rotulo, f.valor || ""]),
+        fotos: (p.fotos || []).filter(Boolean),
+      };
+    });
+  }
+
+  const grid = document.getElementById("grid");
+  const montaGrid = () => grid.innerHTML = projetos.map((p, i) => `
+    <a class="card rv" style="--d:${(i % 3) * 0.12}s" href="#projeto/${p.slug}" data-cat="${p.cat}">
+      <div class="ph">
+        <img loading="lazy" src="${W(p.img)}" alt="${p.nome}">
+        <span class="tag">${p.cat}</span>
+      </div>
+      <h3>${p.nome}</h3>
+      <div class="meta">${p.local} · ${p.ano}</div>
+      <p>${p.txt}</p>
+    </a>`).join("");
+
+  const detail = document.getElementById("projeto");
+  function renderProjeto(slug) {
+    const i = projetos.findIndex(p => p.slug === slug);
+    if (i < 0) return false;
+    const p = projetos[i], next = projetos[(i + 1) % projetos.length];
+    const outros = projetos.filter(o => o !== p).sort((a, b) => (b.cat === p.cat) - (a.cat === p.cat)).slice(0, 3);
+    document.title = `${p.nome} | Goya Arquitetura`;
+    detail.innerHTML = `
+      <div class="d-head">
+        <a href="#projetos" class="back">← Projetos</a>
+        <h2 class="title rv">${p.nome}</h2>
+      </div>
+      <div class="d-hero rv"><img src="${W(p.img)}" alt="${p.nome}"><span class="tag">${p.cat}</span></div>
+      <div class="d-info">
+        <div class="d-mem rv">
+          <span class="eyebrow">Memória do projeto</span>
+          <p class="d-lead">${p.lead}</p>
+          ${p.memoria.map(t => `<p>${t}</p>`).join("")}
+        </div>
+        <div class="d-ficha rv" style="--d:.15s">
+          <span class="eyebrow">Ficha técnica</span>
+          <dl>${p.ficha.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
+        </div>
+      </div>
+      <div class="gallery">${p.fotos.map((f, n) => `<button class="rv" style="--d:${(n % 2) * 0.12}s" data-n="${n}" aria-label="Ampliar foto ${n + 1}"><img loading="lazy" src="${F(f)}" alt="${p.nome}, foto ${n + 1}"></button>`).join("")}</div>
+      <a class="next rv" href="#projeto/${next.slug}"><span class="eyebrow">Próximo projeto</span><strong>${next.nome} →</strong></a>
+      <div class="similar">
+        <h3>Outros projetos</h3>
+        <div class="grid">${outros.map(o => `
+          <a class="card rv" href="#projeto/${o.slug}">
+            <div class="ph"><img loading="lazy" src="${W(o.img)}" alt="${o.nome}"><span class="tag">${o.cat}</span></div>
+            <h3>${o.nome}</h3><div class="meta">${o.local} · ${o.ano}</div>
+          </a>`).join("")}</div>
+      </div>`;
+    detail.querySelector(".gallery").onclick = e => {
+      const b = e.target.closest("button"); if (b) openLb(p.fotos, +b.dataset.n, p.nome);
+    };
+    return true;
+  }
+
+  // ---------- Lightbox ----------
+  const lb = document.getElementById("lb"), lbImg = lb.querySelector("img"), lbCount = lb.querySelector(".lb-count");
+  let lbList = [], lbI = 0;
+  function showLb() { lbImg.src = F(lbList[lbI]); lbCount.textContent = `${lbI + 1} / ${lbList.length}`; }
+  function openLb(list, n, nome) { lbList = list; lbI = n; lbImg.alt = nome; showLb(); lb.classList.add("on"); document.body.style.overflow = "hidden"; }
+  function closeLb() { lb.classList.remove("on"); document.body.style.overflow = ""; }
+  function stepLb(d) { lbI = (lbI + d + lbList.length) % lbList.length; showLb(); }
+  lb.querySelector(".lb-x").onclick = closeLb;
+  lb.querySelector(".lb-prev").onclick = () => stepLb(-1);
+  lb.querySelector(".lb-next").onclick = () => stepLb(1);
+  lb.addEventListener("click", e => { if (e.target === lb) closeLb(); });
+  addEventListener("keydown", e => {
+    if (!lb.classList.contains("on")) return;
+    if (e.key === "Escape") closeLb();
+    if (e.key === "ArrowRight") stepLb(1);
+    if (e.key === "ArrowLeft") stepLb(-1);
+  });
+
+  // ---------- Filtro + carregar mais (6 por vez, como na referência) ----------
+  const STEP = 6;
+  let filtro = "all", limite = STEP;
+  const plus = document.getElementById("plus"), minus = document.getElementById("minus");
+  function aplicaGrid() {
+    let n = 0;
+    const cards = [...grid.querySelectorAll(".card")];
+    cards.forEach(c => {
+      const match = filtro === "all" || c.dataset.cat === filtro;
+      const show = match && n < limite;
+      if (match) n++;
+      c.classList.toggle("hide", !show);
+    });
+    plus.hidden = n <= limite;
+    minus.hidden = !(n > STEP && limite >= n);
+    observeReveal(grid);
+  }
+  document.getElementById("filters").addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    document.querySelectorAll("#filters button").forEach(x => x.classList.toggle("on", x === b));
+    filtro = b.dataset.f; limite = STEP; aplicaGrid();
+  });
+  plus.onclick = () => { limite += STEP; aplicaGrid(); };
+  minus.onclick = () => {
+    limite = STEP; aplicaGrid();
+    scrollToSection(document.getElementById("projetos"), true);
+  };
+
+  const side = document.getElementById("side");
+  document.getElementById("burger").onclick = () => side.classList.toggle("open");
+
+  // ---------- Revelação ao rolar ----------
+  const revealIO = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add("in"); revealIO.unobserve(e.target); }
+  }), { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+  const observeReveal = root => root.querySelectorAll(".rv:not(.in)").forEach(el => revealIO.observe(el));
+
+  // ---------- Menu acompanha a seção visível ----------
+  const navLinks = document.querySelectorAll(".nav a");
+  const setNav = id => navLinks.forEach(a => a.classList.toggle("on", a.dataset.p === id));
+  const spyIO = new IntersectionObserver(entries => {
+    if (document.body.classList.contains("detail")) return;
+    entries.forEach(e => { if (e.isIntersecting) setNav(e.target.id); });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  document.querySelectorAll(".sec").forEach(sec => spyIO.observe(sec));
+
+  // ---------- Rotas: seções da página única ou detalhe do projeto ----------
+  const SECOES = ["home", "projetos", "sobre", "contato"];
+  // Rolagem suave própria: recalcula o destino a cada quadro, então chega certo
+  // mesmo se a página mudar de altura no caminho (fotos carregando, grade expandindo).
+  let scrollAnim = 0;
+  function sectionTop(el) {
+    const offset = innerWidth <= 860 ? side.offsetHeight + 16 : 40;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    return el.id === "home" ? 0 : Math.min(max, el.getBoundingClientRect().top + scrollY - offset);
+  }
+  function scrollToSection(el, smooth) {
+    cancelAnimationFrame(scrollAnim);
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!smooth || reduce) { window.scrollTo({ top: sectionTop(el), behavior: "instant" }); return; }
+    const from = scrollY, t0 = performance.now();
+    const dur = Math.min(1200, 500 + Math.abs(sectionTop(el) - from) * 0.25);
+    const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    const step = now => {
+      const t = Math.min(1, (now - t0) / dur);
+      window.scrollTo({ top: from + (sectionTop(el) - from) * ease(t), behavior: "instant" });
+      if (t < 1) scrollAnim = requestAnimationFrame(step);
+    };
+    scrollAnim = requestAnimationFrame(step);
+  }
+  // se a pessoa rolar com o mouse/dedo no meio da animação, ela manda
+  ["wheel", "touchstart", "keydown"].forEach(ev => addEventListener(ev, () => cancelAnimationFrame(scrollAnim), { passive: true }));
+  function showOnepage() {
+    document.body.classList.remove("detail");
+    document.title = "Goya Arquitetura";
+  }
+  function route() {
+    const id = (location.hash || "#home").slice(1);
+    const wasDetail = document.body.classList.contains("detail");
+    side.classList.remove("open");
+    closeLb();
+
+    if (id.startsWith("projeto/") && renderProjeto(id.slice(8))) {
+      document.body.classList.add("detail");
+      setNav("projetos");
+      window.scrollTo({ top: 0, behavior: "instant" });
+      observeReveal(detail);
+      return;
+    }
+    showOnepage();
+    const target = document.getElementById(SECOES.includes(id) ? id : "projetos") || document.getElementById("home");
+    scrollToSection(target, !wasDetail);
+  }
+  addEventListener("hashchange", route);
+
+  // Menu, logo e "Ver projetos": rola direto até a seção (funciona também aberto como arquivo local)
+  document.addEventListener("click", e => {
+    const a = e.target.closest("a[href^='#']");
+    if (!a) return;
+    const id = a.getAttribute("href").slice(1);
+    if (!SECOES.includes(id)) return;
+    e.preventDefault();
+    const wasDetail = document.body.classList.contains("detail");
+    side.classList.remove("open");
+    if (wasDetail) showOnepage();
+    try { history.pushState(null, "", "#" + id); } catch (_) {}
+    setNav(id === "home" ? "" : id);
+    scrollToSection(document.getElementById(id), !wasDetail);
+  });
+  addEventListener("popstate", route);
+
+  observeReveal(document);
+  carregaProjetos()
+    .catch(() => {
+      grid.innerHTML = '<p class="erro">Não foi possível carregar os projetos. Abra o site por um servidor (ele não funciona abrindo o arquivo direto).</p>';
+    })
+    .then(() => { montaGrid(); aplicaGrid(); route(); });
+</script>
+</body>
+</html>

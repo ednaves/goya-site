@@ -1,0 +1,75 @@
+# Painel de edição do site (Pages CMS — https://pagescms.org)
+# O cliente entra em app.pagescms.org com a conta do GitHub e edita os projetos por formulário.
+
+media:
+  input: imagens
+  output: /imagens
+
+content:
+  - name: projetos
+    label: Projetos
+    description: Os projetos aparecem no site na mesma ordem desta lista. Arraste para reordenar.
+    type: file
+    path: content/projetos.json
+    format: json
+    fields:
+      - name: projetos
+        label: Projetos
+        type: object
+        list: true
+        fields:
+          - name: nome
+            label: Nome do projeto
+            type: string
+            required: true
+          - name: categoria
+            label: Categoria
+            type: select
+            required: true
+            options:
+              values:
+                - arquitetura
+                - consultoria
+                - arte
+                - obra
+          - name: local
+            label: Local
+            type: string
+            description: "Ex.: São Paulo, SP"
+          - name: ano
+            label: Ano
+            type: string
+            description: "Ex.: 2023 ou 2019–2023"
+          - name: capa
+            label: Foto de capa
+            type: image
+            description: Aparece no card da lista e no topo da página do projeto.
+          - name: resumo
+            label: Resumo
+            type: text
+            description: Uma ou duas frases. Aparece abaixo da foto, na lista de projetos.
+          - name: destaque
+            label: Frase de destaque
+            type: text
+            description: Frase em letra grande no início da "Memória do projeto".
+          - name: memoria
+            label: Memória do projeto
+            type: text
+            description: Texto do projeto. Deixe uma linha em branco entre os parágrafos.
+          - name: ficha
+            label: Ficha técnica
+            type: object
+            list: true
+            fields:
+              - name: rotulo
+                label: Item
+                type: string
+                description: "Ex.: Projeto, Local, Fotografia"
+              - name: valor
+                label: Informação
+                type: string
+          - name: fotos
+            label: Galeria de fotos
+            type: image
+            list: true
+            description: Fotos da página do projeto, na ordem em que aparecem.
