@@ -1,61 +1,6 @@
 {
   "projetos": [
     {
-      "nome": "Jardins Capri",
-      "categoria": "arquitetura",
-      "local": "Senador Canedo, GO",
-      "ano": "2019–2023",
-      "capa": "/imagens/jardins-capri/06.jpg",
-      "resumo": "Residência em taipa de pilão no cerrado goiano. Projeto e acompanhamento de Rodrigo Rocha.",
-      "destaque": "Uma residência no cerrado goiano em que a taipa de pilão é estrutura, vedação e acabamento ao mesmo tempo.",
-      "memoria": "Primeira obra residencial da Goya no Brasil, a casa leva para o contexto goiano a técnica de taipa de pilão estabilizada que Rodrigo praticou por quase uma década na Austrália.\n\nO projeto executivo foi desenvolvido a partir da própria materialidade da terra: modulação das formas, juntas, reforços e encontros com os demais materiais foram detalhados antes de a obra começar.",
-      "ficha": [
-        {
-          "rotulo": "Tipo",
-          "valor": "Arquitetura residencial"
-        },
-        {
-          "rotulo": "Local",
-          "valor": "Senador Canedo, Goiás"
-        },
-        {
-          "rotulo": "Ano",
-          "valor": "2019–2023"
-        },
-        {
-          "rotulo": "Projeto",
-          "valor": "Rodrigo Rocha"
-        },
-        {
-          "rotulo": "Projeto estrutural",
-          "valor": "GO Engenharia"
-        },
-        {
-          "rotulo": "Responsável técnico",
-          "valor": "Danilo Angelo, GO Engenharia"
-        },
-        {
-          "rotulo": "Fotografia",
-          "valor": "Maurício Araújo"
-        }
-      ],
-      "fotos": [
-        "/imagens/jardins-capri/01.jpg",
-        "/imagens/jardins-capri/02.jpg",
-        "/imagens/jardins-capri/03.jpg",
-        "/imagens/jardins-capri/04.jpg",
-        "/imagens/jardins-capri/05.jpg",
-        "/imagens/jardins-capri/06.jpg",
-        "/imagens/jardins-capri/07.jpg",
-        "/imagens/jardins-capri/08.jpg",
-        "/imagens/jardins-capri/09.jpg",
-        "/imagens/jardins-capri/10.jpg",
-        "/imagens/jardins-capri/11.jpg",
-        "/imagens/jardins-capri/12.png",
-        "/imagens/jardins-capri/13.png"
-      ]
-    },
-    {
       "nome": "Casa Kanowna",
       "categoria": "arquitetura",
       "local": "Melbourne, Austrália",
@@ -273,6 +218,61 @@
         "/imagens/mac/03.jpg",
         "/imagens/mac/04.jpg",
         "/imagens/mac/05.jpg"
+      ]
+    },
+    {
+      "nome": "Jardins Capri",
+      "categoria": "arquitetura",
+      "local": "Senador Canedo, GO",
+      "ano": "2019–2023",
+      "capa": "/imagens/jardins-capri/06.jpg",
+      "resumo": "Residência em taipa de pilão no cerrado goiano. Projeto e acompanhamento de Rodrigo Rocha.",
+      "destaque": "Uma residência no cerrado goiano em que a taipa de pilão é estrutura, vedação e acabamento ao mesmo tempo.",
+      "memoria": "Primeira obra residencial da Goya no Brasil, a casa leva para o contexto goiano a técnica de taipa de pilão estabilizada que Rodrigo praticou por quase uma década na Austrália.\n\nO projeto executivo foi desenvolvido a partir da própria materialidade da terra: modulação das formas, juntas, reforços e encontros com os demais materiais foram detalhados antes de a obra começar.",
+      "ficha": [
+        {
+          "rotulo": "Tipo",
+          "valor": "Arquitetura residencial"
+        },
+        {
+          "rotulo": "Local",
+          "valor": "Senador Canedo, Goiás"
+        },
+        {
+          "rotulo": "Ano",
+          "valor": "2019–2023"
+        },
+        {
+          "rotulo": "Projeto",
+          "valor": "Rodrigo Rocha"
+        },
+        {
+          "rotulo": "Projeto estrutural",
+          "valor": "GO Engenharia"
+        },
+        {
+          "rotulo": "Responsável técnico",
+          "valor": "Danilo Angelo, GO Engenharia"
+        },
+        {
+          "rotulo": "Fotografia",
+          "valor": "Maurício Araújo"
+        }
+      ],
+      "fotos": [
+        "/imagens/jardins-capri/01.jpg",
+        "/imagens/jardins-capri/02.jpg",
+        "/imagens/jardins-capri/03.jpg",
+        "/imagens/jardins-capri/04.jpg",
+        "/imagens/jardins-capri/05.jpg",
+        "/imagens/jardins-capri/06.jpg",
+        "/imagens/jardins-capri/07.jpg",
+        "/imagens/jardins-capri/08.jpg",
+        "/imagens/jardins-capri/09.jpg",
+        "/imagens/jardins-capri/10.jpg",
+        "/imagens/jardins-capri/11.jpg",
+        "/imagens/jardins-capri/12.png",
+        "/imagens/jardins-capri/13.png"
       ]
     },
     {
