@@ -61,12 +61,10 @@
   .rv { opacity: 0; transform: translateY(32px); transition: opacity 1s ease, transform 1s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0s); }
   .rv.in { opacity: 1; transform: none; }
   .hero.rv { transform: none; }
-  .hero img { transform: scale(1.08); transition: transform 2.4s cubic-bezier(.2,.7,.2,1); }
-  .hero.in img { transform: none; }
   .title.rv { transform: translateX(24px); }
   .title.rv.in { transform: none; }
   @media (prefers-reduced-motion: reduce) {
-    .rv, .rv.in, .hero img { opacity: 1; transform: none !important; transition: none; }
+    .rv, .rv.in, .slide img { opacity: 1; transform: none !important; transition: none !important; animation: none !important; }
     html { scroll-behavior: auto; }
   }
 
@@ -78,6 +76,25 @@
 
   /* ---------- Home ---------- */
   .hero { position: relative; aspect-ratio: 16 / 8.5; overflow: hidden; background: var(--line); }
+  /* Sequência de fotos da abertura: troca com fade e um zoom lento */
+  .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.6s ease; }
+  .slide.on { opacity: 1; z-index: 1; }
+  .slide img { transform: scale(1.06); }
+  .slide.on img { animation: kb 7s ease-out forwards; }
+  @keyframes kb { from { transform: scale(1.06); } to { transform: scale(1); } }
+  .hero-cap {
+    position: absolute; left: 20px; bottom: 18px; z-index: 2; background: var(--bg); color: var(--ink);
+    font-size: 10px; letter-spacing: .2em; text-transform: uppercase; font-weight: 500; padding: 8px 12px;
+    transition: opacity .5s, background .2s, color .2s;
+  }
+  .hero-cap:hover { background: var(--ink); color: var(--bg); }
+  .hero-cap.fade { opacity: 0; }
+  .hero-dots { position: absolute; right: 20px; bottom: 24px; z-index: 2; display: flex; gap: 8px; }
+  .hero-dots button {
+    width: 22px; height: 2px; border: 0; padding: 6px 0; background: none; cursor: pointer; position: relative;
+  }
+  .hero-dots button::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: rgba(250,249,246,.5); }
+  .hero-dots button.on::before { background: #faf9f6; }
   .claim {
     display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: end;
     padding: 72px 0 88px; border-bottom: 1px solid var(--line);
@@ -103,7 +120,14 @@
   .more:hover { color: var(--earth); border-color: var(--earth); }
 
   /* ---------- Projetos ---------- */
-  .filters { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 22px; margin-bottom: 32px; }
+  /* Barra de filtros: fica presa no topo só enquanto a seção Projetos está na tela
+     (position: sticky dentro de #projetos, então ela se solta sozinha ao chegar no Sobre) */
+  .filters {
+    display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 22px; margin-bottom: 32px;
+    position: sticky; top: 0; z-index: 5; background: var(--bg); padding: 18px 0 14px;
+    border-bottom: 1px solid transparent; transition: border-color .3s;
+  }
+  .filters.stuck { border-bottom-color: var(--line); }
   .filters button {
     background: none; border: 0; font: inherit; font-size: 12px; letter-spacing: .16em;
     text-transform: uppercase; color: var(--muted); cursor: pointer; padding: 4px 0;
@@ -231,13 +255,16 @@
     .side-foot { display: none; }
     main { margin: 0; padding: 24px 16px 64px; }
     .title { text-align: left; }
-    .filters { justify-content: flex-start; }
+    .filters { justify-content: flex-start; top: var(--hdr, 61px); gap: 6px 18px; padding: 12px 0 10px; }
     .claim, .about, .contact { grid-template-columns: 1fr; }
     .claim { padding: 44px 0 52px; gap: 20px; }
     .claim p { justify-self: start; }
     .services { grid-template-columns: 1fr; }
     .svc, .svc + .svc { padding: 32px 0; border-right: 0; border-bottom: 1px solid var(--line); }
-    .hero { aspect-ratio: 4 / 5; }
+    .hero { aspect-ratio: 4 / 3; }
+    .hero-cap { left: 10px; bottom: 10px; }
+    .hero-dots { right: 10px; bottom: 16px; gap: 5px; }
+    .hero-dots button { width: 14px; }
     .row { grid-template-columns: 1fr; gap: 6px; }
     .d-info { grid-template-columns: 1fr; padding: 40px 0 48px; }
     .d-head { flex-direction: column-reverse; align-items: flex-start; }
@@ -279,8 +306,10 @@
 
   <!-- ===================== HOME ===================== -->
   <section class="sec" id="home">
-    <div class="hero rv">
-      <img src="imagens/site/abertura.jpg" alt="Casa Jardins Capri, paredes de taipa de pilão">
+    <div class="hero rv" id="hero">
+      <div class="slide on"><img src="imagens/site/abertura.jpg" alt="Casa Jardins Capri, paredes de taipa de pilão"></div>
+      <a class="hero-cap" id="heroCap" href="#projeto/jardins-capri"><span id="heroNome">Jardins Capri</span> →</a>
+      <div class="hero-dots" id="heroDots"></div>
     </div>
 
     <div class="claim">
@@ -528,6 +557,7 @@
     const b = e.target.closest("button"); if (!b) return;
     document.querySelectorAll("#filters button").forEach(x => x.classList.toggle("on", x === b));
     filtro = b.dataset.f; limite = STEP; aplicaGrid();
+    if (filtersEl.classList.contains("stuck")) scrollToSection(document.getElementById("projetos"), true);
   });
   plus.onclick = () => { limite += STEP; aplicaGrid(); };
   minus.onclick = () => {
@@ -619,11 +649,66 @@
   addEventListener("popstate", route);
 
   observeReveal(document);
+  // ---------- Abertura: sequência de fotos (content/inicio.json, editável no painel) ----------
+  const hero = document.getElementById("hero"), heroCap = document.getElementById("heroCap"),
+        heroNome = document.getElementById("heroNome"), heroDots = document.getElementById("heroDots");
+  let slides = [], slideI = 0, slideTimer = 0;
+  const INTERVALO = 5500;
+  async function montaAbertura() {
+    let lista = [];
+    try { lista = ((await (await fetch("content/inicio.json", { cache: "no-cache" })).json()).abertura || []).filter(x => x && x.foto); } catch (_) {}
+    if (lista.length < 2) { if (lista[0]) legendaSlide(lista[0]); return; }
+    hero.querySelectorAll(".slide").forEach(el => el.remove());
+    slides = lista.map((x, i) => {
+      const el = document.createElement("div");
+      el.className = "slide" + (i === 0 ? " on" : "");
+      el.innerHTML = `<img src="${img(x.foto)}" alt="${x.projeto || "Goya Arquitetura"}" ${i ? 'loading="lazy"' : ""}>`;
+      hero.insertBefore(el, heroCap);
+      return { el, ...x };
+    });
+    heroDots.innerHTML = slides.map((_, i) => `<button aria-label="Foto ${i + 1}"${i === 0 ? ' class="on"' : ""}></button>`).join("");
+    heroDots.onclick = e => { const b = e.target.closest("button"); if (b) { irSlide([...heroDots.children].indexOf(b)); agendaSlide(); } };
+    legendaSlide(slides[0]);
+    agendaSlide();
+  }
+  function legendaSlide(x) {
+    const p = projetos.find(p => p.nome.toLowerCase() === (x.projeto || "").trim().toLowerCase());
+    heroCap.hidden = !p;
+    if (p) { heroNome.textContent = p.nome; heroCap.href = "#projeto/" + p.slug; }
+  }
+  function irSlide(n) {
+    if (!slides.length || n === slideI) return;
+    const prev = slides[slideI].el; slideI = (n + slides.length) % slides.length;
+    const next = slides[slideI].el;
+    next.querySelector("img").loading = "eager";
+    next.classList.add("on"); prev.classList.remove("on");
+    [...heroDots.children].forEach((d, i) => d.classList.toggle("on", i === slideI));
+    heroCap.classList.add("fade");
+    setTimeout(() => { legendaSlide(slides[slideI]); heroCap.classList.remove("fade"); }, 500);
+    // pré-carrega a próxima
+    slides[(slideI + 1) % slides.length].el.querySelector("img").loading = "eager";
+  }
+  function agendaSlide() {
+    clearInterval(slideTimer);
+    slideTimer = setInterval(() => { if (!document.hidden) irSlide(slideI + 1); }, INTERVALO);
+  }
+
+  // ---------- Filtros: linha fina quando a barra está presa no topo ----------
+  const filtersEl = document.getElementById("filters");
+  function marcaFiltroPreso() {
+    const top = parseFloat(getComputedStyle(filtersEl).top) || 0;
+    const r = filtersEl.getBoundingClientRect(), sec = document.getElementById("projetos").getBoundingClientRect();
+    filtersEl.classList.toggle("stuck", Math.abs(r.top - top) < 1 && sec.top < top - 1);
+  }
+  addEventListener("scroll", marcaFiltroPreso, { passive: true });
+  addEventListener("resize", () => document.documentElement.style.setProperty("--hdr", side.offsetHeight + "px"));
+  document.documentElement.style.setProperty("--hdr", side.offsetHeight + "px");
+
   carregaProjetos()
     .catch(() => {
       grid.innerHTML = '<p class="erro">Não foi possível carregar os projetos. Abra o site por um servidor (ele não funciona abrindo o arquivo direto).</p>';
     })
-    .then(() => { montaGrid(); aplicaGrid(); route(); });
+    .then(() => { montaGrid(); aplicaGrid(); route(); montaAbertura(); });
 </script>
 </body>
 </html>

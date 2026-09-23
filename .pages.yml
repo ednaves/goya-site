@@ -6,6 +6,27 @@ media:
   output: /imagens
 
 content:
+  - name: inicio
+    label: Fotos da abertura
+    description: Fotos que se alternam no topo do site. Use só fotos horizontais (deitadas) para manter o visual.
+    type: file
+    path: content/inicio.json
+    format: json
+    fields:
+      - name: abertura
+        label: Fotos
+        type: object
+        list: true
+        fields:
+          - name: foto
+            label: Foto (horizontal)
+            type: image
+            required: true
+          - name: projeto
+            label: Projeto
+            type: string
+            description: Nome do projeto exatamente como está na lista de Projetos. Cria o link na legenda da foto. Deixe vazio para não mostrar legenda.
+
   - name: projetos
     label: Projetos
     description: Os projetos aparecem no site na mesma ordem desta lista. Arraste para reordenar.
