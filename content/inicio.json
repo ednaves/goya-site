@@ -1,6 +1,14 @@
 {
   "abertura": [
     {
+      "foto": "/imagens/casa-bunker/capa.jpg",
+      "projeto": "Casa Bunker"
+    },
+    {
+      "foto": "/imagens/casa-outback/13.jpg",
+      "projeto": "Casa Outback"
+    },
+    {
       "foto": "/imagens/jardins-capri/01.jpg",
       "projeto": "Jardins Capri"
     },
@@ -9,20 +17,12 @@
       "projeto": "Casa Outback"
     },
     {
-      "foto": "/imagens/casa-bunker/capa.jpg",
-      "projeto": "Casa Bunker"
-    },
-    {
       "foto": "/imagens/casa-kanowna/13.jpg",
       "projeto": "Casa Kanowna"
     },
     {
       "foto": "/imagens/selby/03.jpg",
       "projeto": "Casa Selby"
-    },
-    {
-      "foto": "/imagens/casa-outback/13.jpg",
-      "projeto": "Casa Outback"
     },
     {
       "foto": "/imagens/casa-bunker/07.jpg",
