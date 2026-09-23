@@ -1,12 +1,36 @@
 {
   "abertura": [
-    { "foto": "/imagens/site/abertura.jpg", "projeto": "Jardins Capri" },
-    { "foto": "/imagens/casa-outback/10.jpg", "projeto": "Casa Outback" },
-    { "foto": "/imagens/casa-bunker/capa.jpg", "projeto": "Casa Bunker" },
-    { "foto": "/imagens/casa-kanowna/07.jpg", "projeto": "Casa Kanowna" },
-    { "foto": "/imagens/jardins-capri/07.jpg", "projeto": "Jardins Capri" },
-    { "foto": "/imagens/selby/03.jpg", "projeto": "Casa Selby" },
-    { "foto": "/imagens/casa-outback/13.jpg", "projeto": "Casa Outback" },
-    { "foto": "/imagens/casa-bunker/09.jpg", "projeto": "Casa Bunker" }
+    {
+      "foto": "/imagens/jardins-capri/06.jpg",
+      "projeto": "Jardins Capri"
+    },
+    {
+      "foto": "/imagens/casa-outback/10.jpg",
+      "projeto": "Casa Outback"
+    },
+    {
+      "foto": "/imagens/casa-bunker/capa.jpg",
+      "projeto": "Casa Bunker"
+    },
+    {
+      "foto": "/imagens/casa-kanowna/07.jpg",
+      "projeto": "Casa Kanowna"
+    },
+    {
+      "foto": "/imagens/jardins-capri/07.jpg",
+      "projeto": "Jardins Capri"
+    },
+    {
+      "foto": "/imagens/selby/03.jpg",
+      "projeto": "Casa Selby"
+    },
+    {
+      "foto": "/imagens/casa-outback/13.jpg",
+      "projeto": "Casa Outback"
+    },
+    {
+      "foto": "/imagens/casa-bunker/09.jpg",
+      "projeto": "Casa Bunker"
+    }
   ]
 }
