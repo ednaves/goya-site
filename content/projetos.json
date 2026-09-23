@@ -111,7 +111,7 @@
       "categoria": "consultoria",
       "local": "Paraisópolis, MG",
       "ano": "2023",
-      "capa": "/imagens/ecosapiens/capa.jpg",
+      "capa": "/imagens/ecosapiens/05.png",
       "resumo": "Consultoria de projeto executivo, diagramação de formas e capacitação da equipe local na primeira parede.",
       "destaque": "Paredes monolíticas de terra no alto de uma colina, voltadas para o horizonte do sul de Minas.",
       "memoria": "Residência projetada por Marta Levy e Felipe Pinheiro, do escritório Ecosapiens. As paredes de taipa de pilão envolvem as aberturas voltadas para a vista principal, e o teto verde completa o conforto térmico natural da casa.\n\nA Goya atuou no projeto executivo: diagramação das formas e das juntas de dilatação, detalhes de conexão com outros materiais e acabamentos. Na obra, capacitou a equipe local durante a execução da primeira parede, com compactador pneumático e formas metálicas.",
@@ -142,7 +142,8 @@
         "/imagens/ecosapiens/02.jpg",
         "/imagens/ecosapiens/03.jpg",
         "/imagens/ecosapiens/04.jpg",
-        "/imagens/ecosapiens/05.png"
+        "/imagens/ecosapiens/05.png",
+        "/imagens/ecosapiens/capa.jpg"
       ]
     },
     {
@@ -150,7 +151,7 @@
       "categoria": "consultoria",
       "local": "São Paulo, SP",
       "ano": "2022",
-      "capa": "/imagens/qg-studio/capa.jpg",
+      "capa": "/imagens/qg-studio/05.jpg",
       "resumo": "Substituição de concreto aparente por taipa de pilão: testes de mistura em laboratório, formas e reforço estrutural.",
       "destaque": "Uma parede de concreto aparente que virou taipa de pilão, com consultoria feita inteiramente a distância.",
       "memoria": "O ponto de partida foi substituir uma parede de concreto aparente por taipa de pilão. Diferentes misturas foram testadas e os corpos de prova analisados em laboratório para garantir alta resistência à compressão.\n\nA Goya desenhou as formas e especificou o reforço estrutural de uma parede com 20 cm de espessura e 2,87 m de altura, acompanhando remotamente da fabricação das formas e escolha dos solos até a execução.",
@@ -185,7 +186,7 @@
         "/imagens/qg-studio/02.jpg",
         "/imagens/qg-studio/03.jpg",
         "/imagens/qg-studio/04.jpg",
-        "/imagens/qg-studio/05.jpg"
+        "/imagens/qg-studio/capa.jpg"
       ]
     },
     {
@@ -193,7 +194,7 @@
       "categoria": "arte",
       "local": "Brumadinho, MG",
       "ano": "2023",
-      "capa": "/imagens/inhotim/capa.jpg",
+      "capa": "/imagens/inhotim/02.jpg",
       "resumo": "Capacitação e consultoria em terra e fibras vegetais para a instalação “A noite suspensa”.",
       "destaque": "Terra e fibras vegetais como matéria de uma obra de arte, e a formação de quem a constrói.",
       "memoria": "Instalação da artista Monica Ventura no Instituto Inhotim, “A noite suspensa ou o que posso aprender com o silêncio”. A obra mobiliza materiais e tecnologias ancestrais, trazendo para o museu presenças historicamente ausentes desses espaços.\n\nConstruir com terra e fibras exige saberes distantes da construção civil atual. A Goya testou misturas e capacitou seis artesãos locais, que participaram de todo o processo junto às equipes de carpintaria e serralheria, da concepção estrutural à montagem.",
@@ -225,7 +226,7 @@
       ],
       "fotos": [
         "/imagens/inhotim/01.jpg",
-        "/imagens/inhotim/02.jpg",
+        "/imagens/inhotim/capa.jpg",
         "/imagens/inhotim/03.jpg",
         "/imagens/inhotim/04.jpg",
         "/imagens/inhotim/05.jpg"
@@ -279,7 +280,7 @@
       "categoria": "arquitetura",
       "local": "Trentham, Austrália",
       "ano": "2019–2023",
-      "capa": "/imagens/casa-outback/capa.jpg",
+      "capa": "/imagens/casa-outback/10.jpg",
       "resumo": "Paredes estruturais de taipa e três coberturas em alturas distintas organizam os usos da casa.",
       "destaque": "Três coberturas, paredes de terra e janelas do piso ao teto voltadas para a paisagem de Victoria.",
       "memoria": "O partido separa com clareza as áreas íntima, social e de serviço, usando paredes estruturais de taipa de pilão e três coberturas em alturas diferentes. Espaços de transição regulam o conforto térmico e abrem grandes vistas para fora. A entrada fica a leste, voltada para o sol nascente, e o programa inclui uma garagem-oficina de 200 m² para a coleção de carros do cliente.\n\nRodrigo também administrou a obra. Foram 500 m² de taipa com 40% de concreto reciclado triturado da região: paredes externas de 40 cm com isolamento no miolo e internas de 30 cm. A estrutura combina aço nos elementos principais, madeira laminada colada e wood frame, e o piso de concreto polido tem aquecimento por água.",
@@ -332,7 +333,8 @@
         "/imagens/casa-outback/20.jpg",
         "/imagens/casa-outback/21.jpg",
         "/imagens/casa-outback/22.jpg",
-        "/imagens/casa-outback/23.jpg"
+        "/imagens/casa-outback/23.jpg",
+        "/imagens/casa-outback/capa.jpg"
       ]
     },
     {
@@ -389,7 +391,7 @@
       "categoria": "consultoria",
       "local": "Valle de Bravo, México",
       "ano": "2019",
-      "capa": "/imagens/base-bioarquitectura/capa.jpg",
+      "capa": "/imagens/base-bioarquitectura/05.jpg",
       "resumo": "Consultoria estrutural e formação da primeira equipe especializada em taipa de pilão da região.",
       "destaque": "Aço e taipa de pilão mecanizada numa pequena casa de dois pavimentos no México.",
       "memoria": "Residência de 80 m² em dois pisos, projetada por Federico López Ortega, que combina a racionalidade estrutural do aço com a taipa de pilão executada de forma mecanizada, numa linguagem contemporânea integrada à paisagem.\n\nA consultoria começou a distância, com projeto estrutural, detalhamento e desenho das formas, e terminou com um mês de imersão na obra capacitando os construtores locais. O resultado foi uma equipe especializada capaz de replicar a técnica na região.",
@@ -424,7 +426,8 @@
         "/imagens/base-bioarquitectura/02.jpg",
         "/imagens/base-bioarquitectura/03.jpg",
         "/imagens/base-bioarquitectura/04.jpg",
-        "/imagens/base-bioarquitectura/05.jpg"
+        "/imagens/base-bioarquitectura/05.jpg",
+        "/imagens/base-bioarquitectura/capa.jpg"
       ]
     },
     {
@@ -432,7 +435,7 @@
       "categoria": "arte",
       "local": "Chapada dos Veadeiros, GO",
       "ano": "2012",
-      "capa": "/imagens/aldeia-multietnica/capa.jpg",
+      "capa": "/imagens/aldeia-multietnica/02.jpg",
       "resumo": "Portal de taipa e bambu, banheiros secos e uma geodésica desmontável construídos com a comunidade.",
       "destaque": "Trinta dias construindo com terra e bambu ao lado de povos tradicionais do cerrado.",
       "memoria": "Intervenções pontuais para o encontro da Aldeia Multiétnica: uma entrada com paredes de taipa de pilão e portal de bambu, banheiros secos permanentes para uso da comunidade e uma geodésica de bambu que organiza o evento e pode ser montada e desmontada a cada edição.\n\nAs formas foram feitas no local e as paredes, compactadas à mão, em um processo de capacitação com a comunidade quilombola Kalunga, de Cavalcante. Um mês de obra e troca de saberes sobre técnicas ancestrais de construção.",
@@ -466,7 +469,8 @@
         "/imagens/aldeia-multietnica/01.jpg",
         "/imagens/aldeia-multietnica/02.jpg",
         "/imagens/aldeia-multietnica/03.jpg",
-        "/imagens/aldeia-multietnica/04.jpg"
+        "/imagens/aldeia-multietnica/04.jpg",
+        "/imagens/aldeia-multietnica/capa.jpg"
       ]
     },
     {
@@ -474,7 +478,7 @@
       "categoria": "obra",
       "local": "Selby, Austrália",
       "ano": "2019",
-      "capa": "/imagens/selby/capa.jpg",
+      "capa": "/imagens/selby/02.jpg",
       "resumo": "Administração de obra de uma casa de Steffen Welsch Architects, encaixada num corte do terreno.",
       "destaque": "Uma casa em zigue-zague encaixada na encosta, nos arredores de Melbourne.",
       "memoria": "Projeto de Steffen Welsch Architects: uma residência simples implantada em um corte de terreno montanhoso, com paredes de taipa de pilão, placas cimentícias e aço corrugado desenhando o zigue-zague da volumetria.\n\nComo parte da equipe do escritório, Rodrigo administrou e acompanhou os 15 meses de obra, da fundação aos acabamentos, produzindo os desenhos e detalhes de execução que ajustaram o projeto aos acabamentos e equipamentos escolhidos.",
@@ -506,7 +510,7 @@
       ],
       "fotos": [
         "/imagens/selby/01.jpg",
-        "/imagens/selby/02.jpg",
+        "/imagens/selby/capa.jpg",
         "/imagens/selby/03.jpg",
         "/imagens/selby/04.jpg",
         "/imagens/selby/05.jpg"
@@ -517,7 +521,7 @@
       "categoria": "obra",
       "local": "Woodend, Austrália",
       "ano": "2020",
-      "capa": "/imagens/woodend/capa.jpg",
+      "capa": "/imagens/woodend/03.jpg",
       "resumo": "Administração de obra de uma casa curva de Steffen Welsch Architects, em taipa, vidro e placas cimentícias.",
       "destaque": "Uma casa em curva que se abre para as vistas e protege o conforto térmico.",
       "memoria": "Projeto de Steffen Welsch Architects em terreno plano na pequena cidade de Woodend. Paredes de taipa de pilão, placas cimentícias e vidro formam a curvatura da casa, pensada para o conforto térmico e para as vistas do entorno.\n\nRodrigo administrou e acompanhou os 15 meses de obra como parte da equipe do escritório, da fundação aos acabamentos, com desenhos técnicos e detalhes de execução.",
@@ -548,7 +552,8 @@
         "/imagens/woodend/02.jpg",
         "/imagens/woodend/03.jpg",
         "/imagens/woodend/04.jpg",
-        "/imagens/woodend/05.jpg"
+        "/imagens/woodend/05.jpg",
+        "/imagens/woodend/capa.jpg"
       ]
     }
   ]
