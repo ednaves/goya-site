@@ -64,7 +64,7 @@
   .title.rv { transform: translateX(24px); }
   .title.rv.in { transform: none; }
   @media (prefers-reduced-motion: reduce) {
-    .rv, .rv.in, .slide img { opacity: 1; transform: none !important; transition: none !important; animation: none !important; }
+    .rv, .rv.in { opacity: 1; transform: none !important; transition: none !important; }
     html { scroll-behavior: auto; }
   }
 
@@ -76,12 +76,9 @@
 
   /* ---------- Home ---------- */
   .hero { position: relative; aspect-ratio: 16 / 8.5; overflow: hidden; background: var(--line); }
-  /* Sequência de fotos da abertura: troca com fade e um zoom lento */
+  /* Sequência de fotos da abertura: troca com fade */
   .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.6s ease; }
   .slide.on { opacity: 1; z-index: 1; }
-  .slide img { transform: scale(1.06); }
-  .slide.on img { animation: kb 7s ease-out forwards; }
-  @keyframes kb { from { transform: scale(1.06); } to { transform: scale(1); } }
   .hero-cap {
     position: absolute; left: 20px; bottom: 18px; z-index: 2; background: var(--bg); color: var(--ink);
     font-size: 10px; letter-spacing: .2em; text-transform: uppercase; font-weight: 500; padding: 8px 12px;
@@ -112,12 +109,6 @@
   .svc .n { font-size: 12px; color: var(--earth); letter-spacing: .1em; }
   .svc h3 { font-size: 20px; font-weight: 400; letter-spacing: .1em; text-transform: uppercase; margin: 18px 0 12px; }
   .svc p { color: var(--muted); font-size: 15px; }
-  .more {
-    display: inline-flex; gap: 10px; align-items: center; margin-top: 56px;
-    font-size: 12px; letter-spacing: .18em; text-transform: uppercase; font-weight: 400;
-    border-bottom: 1px solid var(--ink); padding-bottom: 4px;
-  }
-  .more:hover { color: var(--earth); border-color: var(--earth); }
 
   /* ---------- Projetos ---------- */
   /* Barra de filtros: fica presa no topo só enquanto a seção Projetos está na tela
@@ -168,6 +159,7 @@
   /* ---------- Sobre ---------- */
   .about { display: grid; grid-template-columns: 1fr 1.25fr; gap: clamp(32px, 5vw, 80px); align-items: start; }
   .about .ph { aspect-ratio: 3 / 4; overflow: hidden; background: var(--line); }
+  .about .ph img { object-position: 50% 20%; }
   .about h2 { font-size: clamp(26px, 2.6vw, 36px); font-weight: 300; letter-spacing: -0.01em; margin: 10px 0 24px; }
   .about p + p { margin-top: 16px; }
   .about .bio { color: #54473f; }
@@ -335,7 +327,6 @@
       </div>
     </div>
 
-    <a href="#projetos" class="more rv">Ver projetos <span>→</span></a>
   </section>
 
   <!-- ===================== PROJETOS ===================== -->
@@ -361,7 +352,7 @@
     <h2 class="title rv">Sobre</h2>
     <div class="about">
       <div class="ph rv">
-        <img src="imagens/site/rodrigo.jpg" alt="Rodrigo Rocha em obra de taipa de pilão">
+        <img src="imagens/site/rodrigo-retrato.jpg" alt="Retrato de Rodrigo Rocha, arquiteto fundador da Goya">
       </div>
       <div class="rv" style="--d:.15s">
         <span class="eyebrow">Fundador</span>
