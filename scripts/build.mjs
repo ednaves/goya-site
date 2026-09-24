@@ -11,7 +11,11 @@ import sharp from "sharp";
 
 const RAIZ = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const SAIDA = path.join(RAIZ, "_site");
-const SITE_URL = (process.env.SITE_URL || "http://localhost:4817/").replace(/\/?$/, "/");
+// Endereço público do site. No GitHub vem do workflow; no Cloudflare Pages, da variável SITE_URL
+// (ou do endereço automático da publicação, CF_PAGES_URL, nas prévias).
+const SITE_URL = (process.env.SITE_URL || process.env.CF_PAGES_URL || "http://localhost:4817/").replace(/\/?$/, "/");
+// NOINDEX=1: esconde esta cópia do Google (útil para ter duas hospedagens no ar sem conteúdo duplicado)
+const NOINDEX = /^(1|true|sim)$/i.test(process.env.NOINDEX || "");
 const BASE = new URL(SITE_URL).pathname;               // ex.: /goya-site/ ou /
 const IGNORAR = new Set(["_site", "node_modules", "scripts", ".git", ".github", ".claude", ".pages.yml",
   "package.json", "package-lock.json", ".gitignore", ".DS_Store"]);
@@ -103,6 +107,7 @@ function seo({ titulo, descricao, url, imagem }) {
     imagem && `<meta property="og:image" content="${esc(SITE_URL + imagem)}">`,
     imagem && `<meta property="og:image:width" content="${OG.width}"><meta property="og:image:height" content="${OG.height}">`,
     `<meta name="twitter:card" content="summary_large_image">`,
+    NOINDEX && `<meta name="robots" content="noindex, nofollow">`,
   ].filter(Boolean).join("\n");
 }
 const montaPagina = (cabecalho, extra = h => h) =>
@@ -147,7 +152,9 @@ await fs.writeFile(path.join(SAIDA, "sitemap.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
   [SITE_URL, ...projetos.map(p => `${SITE_URL}projetos/${p.slug}/`)]
     .map(u => `  <url><loc>${esc(u)}</loc><lastmod>${hoje}</lastmod></url>`).join("\n") + `\n</urlset>\n`);
-await fs.writeFile(path.join(SAIDA, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}sitemap.xml\n`);
+await fs.writeFile(path.join(SAIDA, "robots.txt"), NOINDEX
+  ? `User-agent: *\nDisallow: /\n`
+  : `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}sitemap.xml\n`);
 
 console.log(`✓ ${projetos.length} páginas de projeto · ${cards} miniaturas · ${reduzidas} fotos reduzidas · ${copiadas} arquivos copiados`);
-console.log(`  endereço: ${SITE_URL}`);
+console.log(`  endereço: ${SITE_URL}${NOINDEX ? "  (escondido do Google)" : ""}`);
