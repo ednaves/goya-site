@@ -3,8 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--BASE-->
+<!--SEO:inicio-->
 <title>Goya Arquitetura</title>
 <meta name="description" content="Goya Arquitetura: projeto, construção e consultoria em taipa de pilão e arquitetura com terra.">
+<!--SEO:fim-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -176,23 +179,45 @@
   .row .y { text-align: right; color: var(--muted); font-size: 14px; }
 
   /* ---------- Contato ---------- */
-  .contact { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 5vw, 80px); }
+  .contact { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(40px, 6vw, 96px); align-items: start; }
   .contact h2 { font-size: clamp(30px, 3.4vw, 46px); font-weight: 300; line-height: 1.15; letter-spacing: -0.015em; }
   .contact .lead { color: var(--muted); margin-top: 20px; max-width: 420px; }
-  .clist { border-top: 1px solid var(--line); }
-  .clist a, .clist div {
-    display: grid; grid-template-columns: 120px 1fr auto; gap: 16px; align-items: baseline;
-    padding: 24px 0; border-bottom: 1px solid var(--line); transition: padding .25s, color .2s;
+  .c-list { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 28px; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line); }
+  .c-list dt { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); font-weight: 400; margin-bottom: 6px; }
+  .c-list dd { font-size: 16px; font-weight: 400; line-height: 1.5; }
+  .c-list a { transition: color .2s; }
+  .c-list a span { color: var(--muted); font-size: 13px; margin-left: 2px; transition: color .2s; }
+  .c-list a:hover, .c-list a:hover span { color: var(--earth); }
+  .copiado { display: block; font-style: normal; font-size: 12px; color: var(--earth); height: 0; opacity: 0; transition: opacity .3s; }
+  .copiado.on { height: auto; opacity: 1; margin-top: 4px; }
+  /* sem formulário: título em cima e os quatro contatos numa linha só */
+  .contact.sem-form { grid-template-columns: 1fr; }
+  .contact.sem-form .c-list { grid-template-columns: repeat(4, auto); justify-content: start; gap: 32px clamp(32px, 5vw, 72px); }
+
+  /* Formulário de contato (enviado pelo Web3Forms para o e-mail do escritório) */
+  .form { display: grid; gap: 24px; background: #f2efe9; padding: clamp(24px, 3vw, 40px); }
+  .form[hidden] { display: none; }
+  .form .eyebrow { margin-bottom: 4px; }
+  .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .f { display: grid; gap: 4px; }
+  .f span { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
+  .f input, .f textarea {
+    font: inherit; font-size: 16px; color: var(--ink); background: transparent; border: 0;
+    border-bottom: 1px solid #d9d2c8; padding: 8px 0; border-radius: 0; resize: vertical; transition: border-color .2s;
   }
-  .clist a:hover { padding-left: 10px; color: var(--earth); }
-  .clist .k { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
-  .clist .v { font-size: 17px; font-weight: 400; }
-  .clist .arr { color: var(--muted); }
-  .wa {
-    display: inline-flex; align-items: center; gap: 10px; margin-top: 36px; background: var(--ink); color: var(--bg);
-    padding: 16px 26px; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; font-weight: 400; transition: background .2s;
+  .f input:focus, .f textarea:focus { outline: none; border-bottom-color: var(--ink); }
+  .f.erro input, .f.erro textarea { border-bottom-color: #b5452f; }
+  .f-bot { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .f-foot { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 4px; }
+  .f-send {
+    background: var(--ink); color: var(--bg); border: 0; cursor: pointer; font: inherit;
+    padding: 16px 26px; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; font-weight: 400; transition: background .2s, opacity .2s;
   }
-  .wa:hover { background: var(--earth); }
+  .f-send:hover { background: var(--earth); }
+  .f-send:disabled { opacity: .5; cursor: wait; }
+  .f-status { font-size: 14px; color: var(--muted); }
+  .f-status.ok { color: #4f6b3a; }
+  .f-status.falha { color: #b5452f; }
 
   footer { margin-top: 96px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
@@ -264,8 +289,8 @@
     .gallery { columns: 1; }
     .lb { padding: 56px 8px; }
     .row .y { text-align: left; }
-    .clist a, .clist div { grid-template-columns: 1fr auto; }
-    .clist .k { grid-column: 1 / -1; }
+    .f-row { grid-template-columns: 1fr; gap: 24px; }
+    .c-list, .contact.sem-form .c-list { grid-template-columns: 1fr 1fr; gap: 24px 20px; }
   }
   @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
 </style>
@@ -300,7 +325,7 @@
   <section class="sec" id="home">
     <div class="hero rv" id="hero">
       <div class="slide on"><img src="imagens/site/abertura.jpg" alt="Casa Jardins Capri, paredes de taipa de pilão"></div>
-      <a class="hero-cap" id="heroCap" href="#projeto/jardins-capri"><span id="heroNome">Jardins Capri</span> →</a>
+      <a class="hero-cap" id="heroCap" href="projetos/jardins-capri/"><span id="heroNome">Jardins Capri</span> →</a>
       <div class="hero-dots" id="heroDots"></div>
     </div>
 
@@ -397,18 +422,33 @@
   <!-- ===================== CONTATO ===================== -->
   <section class="sec" id="contato">
     <h2 class="title rv">Contato</h2>
-    <div class="contact">
-      <div class="rv">
+    <div class="contact" id="contactBox">
+      <div class="c-info rv">
         <h2>Vamos conversar sobre o seu projeto em terra.</h2>
         <p class="lead">Projetos, obras, consultorias e capacitação de equipes em todo o Brasil.</p>
-        <a class="wa" href="https://wa.me/5519996153063" target="_blank" rel="noopener">Chamar no WhatsApp →</a>
+        <dl class="c-list">
+          <div><dt>WhatsApp</dt><dd><a href="https://wa.me/5519996153063" target="_blank" rel="noopener">(19) 99615-3063 <span>↗</span></a></dd></div>
+          <div><dt>E-mail</dt><dd><a href="mailto:goya@goyarq.com.br" data-copiar="goya@goyarq.com.br">goya@goyarq.com.br <span>↗</span></a><em class="copiado" aria-live="polite"></em></dd></div>
+          <div><dt>Endereço</dt><dd><a href="https://maps.google.com/?q=Rua+Formosa,+51,+Centro+Hist%C3%B3rico,+S%C3%A3o+Paulo,+SP" target="_blank" rel="noopener">Rua Formosa, 51<br>Centro Histórico<br>São Paulo, SP <span>↗</span></a></dd></div>
+          <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/goya.terra/" target="_blank" rel="noopener">@goya.terra <span>↗</span></a></dd></div>
+        </dl>
       </div>
-      <div class="clist rv" style="--d:.15s">
-        <a href="https://wa.me/5519996153063" target="_blank" rel="noopener"><span class="k">WhatsApp</span><span class="v">(19) 99615-3063</span><span class="arr">↗</span></a>
-        <a href="mailto:goya@goyarq.com.br"><span class="k">E-mail</span><span class="v">goya@goyarq.com.br</span><span class="arr">↗</span></a>
-        <a href="https://maps.google.com/?q=Rua+Formosa,+51,+Centro+Hist%C3%B3rico,+S%C3%A3o+Paulo,+SP" target="_blank" rel="noopener"><span class="k">Endereço</span><span class="v">Rua Formosa, 51<br>Centro Histórico, São Paulo, SP</span><span class="arr">↗</span></a>
-        <a href="https://www.instagram.com/goya.terra/" target="_blank" rel="noopener"><span class="k">Instagram</span><span class="v">@goya.terra</span><span class="arr">↗</span></a>
-      </div>
+
+      <form class="form rv" style="--d:.15s" id="form" novalidate>
+        <span class="eyebrow">Envie uma mensagem</span>
+        <div class="f-row">
+          <label class="f"><span>Nome</span><input name="nome" autocomplete="given-name" required></label>
+          <label class="f"><span>Sobrenome</span><input name="sobrenome" autocomplete="family-name" required></label>
+        </div>
+        <label class="f"><span>E-mail</span><input name="email" type="email" autocomplete="email" required></label>
+        <label class="f"><span>Mensagem</span><textarea name="mensagem" rows="4" required></textarea></label>
+        <!-- campo invisível: só robôs de spam preenchem -->
+        <input type="checkbox" name="botcheck" class="f-bot" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="f-foot">
+          <button class="f-send" type="submit">Enviar mensagem →</button>
+          <p class="f-status" id="formStatus" role="status" aria-live="polite"></p>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -435,6 +475,12 @@
   // ---------- Conteúdo: os projetos vêm de content/projetos.json (editado pelo painel) ----------
   const img = src => (src || "").replace(/^\//, "");          // caminho relativo: funciona em qualquer endereço
   const W = src => img(src), F = src => img(src);
+  // Miniatura dos cards (gerada automaticamente no GitHub em imagens/_cards/); se não existir, usa a original
+  const T = src => img(src).replace(/^imagens\//, "imagens/_cards/");
+  const thumb = (src, alt) => `<img loading="lazy" src="${T(src)}" onerror="this.onerror=null;this.src='${W(src)}'" alt="${alt}">`;
+  // Endereço de verdade de cada projeto: projetos/<nome>/ (página própria, boa para Google e WhatsApp)
+  const ROOT = new URL(".", document.baseURI).href;
+  const projUrl = slug => `projetos/${slug}/`;
   const slugify = t => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   let projetos = [];
   async function carregaProjetos() {
@@ -459,9 +505,9 @@
 
   const grid = document.getElementById("grid");
   const montaGrid = () => grid.innerHTML = projetos.map((p, i) => `
-    <a class="card rv" style="--d:${(i % 3) * 0.12}s" href="#projeto/${p.slug}" data-cat="${p.cat}">
+    <a class="card rv" style="--d:${(i % 3) * 0.12}s" href="${projUrl(p.slug)}" data-cat="${p.cat}">
       <div class="ph">
-        <img loading="lazy" src="${W(p.img)}" alt="${p.nome}">
+        ${thumb(p.img, p.nome)}
         <span class="tag">${p.cat}</span>
       </div>
       <h3>${p.nome}</h3>
@@ -494,12 +540,12 @@
         </div>
       </div>
       <div class="gallery">${p.fotos.map((f, n) => `<button class="rv" style="--d:${(n % 2) * 0.12}s" data-n="${n}" aria-label="Ampliar foto ${n + 1}"><img loading="lazy" src="${F(f)}" alt="${p.nome}, foto ${n + 1}"></button>`).join("")}</div>
-      <a class="next rv" href="#projeto/${next.slug}"><span class="eyebrow">Próximo projeto</span><strong>${next.nome} →</strong></a>
+      <a class="next rv" href="${projUrl(next.slug)}"><span class="eyebrow">Próximo projeto</span><strong>${next.nome} →</strong></a>
       <div class="similar">
         <h3>Outros projetos</h3>
         <div class="grid">${outros.map(o => `
-          <a class="card rv" href="#projeto/${o.slug}">
-            <div class="ph"><img loading="lazy" src="${W(o.img)}" alt="${o.nome}"><span class="tag">${o.cat}</span></div>
+          <a class="card rv" href="${projUrl(o.slug)}">
+            <div class="ph">${thumb(o.img, o.nome)}<span class="tag">${o.cat}</span></div>
             <h3>${o.nome}</h3><div class="meta">${o.local} · ${o.ano}</div>
           </a>`).join("")}</div>
       </div>`;
@@ -587,7 +633,18 @@
   function scrollToSection(el, smooth) {
     cancelAnimationFrame(scrollAnim);
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!smooth || reduce) { window.scrollTo({ top: sectionTop(el), behavior: "instant" }); return; }
+    if (!smooth || reduce) {
+      // salto direto; confere de novo por ~1 s caso fotos/fontes terminem de carregar e empurrem a página
+      window.scrollTo({ top: sectionTop(el), behavior: "instant" });
+      const t0 = performance.now();
+      const confere = () => {
+        if (performance.now() - t0 > 1200) return;
+        if (Math.abs(scrollY - sectionTop(el)) > 2) window.scrollTo({ top: sectionTop(el), behavior: "instant" });
+        scrollAnim = requestAnimationFrame(confere);
+      };
+      scrollAnim = requestAnimationFrame(confere);
+      return;
+    }
     const from = scrollY, t0 = performance.now();
     const dur = Math.min(1200, 500 + Math.abs(sectionTop(el) - from) * 0.25);
     const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -604,40 +661,65 @@
     document.body.classList.remove("detail");
     document.title = "Goya Arquitetura";
   }
+  // Qual projeto está no endereço? projetos/<nome>/ (ou o formato antigo #projeto/<nome>)
+  function slugDaUrl() {
+    const rootPath = new URL(ROOT).pathname;
+    const resto = location.pathname.startsWith(rootPath) ? location.pathname.slice(rootPath.length) : "";
+    const m = resto.match(/^projetos\/([^/]+)\/?/);
+    if (m) return decodeURIComponent(m[1]);
+    if (location.hash.startsWith("#projeto/")) return location.hash.slice(9);
+    return null;
+  }
   function route() {
-    const id = (location.hash || "#home").slice(1);
     const wasDetail = document.body.classList.contains("detail");
     side.classList.remove("open");
     closeLb();
 
-    if (id.startsWith("projeto/") && renderProjeto(id.slice(8))) {
+    const slug = slugDaUrl();
+    if (slug && renderProjeto(slug)) {
+      // links antigos com # viram o endereço novo
+      if (location.hash.startsWith("#projeto/")) history.replaceState(null, "", ROOT + projUrl(slug));
       document.body.classList.add("detail");
       setNav("projetos");
       window.scrollTo({ top: 0, behavior: "instant" });
       observeReveal(detail);
       return;
     }
+    const id = location.hash.slice(1);
+    if (slug) history.replaceState(null, "", ROOT + "#projetos");  // projeto que não existe mais
     showOnepage();
-    const target = document.getElementById(SECOES.includes(id) ? id : "projetos") || document.getElementById("home");
-    scrollToSection(target, !wasDetail);
+    const target = document.getElementById(SECOES.includes(id) ? id : (slug ? "projetos" : "home"));
+    scrollToSection(target, !wasDetail && !!id);
   }
   addEventListener("hashchange", route);
-
-  // Menu, logo e "Ver projetos": rola direto até a seção (funciona também aberto como arquivo local)
-  document.addEventListener("click", e => {
-    const a = e.target.closest("a[href^='#']");
-    if (!a) return;
-    const id = a.getAttribute("href").slice(1);
-    if (!SECOES.includes(id)) return;
-    e.preventDefault();
-    const wasDetail = document.body.classList.contains("detail");
-    side.classList.remove("open");
-    if (wasDetail) showOnepage();
-    try { history.pushState(null, "", "#" + id); } catch (_) {}
-    setNav(id === "home" ? "" : id);
-    scrollToSection(document.getElementById(id), !wasDetail);
-  });
   addEventListener("popstate", route);
+
+  document.addEventListener("click", e => {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const a = e.target.closest("a[href]");
+    if (!a || a.target === "_blank") return;
+    const href = a.getAttribute("href");
+
+    // Menu, logo e "← Projetos": rola direto até a seção
+    if (href.startsWith("#") && SECOES.includes(href.slice(1))) {
+      const id = href.slice(1);
+      e.preventDefault();
+      const wasDetail = document.body.classList.contains("detail");
+      side.classList.remove("open");
+      if (wasDetail) showOnepage();
+      try { history.pushState(null, "", ROOT + "#" + id); } catch (_) {}
+      setNav(id === "home" ? "" : id);
+      scrollToSection(document.getElementById(id), !wasDetail);
+      return;
+    }
+    // Links de projeto: troca o conteúdo sem recarregar a página (o endereço continua sendo a página própria)
+    const m = href.match(/^projetos\/([^/]+)\/?$/);
+    if (m && projetos.some(p => p.slug === m[1])) {
+      e.preventDefault();
+      history.pushState(null, "", ROOT + projUrl(m[1]));
+      route();
+    }
+  });
 
   observeReveal(document);
   // ---------- Abertura: sequência de fotos (content/inicio.json, editável no painel) ----------
@@ -665,7 +747,7 @@
   function legendaSlide(x) {
     const p = projetos.find(p => p.nome.toLowerCase() === (x.projeto || "").trim().toLowerCase());
     heroCap.hidden = !p;
-    if (p) { heroNome.textContent = p.nome; heroCap.href = "#projeto/" + p.slug; }
+    if (p) { heroNome.textContent = p.nome; heroCap.setAttribute("href", projUrl(p.slug)); }
   }
   function irSlide(n) {
     if (!slides.length || n === slideI) return;
@@ -694,6 +776,71 @@
   addEventListener("scroll", marcaFiltroPreso, { passive: true });
   addEventListener("resize", () => document.documentElement.style.setProperty("--hdr", side.offsetHeight + "px"));
   document.documentElement.style.setProperty("--hdr", side.offsetHeight + "px");
+
+  // ---------- E-mail: além de abrir o app de e-mail, copia o endereço ----------
+  // (muita gente usa Gmail no navegador e não tem app de e-mail configurado — aí o link sozinho não faz nada)
+  document.querySelectorAll("[data-copiar]").forEach(a => a.addEventListener("click", async () => {
+    const aviso = a.parentElement.querySelector(".copiado");
+    try { await navigator.clipboard.writeText(a.dataset.copiar); aviso.textContent = "E-mail copiado"; }
+    catch (_) { aviso.textContent = a.dataset.copiar; }
+    aviso.classList.add("on");
+    clearTimeout(a._t); a._t = setTimeout(() => aviso.classList.remove("on"), 2500);
+  }));
+
+  // ---------- Formulário de contato (Web3Forms) ----------
+  // A chave fica em content/contato.json (editável no painel). Ela só permite enviar para o e-mail cadastrado.
+  const form = document.getElementById("form"), formStatus = document.getElementById("formStatus");
+  const status = (t, cls = "") => { formStatus.textContent = t; formStatus.className = "f-status " + cls; };
+  // Sem chave cadastrada, o formulário fica escondido (evita um formulário que não envia)
+  const TESTE_LOCAL = ["localhost", "127.0.0.1"].includes(location.hostname);
+  form.hidden = true;
+  document.getElementById("contactBox").classList.add("sem-form");
+  fetch("content/contato.json", { cache: "no-cache" }).then(r => r.json())
+    // na versão de teste (localhost) o formulário aparece sempre, para revisão
+    .then(c => { form.hidden = !c.web3forms_chave && !TESTE_LOCAL; })
+    .catch(() => {})
+    .finally(() => document.getElementById("contactBox").classList.toggle("sem-form", form.hidden));
+  form.addEventListener("input", e => e.target.closest(".f")?.classList.remove("erro"));
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const campos = [...form.querySelectorAll("input[required], textarea[required]")];
+    const invalidos = campos.filter(c => !c.value.trim() || (c.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(c.value.trim())));
+    campos.forEach(c => c.closest(".f").classList.toggle("erro", invalidos.includes(c)));
+    if (invalidos.length) { status("Preencha todos os campos com um e-mail válido.", "falha"); invalidos[0].focus(); return; }
+    if (form.botcheck.checked) return;
+
+    const botao = form.querySelector(".f-send");
+    botao.disabled = true; status("Enviando…");
+    try {
+      const { web3forms_chave: chave } = await (await fetch("content/contato.json", { cache: "no-cache" })).json();
+      if (!chave) {
+        status(TESTE_LOCAL ? "Versão de teste: o envio funciona depois que a chave do Web3Forms for cadastrada." : "Formulário ainda não configurado.", "falha");
+        return;
+      }
+      const nome = `${form.nome.value.trim()} ${form.sobrenome.value.trim()}`;
+      const r = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: chave,
+          subject: `Contato pelo site — ${nome}`,
+          from_name: "Site Goya Arquitetura",
+          name: nome,
+          email: form.email.value.trim(),        // o "responder" do e-mail vai direto para a pessoa
+          message: form.mensagem.value.trim(),
+          botcheck: false,
+        }),
+      });
+      const data = await r.json().catch(() => ({}));
+      if (!r.ok || !data.success) throw new Error(data.message || "falha");
+      form.reset();
+      status("Mensagem enviada. Obrigado! Responderemos em breve.", "ok");
+    } catch (_) {
+      status("Não foi possível enviar agora. Tente de novo ou fale pelo WhatsApp (19) 99615-3063.", "falha");
+    } finally {
+      botao.disabled = false;
+    }
+  });
 
   carregaProjetos()
     .catch(() => {
