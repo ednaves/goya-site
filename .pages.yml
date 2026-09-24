@@ -6,18 +6,6 @@ media:
   output: /imagens
 
 content:
-  - name: contato
-    label: Formulário de contato
-    description: As mensagens do formulário do site chegam no e-mail cadastrado no Web3Forms (web3forms.com).
-    type: file
-    path: content/contato.json
-    format: json
-    fields:
-      - name: web3forms_chave
-        label: Chave de acesso do Web3Forms
-        type: string
-        description: Para trocar o e-mail que recebe as mensagens, gere uma chave nova em web3forms.com com o novo e-mail e cole aqui.
-
   - name: inicio
     label: Fotos da abertura
     description: Fotos que se alternam no topo do site. Use só fotos horizontais (deitadas) para manter o visual.
