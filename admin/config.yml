@@ -1,0 +1,91 @@
+# Painel de edição do site (Sveltia CMS) — acessado em <endereço do site>/admin/
+# Edita os mesmos arquivos que o Pages CMS (.pages.yml): content/projetos.json, content/inicio.json e content/contato.json.
+
+backend:
+  name: github
+  repo: ednaves/goya-site
+  branch: main
+  # Serviço de login com GitHub (Cloudflare Worker "sveltia-cms-auth" na conta Cloudflare do projeto)
+  base_url: https://sveltia-cms-auth.edsonnaves09.workers.dev
+
+site_url: https://ednaves.github.io/goya-site/
+display_url: https://ednaves.github.io/goya-site/
+
+media_folder: imagens
+public_folder: /imagens
+
+collections:
+  - name: conteudo
+    label: Conteúdo do site
+    files:
+      - name: projetos
+        label: Projetos
+        description: Os projetos aparecem no site na mesma ordem desta lista. Arraste para reordenar.
+        file: content/projetos.json
+        format: json
+        fields:
+          - name: projetos
+            label: Projetos
+            label_singular: Projeto
+            widget: list
+            summary: "{{fields.nome}} · {{fields.categoria}}"
+            fields:
+              - { name: nome, label: Nome do projeto, widget: string }
+              - name: categoria
+                label: Categoria
+                widget: select
+                options: [arquitetura, consultoria, arte, construção]
+              - { name: local, label: Local, widget: string, required: false, hint: "Ex.: São Paulo, SP" }
+              - { name: ano, label: Ano, widget: string, required: false, hint: "Ex.: 2023 ou 2019–2023" }
+              - { name: capa, label: Foto de capa, widget: image, hint: "Aparece no card da lista de projetos." }
+              - name: topo
+                label: Foto do topo da página (opcional)
+                widget: image
+                required: false
+                hint: "Foto grande no alto da página do projeto. Use uma foto horizontal (deitada) e de boa resolução. Se ficar vazio, o site escolhe sozinho a melhor foto horizontal da galeria."
+              - { name: resumo, label: Resumo, widget: text, required: false, hint: "Uma ou duas frases. Aparece abaixo da foto, na lista de projetos." }
+              - { name: destaque, label: Frase de destaque, widget: text, required: false, hint: "Frase em letra grande no início da Memória do projeto." }
+              - { name: memoria, label: Memória do projeto, widget: text, required: false, hint: "Texto do projeto. Deixe uma linha em branco entre os parágrafos." }
+              - name: ficha
+                label: Ficha técnica
+                label_singular: Item
+                widget: list
+                required: false
+                summary: "{{fields.rotulo}}: {{fields.valor}}"
+                fields:
+                  - { name: rotulo, label: Item, widget: string, hint: "Ex.: Projeto, Local, Fotografia" }
+                  - { name: valor, label: Informação, widget: string }
+              - name: fotos
+                label: Galeria de fotos
+                label_singular: Foto
+                widget: list
+                required: false
+                hint: "Fotos da página do projeto, na ordem em que aparecem."
+                field: { name: foto, label: Foto, widget: image }
+
+      - name: inicio
+        label: Fotos da abertura
+        description: Fotos que se alternam no topo do site. Use só fotos horizontais (deitadas).
+        file: content/inicio.json
+        format: json
+        fields:
+          - name: abertura
+            label: Fotos
+            label_singular: Foto
+            widget: list
+            summary: "{{fields.projeto}}"
+            fields:
+              - { name: foto, label: Foto (horizontal), widget: image }
+              - { name: projeto, label: Projeto, widget: string, required: false, hint: "Nome do projeto exatamente como está na lista de Projetos. Cria o link na legenda. Deixe vazio para não mostrar legenda." }
+
+      - name: contato
+        label: Formulário de contato
+        description: As mensagens do formulário chegam no e-mail cadastrado no Web3Forms (web3forms.com).
+        file: content/contato.json
+        format: json
+        fields:
+          - name: web3forms_chave
+            label: Chave de acesso do Web3Forms
+            widget: string
+            required: false
+            hint: "Para trocar o e-mail que recebe as mensagens, gere uma chave nova em web3forms.com com o novo e-mail e cole aqui."
