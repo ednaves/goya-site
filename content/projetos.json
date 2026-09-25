@@ -1,6 +1,104 @@
 {
   "projetos": [
     {
+      "nome": "Casa Terezópolis",
+      "categoria": "construção",
+      "local": "Terezópolis de Goiás, GO",
+      "ano": "2023",
+      "capa": "/imagens/casa-terezopolis/07.jpg",
+      "resumo": "Paredes de taipa de pilão com terras de tons diferentes que desenham um mural na fachada.",
+      "destaque": "Um mural feito de terra: camadas de solo, areia e cimento em tons variados formam uma paisagem na fachada da casa.",
+      "memoria": "A pedido dos proprietários, que queriam um mural artístico na fachada, a obra explorou diferentes tipos de solo e areia, com cimento cinza ou branco em proporções variadas. O resultado é um gradiente de cores entre as camadas compactadas.\n\nAlém das fôrmas metálicas, a execução usou aprumadores de rosca e andaimes acoplados às fôrmas, que garantem o prumo das paredes e a segurança de quem trabalha. A obra também serviu para formar artesãos e testar misturas, parte essencial para a qualidade e a durabilidade da taipa.",
+      "ficha": [
+        {
+          "rotulo": "Tipo",
+          "valor": "Construção em taipa de pilão"
+        },
+        {
+          "rotulo": "Local",
+          "valor": "Terezópolis de Goiás, GO"
+        },
+        {
+          "rotulo": "Ano",
+          "valor": "2023"
+        },
+        {
+          "rotulo": "Arquitetura",
+          "valor": "Arquitetura Viva"
+        },
+        {
+          "rotulo": "Construção",
+          "valor": "Mathias Monios, Renan Reis e Rodrigo Rocha"
+        }
+      ],
+      "fotos": [
+        "/imagens/casa-terezopolis/01.jpg",
+        "/imagens/casa-terezopolis/02.jpg",
+        "/imagens/casa-terezopolis/03.jpg",
+        "/imagens/casa-terezopolis/04.jpg",
+        "/imagens/casa-terezopolis/05.jpg",
+        "/imagens/casa-terezopolis/06.jpg",
+        "/imagens/casa-terezopolis/07.jpg",
+        "/imagens/casa-terezopolis/08.jpg",
+        "/imagens/casa-terezopolis/09.jpg",
+        "/imagens/casa-terezopolis/10.jpg"
+      ]
+    },
+    {
+      "nome": "Casa Cuiabá",
+      "categoria": "construção",
+      "local": "Cuiabá, MT",
+      "ano": "2025",
+      "capa": "/imagens/casa-cuiaba/07.jpg",
+      "resumo": "Fachada de taipa de pilão com quase 5 m de altura e cobertura em madeira laminada colada.",
+      "destaque": "Uma fachada de terra com quase cinco metros de altura define a arquitetura desta casa em Cuiabá.",
+      "memoria": "A fachada em taipa de pilão, com quase 5 metros de altura, e as demais paredes de terra, junto com a cobertura em madeira laminada colada, definem a estética contemporânea proposta pelo escritório Truvian Arquitetura.\n\nUma equipe local de 4 pessoas foi treinada na primeira semana de obra e passou por um novo treinamento para as paredes junto à contenção de concreto existente. A mistura usou solo do próprio terreno e areia grossa de rio com seixos, buscando um acabamento mais claro e uniforme, com variações de cor conforme a umidade.",
+      "ficha": [
+        {
+          "rotulo": "Tipo",
+          "valor": "Construção em taipa de pilão"
+        },
+        {
+          "rotulo": "Local",
+          "valor": "Cuiabá, MT"
+        },
+        {
+          "rotulo": "Ano",
+          "valor": "2025"
+        },
+        {
+          "rotulo": "Arquitetura",
+          "valor": "Truvian Arquitetura"
+        },
+        {
+          "rotulo": "Construção",
+          "valor": "Ricardo e equipe"
+        },
+        {
+          "rotulo": "Taipa de pilão",
+          "valor": "Goya Arquitetura"
+        }
+      ],
+      "fotos": [
+        "/imagens/casa-cuiaba/02.jpg",
+        "/imagens/casa-cuiaba/03.jpg",
+        "/imagens/casa-cuiaba/04.jpg",
+        "/imagens/casa-cuiaba/05.jpg",
+        "/imagens/casa-cuiaba/06.jpg",
+        "/imagens/casa-cuiaba/07.jpg",
+        "/imagens/casa-cuiaba/08.jpg",
+        "/imagens/casa-cuiaba/09.jpg",
+        "/imagens/casa-cuiaba/10.jpg",
+        "/imagens/casa-cuiaba/11.jpg",
+        "/imagens/casa-cuiaba/12.jpg",
+        "/imagens/casa-cuiaba/13.jpg",
+        "/imagens/casa-cuiaba/14.jpg",
+        "/imagens/casa-cuiaba/15.jpg",
+        "/imagens/casa-cuiaba/16.jpg",
+        "/imagens/casa-cuiaba/01.jpg"
+      ]
+    },
+    {
       "nome": "Casa Kanowna",
       "categoria": "arquitetura",
       "local": "Melbourne, Austrália",
@@ -50,6 +148,65 @@
         "/imagens/casa-kanowna/12.jpg",
         "/imagens/casa-kanowna/13.jpg",
         "/imagens/casa-kanowna/capa.jpg"
+      ]
+    },
+    {
+      "nome": "Escola Rural Mogi das Cruzes",
+      "categoria": "construção",
+      "local": "Mogi das Cruzes, SP",
+      "ano": "2025",
+      "capa": "/imagens/escola-mogi-das-cruzes/16.jpg",
+      "resumo": "Salão multiuso de 12 lados para uma escola pública rural, erguido com mais de 100 voluntários.",
+      "destaque": "Um salão de doze lados para uma escola rural, construído em 40 dias por mais de cem voluntários.",
+      "memoria": "Projeto social realizado em 40 dias, da escavação ao acabamento, com mais de 100 voluntários do Brasil e da América do Sul. Um dodecágono forma o salão multiuso da escola, e as paredes de taipa foram levantadas em apenas 8 dias de trabalho intenso.\n\nA mistura usou terra de uma jazida próxima, pedra britada em dois tamanhos e 10% de cimento, garantindo a capacidade estrutural necessária para a cobertura de madeira maciça.",
+      "ficha": [
+        {
+          "rotulo": "Tipo",
+          "valor": "Construção em taipa de pilão"
+        },
+        {
+          "rotulo": "Local",
+          "valor": "Mogi das Cruzes, SP"
+        },
+        {
+          "rotulo": "Ano",
+          "valor": "2025"
+        },
+        {
+          "rotulo": "Arquitetura",
+          "valor": "Estúdio Aberto Arquitetura"
+        },
+        {
+          "rotulo": "Construção",
+          "valor": "Tagma e equipe"
+        },
+        {
+          "rotulo": "Taipa de pilão",
+          "valor": "Goya Arquitetura"
+        }
+      ],
+      "fotos": [
+        "/imagens/escola-mogi-das-cruzes/01.jpg",
+        "/imagens/escola-mogi-das-cruzes/02.jpg",
+        "/imagens/escola-mogi-das-cruzes/03.jpg",
+        "/imagens/escola-mogi-das-cruzes/04.jpg",
+        "/imagens/escola-mogi-das-cruzes/05.jpg",
+        "/imagens/escola-mogi-das-cruzes/06.jpg",
+        "/imagens/escola-mogi-das-cruzes/07.jpg",
+        "/imagens/escola-mogi-das-cruzes/08.jpg",
+        "/imagens/escola-mogi-das-cruzes/09.jpg",
+        "/imagens/escola-mogi-das-cruzes/10.jpg",
+        "/imagens/escola-mogi-das-cruzes/11.jpg",
+        "/imagens/escola-mogi-das-cruzes/12.jpg",
+        "/imagens/escola-mogi-das-cruzes/13.jpg",
+        "/imagens/escola-mogi-das-cruzes/14.jpg",
+        "/imagens/escola-mogi-das-cruzes/15.jpg",
+        "/imagens/escola-mogi-das-cruzes/16.jpg",
+        "/imagens/escola-mogi-das-cruzes/17.jpg",
+        "/imagens/escola-mogi-das-cruzes/18.jpg",
+        "/imagens/escola-mogi-das-cruzes/19.jpg",
+        "/imagens/escola-mogi-das-cruzes/20.jpg",
+        "/imagens/escola-mogi-das-cruzes/25.jpg"
       ]
     },
     {
@@ -596,50 +753,6 @@
       ]
     },
     {
-      "nome": "Casa Terezópolis",
-      "categoria": "construção",
-      "local": "Terezópolis de Goiás, GO",
-      "ano": "2023",
-      "capa": "/imagens/casa-terezopolis/07.jpg",
-      "resumo": "Paredes de taipa de pilão com terras de tons diferentes que desenham um mural na fachada.",
-      "destaque": "Um mural feito de terra: camadas de solo, areia e cimento em tons variados formam uma paisagem na fachada da casa.",
-      "memoria": "A pedido dos proprietários, que queriam um mural artístico na fachada, a obra explorou diferentes tipos de solo e areia, com cimento cinza ou branco em proporções variadas. O resultado é um gradiente de cores entre as camadas compactadas.\n\nAlém das fôrmas metálicas, a execução usou aprumadores de rosca e andaimes acoplados às fôrmas, que garantem o prumo das paredes e a segurança de quem trabalha. A obra também serviu para formar artesãos e testar misturas, parte essencial para a qualidade e a durabilidade da taipa.",
-      "ficha": [
-        {
-          "rotulo": "Tipo",
-          "valor": "Construção em taipa de pilão"
-        },
-        {
-          "rotulo": "Local",
-          "valor": "Terezópolis de Goiás, GO"
-        },
-        {
-          "rotulo": "Ano",
-          "valor": "2023"
-        },
-        {
-          "rotulo": "Arquitetura",
-          "valor": "Arquitetura Viva"
-        },
-        {
-          "rotulo": "Construção",
-          "valor": "Mathias Monios, Renan Reis e Rodrigo Rocha"
-        }
-      ],
-      "fotos": [
-        "/imagens/casa-terezopolis/01.jpg",
-        "/imagens/casa-terezopolis/02.jpg",
-        "/imagens/casa-terezopolis/03.jpg",
-        "/imagens/casa-terezopolis/04.jpg",
-        "/imagens/casa-terezopolis/05.jpg",
-        "/imagens/casa-terezopolis/06.jpg",
-        "/imagens/casa-terezopolis/07.jpg",
-        "/imagens/casa-terezopolis/08.jpg",
-        "/imagens/casa-terezopolis/09.jpg",
-        "/imagens/casa-terezopolis/10.jpg"
-      ]
-    },
-    {
       "nome": "Casa Santo Antônio do Pinhal",
       "categoria": "construção",
       "local": "Santo Antônio do Pinhal, SP",
@@ -750,119 +863,6 @@
         "/imagens/casa-itaparica/10.jpg",
         "/imagens/casa-itaparica/11.jpg",
         "/imagens/casa-itaparica/12.jpg"
-      ]
-    },
-    {
-      "nome": "Escola Rural Mogi das Cruzes",
-      "categoria": "construção",
-      "local": "Mogi das Cruzes, SP",
-      "ano": "2025",
-      "capa": "/imagens/escola-mogi-das-cruzes/16.jpg",
-      "resumo": "Salão multiuso de 12 lados para uma escola pública rural, erguido com mais de 100 voluntários.",
-      "destaque": "Um salão de doze lados para uma escola rural, construído em 40 dias por mais de cem voluntários.",
-      "memoria": "Projeto social realizado em 40 dias, da escavação ao acabamento, com mais de 100 voluntários do Brasil e da América do Sul. Um dodecágono forma o salão multiuso da escola, e as paredes de taipa foram levantadas em apenas 8 dias de trabalho intenso.\n\nA mistura usou terra de uma jazida próxima, pedra britada em dois tamanhos e 10% de cimento, garantindo a capacidade estrutural necessária para a cobertura de madeira maciça.",
-      "ficha": [
-        {
-          "rotulo": "Tipo",
-          "valor": "Construção em taipa de pilão"
-        },
-        {
-          "rotulo": "Local",
-          "valor": "Mogi das Cruzes, SP"
-        },
-        {
-          "rotulo": "Ano",
-          "valor": "2025"
-        },
-        {
-          "rotulo": "Arquitetura",
-          "valor": "Estúdio Aberto Arquitetura"
-        },
-        {
-          "rotulo": "Construção",
-          "valor": "Tagma e equipe"
-        },
-        {
-          "rotulo": "Taipa de pilão",
-          "valor": "Goya Arquitetura"
-        }
-      ],
-      "fotos": [
-        "/imagens/escola-mogi-das-cruzes/01.jpg",
-        "/imagens/escola-mogi-das-cruzes/02.jpg",
-        "/imagens/escola-mogi-das-cruzes/03.jpg",
-        "/imagens/escola-mogi-das-cruzes/04.jpg",
-        "/imagens/escola-mogi-das-cruzes/05.jpg",
-        "/imagens/escola-mogi-das-cruzes/06.jpg",
-        "/imagens/escola-mogi-das-cruzes/07.jpg",
-        "/imagens/escola-mogi-das-cruzes/08.jpg",
-        "/imagens/escola-mogi-das-cruzes/09.jpg",
-        "/imagens/escola-mogi-das-cruzes/10.jpg",
-        "/imagens/escola-mogi-das-cruzes/11.jpg",
-        "/imagens/escola-mogi-das-cruzes/12.jpg",
-        "/imagens/escola-mogi-das-cruzes/13.jpg",
-        "/imagens/escola-mogi-das-cruzes/14.jpg",
-        "/imagens/escola-mogi-das-cruzes/15.jpg",
-        "/imagens/escola-mogi-das-cruzes/16.jpg",
-        "/imagens/escola-mogi-das-cruzes/17.jpg",
-        "/imagens/escola-mogi-das-cruzes/18.jpg",
-        "/imagens/escola-mogi-das-cruzes/19.jpg",
-        "/imagens/escola-mogi-das-cruzes/20.jpg",
-        "/imagens/escola-mogi-das-cruzes/25.jpg"
-      ]
-    },
-    {
-      "nome": "Casa Cuiabá",
-      "categoria": "construção",
-      "local": "Cuiabá, MT",
-      "ano": "2025",
-      "capa": "/imagens/casa-cuiaba/07.jpg",
-      "resumo": "Fachada de taipa de pilão com quase 5 m de altura e cobertura em madeira laminada colada.",
-      "destaque": "Uma fachada de terra com quase cinco metros de altura define a arquitetura desta casa em Cuiabá.",
-      "memoria": "A fachada em taipa de pilão, com quase 5 metros de altura, e as demais paredes de terra, junto com a cobertura em madeira laminada colada, definem a estética contemporânea proposta pelo escritório Truvian Arquitetura.\n\nUma equipe local de 4 pessoas foi treinada na primeira semana de obra e passou por um novo treinamento para as paredes junto à contenção de concreto existente. A mistura usou solo do próprio terreno e areia grossa de rio com seixos, buscando um acabamento mais claro e uniforme, com variações de cor conforme a umidade.",
-      "ficha": [
-        {
-          "rotulo": "Tipo",
-          "valor": "Construção em taipa de pilão"
-        },
-        {
-          "rotulo": "Local",
-          "valor": "Cuiabá, MT"
-        },
-        {
-          "rotulo": "Ano",
-          "valor": "2025"
-        },
-        {
-          "rotulo": "Arquitetura",
-          "valor": "Truvian Arquitetura"
-        },
-        {
-          "rotulo": "Construção",
-          "valor": "Ricardo e equipe"
-        },
-        {
-          "rotulo": "Taipa de pilão",
-          "valor": "Goya Arquitetura"
-        }
-      ],
-      "fotos": [
-        "/imagens/casa-cuiaba/02.jpg",
-        "/imagens/casa-cuiaba/03.jpg",
-        "/imagens/casa-cuiaba/04.jpg",
-        "/imagens/casa-cuiaba/05.jpg",
-        "/imagens/casa-cuiaba/06.jpg",
-        "/imagens/casa-cuiaba/07.jpg",
-        "/imagens/casa-cuiaba/08.jpg",
-        "/imagens/casa-cuiaba/09.jpg",
-        "/imagens/casa-cuiaba/10.jpg",
-        "/imagens/casa-cuiaba/11.jpg",
-        "/imagens/casa-cuiaba/12.jpg",
-        "/imagens/casa-cuiaba/13.jpg",
-        "/imagens/casa-cuiaba/14.jpg",
-        "/imagens/casa-cuiaba/15.jpg",
-        "/imagens/casa-cuiaba/16.jpg",
-        "/imagens/casa-cuiaba/01.jpg"
       ]
     },
     {
