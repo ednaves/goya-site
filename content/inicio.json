@@ -1,32 +1,36 @@
 {
   "abertura": [
     {
-      "foto": "/imagens/casa-bunker/capa.jpg",
-      "projeto": "Casa Bunker"
+      "foto": "/imagens/casa-terezopolis/07.jpg",
+      "projeto": "Casa Terezópolis"
     },
     {
       "foto": "/imagens/casa-outback/13.jpg",
       "projeto": "Casa Outback"
     },
     {
+      "foto": "/imagens/casa-bunker/capa.jpg",
+      "projeto": "Casa Bunker"
+    },
+    {
+      "foto": "/imagens/escola-mogi-das-cruzes/14.jpg",
+      "projeto": "Escola Rural Mogi das Cruzes"
+    },
+    {
       "foto": "/imagens/jardins-capri/01.jpg",
       "projeto": "Jardins Capri"
     },
     {
-      "foto": "/imagens/casa-outback/10.jpg",
-      "projeto": "Casa Outback"
+      "foto": "/imagens/casa-cuiaba/08.jpg",
+      "projeto": "Casa Cuiabá"
     },
     {
-      "foto": "/imagens/casa-kanowna/13.jpg",
+      "foto": "/imagens/casa-kanowna/10.jpg",
       "projeto": "Casa Kanowna"
     },
     {
       "foto": "/imagens/selby/03.jpg",
       "projeto": "Casa Selby"
-    },
-    {
-      "foto": "/imagens/casa-bunker/07.jpg",
-      "projeto": "Casa Bunker"
     }
   ]
 }
