@@ -20,7 +20,7 @@ const BASE = new URL(SITE_URL).pathname;               // ex.: /goya-site/ ou /
 const IGNORAR = new Set(["_site", "node_modules", "scripts", ".git", ".github", ".claude", ".pages.yml",
   "package.json", "package-lock.json", ".gitignore", ".DS_Store"]);
 
-const MAX_FOTO = 2000;                                   // lado maior das fotos publicadas
+const MAX_FOTO = 2800;                                   // lado maior das fotos publicadas (nítido em telas grandes Retina)
 const CARD = { width: 720, height: 900 };                // card 4:5 — nítido até em tela Retina
 const OG = { width: 1200, height: 630 };                 // prévia de link (WhatsApp, Facebook, LinkedIn)
 
@@ -47,9 +47,9 @@ for await (const orig of arquivos(RAIZ)) {
     const img = sharp(orig).rotate();                    // respeita a orientação da câmera
     const { width = 0, height = 0 } = await img.metadata();
     const { size } = await fs.stat(orig);
-    if (Math.max(width, height) > MAX_FOTO || size > 1.2e6) {
+    if (Math.max(width, height) > MAX_FOTO || size > 3e6) {
       const saida = img.resize({ width: MAX_FOTO, height: MAX_FOTO, fit: "inside", withoutEnlargement: true });
-      await (/\.png$/i.test(r) ? saida.png({ compressionLevel: 9 }) : saida.jpeg({ quality: 82, mozjpeg: true })).toFile(dest);
+      await (/\.png$/i.test(r) ? saida.png({ compressionLevel: 9 }) : saida.jpeg({ quality: 86, mozjpeg: true })).toFile(dest);
       reduzidas++;
       continue;
     }
@@ -65,8 +65,44 @@ const projetos = ((await lerJson("content/projetos.json")).projetos || []).filte
   let slug = slugify(p.nome), n = 2;
   while (usados.has(slug)) slug = slugify(p.nome) + "-" + n++;
   usados.add(slug);
-  return { ...p, slug, capa: rel(p.capa || (p.fotos || [])[0]), fotos: (p.fotos || []).filter(Boolean).map(rel) };
+  return { ...p, slug, capa: rel(p.capa || (p.fotos || [])[0]), topo: rel(p.topo), fotos: (p.fotos || []).filter(Boolean).map(rel) };
 });
+
+// ---------- 2b. Foto do topo da página de cada projeto ----------
+// O topo mostra a foto num retângulo horizontal grande. Se o cliente não escolheu uma (campo "topo"),
+// usa a capa quando ela é horizontal e nítida; senão, a foto horizontal de maior resolução da galeria
+// (desenhos técnicos, de fundo quase todo branco, ficam de fora).
+const HORIZONTAL = 1.3, NITIDA = 1800;
+async function medida(r) {
+  try {
+    const img = sharp(path.join(SAIDA, r));
+    const m = await img.metadata(), gira = (m.orientation || 1) >= 5;
+    const w = gira ? m.height : m.width, h = gira ? m.width : m.height;
+    const { channels } = await img.stats();
+    const claro = channels.slice(0, 3).reduce((s, c) => s + c.mean, 0) / 3 > 215;
+    return { w, h, horizontal: w / h >= HORIZONTAL, util: Math.min(w, h * 16 / 8.5), desenho: claro };
+  } catch { return null; }
+}
+for (const p of projetos) {
+  if (p.topo) continue;                                  // escolhida no painel
+  const capa = p.capa && await medida(p.capa);
+  if (capa && capa.horizontal && !capa.desenho && capa.util >= NITIDA) { p.topo = p.capa; continue; }
+  let melhor = p.capa, nota = capa && !capa.desenho ? capa.util * (capa.w >= capa.h ? 1 : 0.6) : 0;
+  for (const f of p.fotos) {
+    const d = await medida(f);
+    if (!d || !d.horizontal || d.desenho) continue;
+    if (d.util > nota + 50) { melhor = f; nota = d.util; }
+  }
+  p.topo = melhor;
+}
+
+// JSON publicado ganha o campo "topo" calculado (o original no repositório não muda)
+{
+  const original = await lerJson("content/projetos.json");
+  const topoPorNome = new Map(projetos.map(p => [p.nome, p.topo]));
+  original.projetos = (original.projetos || []).map(x => x && x.nome && topoPorNome.get(x.nome) ? { ...x, topo: "/" + topoPorNome.get(x.nome) } : x);
+  await fs.writeFile(path.join(SAIDA, "content", "projetos.json"), JSON.stringify(original, null, 2));
+}
 
 // ---------- 3. Miniaturas dos cards e imagens de prévia ----------
 const fotoPublicada = r => path.join(SAIDA, r);
@@ -85,7 +121,7 @@ for (const p of projetos) {
   // mesma pasta e nome da foto original, dentro de imagens/_cards/ (o site procura ali)
   const cardRel = p.capa.replace(/^imagens\//, "imagens/_cards/");
   if (await gera(p.capa, cardRel, CARD)) cards++;
-  p.og = (await gera(p.capa, `imagens/_og/${p.slug}.jpg`, OG)) ? `imagens/_og/${p.slug}.jpg` : null;
+  p.og = (await gera(p.topo || p.capa, `imagens/_og/${p.slug}.jpg`, OG)) ? `imagens/_og/${p.slug}.jpg` : null;
 }
 const aberturaOg = (await gera("imagens/site/abertura.jpg", "imagens/_og/site.jpg", OG)) ? "imagens/_og/site.jpg" : null;
 
@@ -127,10 +163,10 @@ for (const p of projetos) {
   const paragrafos = String(p.memoria || "").split(/\n\s*\n/).map(t => t.trim()).filter(Boolean);
   const estatico = `<section id="projeto">
     <div class="d-head"><a href="#projetos" class="back">← Projetos</a><h1 class="title">${esc(p.nome)}</h1></div>
-    ${p.capa ? `<div class="d-hero"><img src="${esc(p.capa)}" alt="${esc(p.nome)}"></div>` : ""}
-    <div class="d-info"><div class="d-mem"><span class="eyebrow">Memória do projeto</span>
+    ${p.topo ? `<div class="d-hero"><img src="${esc(p.topo)}" alt="${esc(p.nome)}"></div>` : ""}
+    <div class="d-info${p.destaque || paragrafos.length ? "" : " so-ficha"}">${p.destaque || paragrafos.length ? `<div class="d-mem"><span class="eyebrow">Memória do projeto</span>
       ${p.destaque ? `<p class="d-lead">${esc(p.destaque)}</p>` : ""}
-      ${paragrafos.map(t => `<p>${esc(t)}</p>`).join("\n      ")}</div>
+      ${paragrafos.map(t => `<p>${esc(t)}</p>`).join("\n      ")}</div>` : ""}
       <div class="d-ficha"><span class="eyebrow">Ficha técnica</span><dl>
         ${(p.ficha || []).filter(f => f && f.rotulo).map(f => `<div><dt>${esc(f.rotulo)}</dt><dd>${esc(f.valor)}</dd></div>`).join("")}
       </dl></div></div>

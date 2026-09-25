@@ -229,6 +229,7 @@
   .back:hover { color: var(--ink); }
   .d-hero { position: relative; aspect-ratio: 16 / 8.5; overflow: hidden; background: var(--line); }
   .d-info { display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(32px, 5vw, 80px); padding: 64px 0 72px; }
+  .d-info.so-ficha { grid-template-columns: minmax(0, 520px); }
   .d-lead { font-size: clamp(20px, 1.9vw, 26px); line-height: 1.35; margin: 16px 0 24px; color: var(--ink); }
   .d-mem p:not(.d-lead) { color: #54473f; max-width: 62ch; }
   .d-mem p + p { margin-top: 14px; }
@@ -359,10 +360,7 @@
     <h2 class="title rv">Projetos</h2>
     <div class="filters rv" id="filters">
       <button class="on" data-f="all">Todos</button>
-      <button data-f="arquitetura">Arquitetura</button>
-      <button data-f="consultoria">Consultoria</button>
-      <button data-f="arte">Arte</button>
-      <button data-f="obra">Obra</button>
+      <!-- demais botões são gerados a partir das categorias dos projetos (só aparece aba com projeto) -->
     </div>
 
     <div class="grid" id="grid"></div>
@@ -483,6 +481,9 @@
   const projUrl = slug => `projetos/${slug}/`;
   const slugify = t => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   let projetos = [];
+  // Categorias: ordem das abas e compatibilidade com o nome antigo "obra"
+  const ORDEM_CATS = ["arquitetura", "consultoria", "arte", "construção"];
+  const normCat = c => { const x = (c || "arquitetura").trim().toLowerCase(); return x === "obra" ? "construção" : x; };
   async function carregaProjetos() {
     const r = await fetch("content/projetos.json", { cache: "no-cache" });
     const data = await r.json();
@@ -492,9 +493,10 @@
       while (usados.has(slug)) slug = slugify(p.nome) + "-" + n++;
       usados.add(slug);
       return {
-        slug, nome: p.nome, cat: (p.categoria || "arquitetura").toLowerCase(),
+        slug, nome: p.nome, cat: normCat(p.categoria),
         local: p.local || "", ano: p.ano || "",
         img: p.capa || (p.fotos || [])[0] || "",
+        topo: p.topo || "",
         txt: p.resumo || "", lead: p.destaque || "",
         memoria: (p.memoria || "").split(/\n\s*\n/).map(t => t.trim()).filter(Boolean),
         ficha: (p.ficha || []).filter(f => f && f.rotulo).map(f => [f.rotulo, f.valor || ""]),
@@ -504,6 +506,17 @@
   }
 
   const grid = document.getElementById("grid");
+  function montaFiltros() {
+    const presentes = [...new Set(projetos.map(p => p.cat))]
+      .sort((a, b) => ((ORDEM_CATS.indexOf(a) + 1) || 99) - ((ORDEM_CATS.indexOf(b) + 1) || 99));
+    const box = document.getElementById("filters");
+    box.querySelectorAll("button:not([data-f=all])").forEach(b => b.remove());
+    for (const c of presentes) {
+      const b = document.createElement("button");
+      b.dataset.f = c; b.textContent = c.charAt(0).toUpperCase() + c.slice(1);
+      box.appendChild(b);
+    }
+  }
   const montaGrid = () => grid.innerHTML = projetos.map((p, i) => `
     <a class="card rv" style="--d:${(i % 3) * 0.12}s" href="${projUrl(p.slug)}" data-cat="${p.cat}">
       <div class="ph">
@@ -527,13 +540,13 @@
         <a href="#projetos" class="back">← Projetos</a>
         <h2 class="title rv">${p.nome}</h2>
       </div>
-      <div class="d-hero rv"><img src="${W(p.img)}" alt="${p.nome}"><span class="tag">${p.cat}</span></div>
-      <div class="d-info">
-        <div class="d-mem rv">
+      <div class="d-hero rv"><img src="${W(p.topo || p.img)}" alt="${p.nome}"><span class="tag">${p.cat}</span></div>
+      <div class="d-info${p.lead || p.memoria.length ? "" : " so-ficha"}">
+        ${p.lead || p.memoria.length ? `<div class="d-mem rv">
           <span class="eyebrow">Memória do projeto</span>
-          <p class="d-lead">${p.lead}</p>
+          ${p.lead ? `<p class="d-lead">${p.lead}</p>` : ""}
           ${p.memoria.map(t => `<p>${t}</p>`).join("")}
-        </div>
+        </div>` : ""}
         <div class="d-ficha rv" style="--d:.15s">
           <span class="eyebrow">Ficha técnica</span>
           <dl>${p.ficha.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
@@ -576,6 +589,31 @@
   // ---------- Filtro + carregar mais (6 por vez, como na referência) ----------
   const STEP = 6;
   let filtro = "all", limite = STEP;
+
+  // Volta ao mesmo ponto: guarda filtro, quantos projetos estavam abertos ("+") e a posição do card clicado.
+  // Fica no sessionStorage, então funciona mesmo se a página do projeto for recarregada.
+  const RET_KEY = "goya-retorno";
+  let retorno = null;
+  try { retorno = JSON.parse(sessionStorage.getItem(RET_KEY) || "null"); } catch (_) {}
+  function guardaRetorno(slug, card) {
+    retorno = { filtro, limite, slug, top: card ? card.getBoundingClientRect().top : null, y: scrollY };
+    try { sessionStorage.setItem(RET_KEY, JSON.stringify(retorno)); } catch (_) {}
+  }
+  function restauraRetorno() {
+    if (!retorno) return false;
+    const existe = f => f === "all" || [...document.querySelectorAll("#filters button")].some(b => b.dataset.f === f);
+    filtro = existe(retorno.filtro) ? retorno.filtro : "all";
+    limite = Math.max(STEP, retorno.limite || STEP);
+    document.querySelectorAll("#filters button").forEach(b => b.classList.toggle("on", b.dataset.f === filtro));
+    aplicaGrid();
+    grid.querySelectorAll(".card:not(.hide)").forEach(c => c.classList.add("in"));   // já visíveis, sem esperar a animação
+    const card = [...grid.querySelectorAll(".card:not(.hide)")].find(c => c.getAttribute("href") === projUrl(retorno.slug));
+    setNav("projetos");
+    saltaPara(card && retorno.top != null
+      ? () => card.getBoundingClientRect().top + scrollY - retorno.top
+      : () => retorno.y);
+    return true;
+  }
   const plus = document.getElementById("plus"), minus = document.getElementById("minus");
   function aplicaGrid() {
     let n = 0;
@@ -630,21 +668,23 @@
     const max = document.documentElement.scrollHeight - innerHeight;
     return el.id === "home" ? 0 : Math.min(max, el.getBoundingClientRect().top + scrollY - offset);
   }
+  // Salto direto; confere de novo por ~1 s caso fotos/fontes terminem de carregar e empurrem a página
+  function saltaPara(alvo) {
+    cancelAnimationFrame(scrollAnim);
+    const pos = () => Math.max(0, Math.min(document.documentElement.scrollHeight - innerHeight, alvo()));
+    window.scrollTo({ top: pos(), behavior: "instant" });
+    const t0 = performance.now();
+    const confere = () => {
+      if (performance.now() - t0 > 1200) return;
+      if (Math.abs(scrollY - pos()) > 2) window.scrollTo({ top: pos(), behavior: "instant" });
+      scrollAnim = requestAnimationFrame(confere);
+    };
+    scrollAnim = requestAnimationFrame(confere);
+  }
   function scrollToSection(el, smooth) {
     cancelAnimationFrame(scrollAnim);
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!smooth || reduce) {
-      // salto direto; confere de novo por ~1 s caso fotos/fontes terminem de carregar e empurrem a página
-      window.scrollTo({ top: sectionTop(el), behavior: "instant" });
-      const t0 = performance.now();
-      const confere = () => {
-        if (performance.now() - t0 > 1200) return;
-        if (Math.abs(scrollY - sectionTop(el)) > 2) window.scrollTo({ top: sectionTop(el), behavior: "instant" });
-        scrollAnim = requestAnimationFrame(confere);
-      };
-      scrollAnim = requestAnimationFrame(confere);
-      return;
-    }
+    if (!smooth || reduce) { saltaPara(() => sectionTop(el)); return; }
     const from = scrollY, t0 = performance.now();
     const dur = Math.min(1200, 500 + Math.abs(sectionTop(el) - from) * 0.25);
     const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -688,6 +728,7 @@
     const id = location.hash.slice(1);
     if (slug) history.replaceState(null, "", ROOT + "#projetos");  // projeto que não existe mais
     showOnepage();
+    if (wasDetail && (!id || id === "projetos") && restauraRetorno()) return;
     const target = document.getElementById(SECOES.includes(id) ? id : (slug ? "projetos" : "home"));
     scrollToSection(target, !wasDetail && !!id);
   }
@@ -708,6 +749,7 @@
       side.classList.remove("open");
       if (wasDetail) showOnepage();
       try { history.pushState(null, "", ROOT + "#" + id); } catch (_) {}
+      if (wasDetail && id === "projetos" && a.classList.contains("back") && restauraRetorno()) return;
       setNav(id === "home" ? "" : id);
       scrollToSection(document.getElementById(id), !wasDetail);
       return;
@@ -716,6 +758,7 @@
     const m = href.match(/^projetos\/([^/]+)\/?$/);
     if (m && projetos.some(p => p.slug === m[1])) {
       e.preventDefault();
+      if (!document.body.classList.contains("detail")) guardaRetorno(m[1], a.closest("#grid") ? a : null);
       history.pushState(null, "", ROOT + projUrl(m[1]));
       route();
     }
@@ -846,7 +889,7 @@
     .catch(() => {
       grid.innerHTML = '<p class="erro">Não foi possível carregar os projetos. Abra o site por um servidor (ele não funciona abrindo o arquivo direto).</p>';
     })
-    .then(() => { montaGrid(); aplicaGrid(); route(); montaAbertura(); });
+    .then(() => { montaFiltros(); montaGrid(); aplicaGrid(); route(); montaAbertura(); });
 </script>
 </body>
 </html>

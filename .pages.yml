@@ -64,7 +64,7 @@ content:
                 - arquitetura
                 - consultoria
                 - arte
-                - obra
+                - construção
           - name: local
             label: Local
             type: string
@@ -77,6 +77,10 @@ content:
             label: Foto de capa
             type: image
             description: Aparece no card da lista e no topo da página do projeto.
+          - name: topo
+            label: Foto do topo da página (opcional)
+            type: image
+            description: Foto grande no alto da página do projeto. Use uma foto horizontal (deitada) e de boa resolução. Se ficar vazio, o site escolhe sozinho a melhor foto horizontal da galeria.
           - name: resumo
             label: Resumo
             type: text

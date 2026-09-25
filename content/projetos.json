@@ -170,11 +170,27 @@
         }
       ],
       "fotos": [
-        "/imagens/inhotim/01.jpg",
-        "/imagens/inhotim/capa.jpg",
-        "/imagens/inhotim/03.jpg",
-        "/imagens/inhotim/04.jpg",
-        "/imagens/inhotim/05.jpg"
+        "/imagens/inhotim/drive/01.jpg",
+        "/imagens/inhotim/drive/02.jpg",
+        "/imagens/inhotim/drive/03.jpg",
+        "/imagens/inhotim/drive/04.jpg",
+        "/imagens/inhotim/drive/05.jpg",
+        "/imagens/inhotim/drive/06.jpg",
+        "/imagens/inhotim/drive/07.jpg",
+        "/imagens/inhotim/drive/08.jpg",
+        "/imagens/inhotim/drive/11.jpg",
+        "/imagens/inhotim/drive/12.jpg",
+        "/imagens/inhotim/drive/13.jpg",
+        "/imagens/inhotim/drive/14.jpg",
+        "/imagens/inhotim/drive/16.jpg",
+        "/imagens/inhotim/drive/18.jpg",
+        "/imagens/inhotim/drive/19.jpg",
+        "/imagens/inhotim/drive/21.jpg",
+        "/imagens/inhotim/drive/22.jpg",
+        "/imagens/inhotim/drive/23.jpg",
+        "/imagens/inhotim/drive/24.jpg",
+        "/imagens/inhotim/drive/25.jpg",
+        "/imagens/inhotim/drive/26.jpg"
       ]
     },
     {
@@ -260,19 +276,31 @@
         }
       ],
       "fotos": [
-        "/imagens/jardins-capri/01.jpg",
-        "/imagens/jardins-capri/02.jpg",
-        "/imagens/jardins-capri/03.jpg",
-        "/imagens/jardins-capri/04.jpg",
-        "/imagens/jardins-capri/05.jpg",
-        "/imagens/jardins-capri/06.jpg",
-        "/imagens/jardins-capri/07.jpg",
-        "/imagens/jardins-capri/08.jpg",
-        "/imagens/jardins-capri/09.jpg",
-        "/imagens/jardins-capri/10.jpg",
-        "/imagens/jardins-capri/11.jpg",
-        "/imagens/jardins-capri/12.png",
-        "/imagens/jardins-capri/13.png"
+        "/imagens/jardins-capri/drive/01.jpg",
+        "/imagens/jardins-capri/drive/02.jpg",
+        "/imagens/jardins-capri/drive/03.jpg",
+        "/imagens/jardins-capri/drive/04.jpg",
+        "/imagens/jardins-capri/drive/05.jpg",
+        "/imagens/jardins-capri/drive/06.jpg",
+        "/imagens/jardins-capri/drive/07.jpg",
+        "/imagens/jardins-capri/drive/08.jpg",
+        "/imagens/jardins-capri/drive/09.jpg",
+        "/imagens/jardins-capri/drive/10.jpg",
+        "/imagens/jardins-capri/drive/11.jpg",
+        "/imagens/jardins-capri/drive/12.jpg",
+        "/imagens/jardins-capri/drive/13.jpg",
+        "/imagens/jardins-capri/drive/14.jpg",
+        "/imagens/jardins-capri/drive/15.jpg",
+        "/imagens/jardins-capri/drive/16.jpg",
+        "/imagens/jardins-capri/drive/17.jpg",
+        "/imagens/jardins-capri/drive/18.jpg",
+        "/imagens/jardins-capri/drive/19.jpg",
+        "/imagens/jardins-capri/drive/20.jpg",
+        "/imagens/jardins-capri/drive/21.jpg",
+        "/imagens/jardins-capri/drive/22.jpg",
+        "/imagens/jardins-capri/drive/23.jpg",
+        "/imagens/jardins-capri/drive/24.jpg",
+        "/imagens/jardins-capri/drive/25.jpg"
       ]
     },
     {
@@ -422,12 +450,22 @@
         }
       ],
       "fotos": [
-        "/imagens/base-bioarquitectura/01.jpg",
-        "/imagens/base-bioarquitectura/02.jpg",
-        "/imagens/base-bioarquitectura/03.jpg",
-        "/imagens/base-bioarquitectura/04.jpg",
-        "/imagens/base-bioarquitectura/05.jpg",
-        "/imagens/base-bioarquitectura/capa.jpg"
+        "/imagens/base-bioarquitectura/drive/01.jpg",
+        "/imagens/base-bioarquitectura/drive/02.jpg",
+        "/imagens/base-bioarquitectura/drive/03.jpg",
+        "/imagens/base-bioarquitectura/drive/04.jpg",
+        "/imagens/base-bioarquitectura/drive/05.jpg",
+        "/imagens/base-bioarquitectura/drive/06.jpg",
+        "/imagens/base-bioarquitectura/drive/07.jpg",
+        "/imagens/base-bioarquitectura/drive/08.jpg",
+        "/imagens/base-bioarquitectura/drive/09.jpg",
+        "/imagens/base-bioarquitectura/drive/10.jpg",
+        "/imagens/base-bioarquitectura/drive/11.jpg",
+        "/imagens/base-bioarquitectura/drive/12.jpg",
+        "/imagens/base-bioarquitectura/drive/13.jpg",
+        "/imagens/base-bioarquitectura/drive/14.jpg",
+        "/imagens/base-bioarquitectura/drive/15.jpg",
+        "/imagens/base-bioarquitectura/drive/16.jpg"
       ]
     },
     {
@@ -475,7 +513,7 @@
     },
     {
       "nome": "Casa Selby",
-      "categoria": "obra",
+      "categoria": "construção",
       "local": "Selby, Austrália",
       "ano": "2019",
       "capa": "/imagens/selby/02.jpg",
@@ -518,7 +556,7 @@
     },
     {
       "nome": "Casa Woodend",
-      "categoria": "obra",
+      "categoria": "construção",
       "local": "Woodend, Austrália",
       "ano": "2020",
       "capa": "/imagens/woodend/03.jpg",
@@ -554,6 +592,564 @@
         "/imagens/woodend/04.jpg",
         "/imagens/woodend/05.jpg",
         "/imagens/woodend/capa.jpg"
+      ]
+    },
+    {
+      "nome": "Casa Terezópolis",
+      "categoria": "construção",
+      "local": "Terezópolis de Goiás, GO",
+      "ano": "2023",
+      "capa": "/imagens/casa-terezopolis/07.jpg",
+      "fotos": [
+        "/imagens/casa-terezopolis/01.jpg",
+        "/imagens/casa-terezopolis/02.jpg",
+        "/imagens/casa-terezopolis/03.jpg",
+        "/imagens/casa-terezopolis/04.jpg",
+        "/imagens/casa-terezopolis/05.jpg",
+        "/imagens/casa-terezopolis/06.jpg",
+        "/imagens/casa-terezopolis/07.jpg",
+        "/imagens/casa-terezopolis/08.jpg",
+        "/imagens/casa-terezopolis/09.jpg",
+        "/imagens/casa-terezopolis/10.jpg"
+      ],
+      "resumo": "Paredes de taipa de pilão com terras de tons diferentes que desenham um mural na fachada.",
+      "destaque": "Um mural feito de terra: camadas de solo, areia e cimento em tons variados formam uma paisagem na fachada da casa.",
+      "memoria": "A pedido dos proprietários, que queriam um mural artístico na fachada, a obra explorou diferentes tipos de solo e areia, com cimento cinza ou branco em proporções variadas. O resultado é um gradiente de cores entre as camadas compactadas.\n\nAlém das fôrmas metálicas, a execução usou aprumadores de rosca e andaimes acoplados às fôrmas, que garantem o prumo das paredes e a segurança de quem trabalha. A obra também serviu para formar artesãos e testar misturas, parte essencial para a qualidade e a durabilidade da taipa.",
+      "ficha": [
+        {
+          "rotulo": "Tipo",
+          "valor": "Construção em taipa de pilão"
+        },
+        {
+          "rotulo": "Local",
+          "valor": "Terezópolis de Goiás, GO"
+        },
+        {
+          "rotulo": "Ano",
+          "valor": "2023"
+        },
+        {
+          "rotulo": "Arquitetura",
+          "valor": "Arquitetura Viva"
+        },
+        {
+          "rotulo": "Construção",
+          "valor": "Mathias Monios, Renan Reis e Rodrigo Rocha"
+        }
+      ]
+    },
+    {
+      "nome": "Casa Santo Antônio do Pinhal",
+      "categoria": "construção",
+      "local": "Santo Antônio do Pinhal, SP",
+      "ano": "2024",
+      "capa": "/imagens/casa-santo-antonio-do-pinhal/03.jpg",
+      "fotos": [
+        "/imagens/casa-santo-antonio-do-pinhal/01.jpg",
+        "/imagens/casa-santo-antonio-do-pinhal/02.jpg",
+        "/imagens/casa-santo-antonio-do-pinhal/03.jpg",
+        "/imagens/casa-santo-antonio-do-pinhal/04.jpg",
+        "/imagens/casa-santo-antonio-do-pinhal/05.jpg",
+        "/imagens/casa-santo-antonio-do-pinhal/06.jpg",
+        "/imagens/casa-santo-antonio-do-pinhal/07.jpg",
+        "/imagens/casa-santo-antonio-do-pinhal/08.jpg",
+        "/imagens/casa-santo-antonio-do-pinhal/09.jpg",
+        "/imagens/casa-santo-antonio-do-pinhal/10.jpg",
+        "/imagens/casa-santo-antonio-do-pinhal/11.jpg",
+        "/imagens/casa-santo-antonio-do-pinhal/12.jpg",
+        "/imagens/casa-santo-antonio-do-pinhal/13.jpg",
+        "/imagens/casa-santo-antonio-do-pinhal/14.jpg",
+        "/imagens/casa-santo-antonio-do-pinhal/15.jpg",
+        "/imagens/casa-santo-antonio-do-pinhal/16.jpg",
+        "/imagens/casa-santo-antonio-do-pinhal/17.jpg",
+        "/imagens/casa-santo-antonio-do-pinhal/18.jpg",
+        "/imagens/casa-santo-antonio-do-pinhal/19.jpg",
+        "/imagens/casa-santo-antonio-do-pinhal/20.jpg",
+        "/imagens/casa-santo-antonio-do-pinhal/21.jpg"
+      ],
+      "resumo": "Casa em taipa de pilão erguida na estação das chuvas, com vergas de taipa armada sobre as janelas.",
+      "destaque": "Paredes de terra que sustentam o telhado sem pilares de concreto, construídas em plena estação das chuvas.",
+      "memoria": "A obra aconteceu entre outubro e março, período chuvoso na região, o que exigiu uma logística constante para manter o solo seco e peneirado, além de uma cobertura provisória móvel sobre as paredes em execução.\n\nToda a estrutura de madeira do telhado se apoia em uma cinta de 7 cm no topo das paredes, dispensando pilares de concreto armado. Isso acelerou a obra e reduziu o custo da casa. Estabilizada com cimento e armada nas vergas das janelas, a taipa trabalha também à tração, de forma parecida com o concreto armado.",
+      "ficha": [
+        {
+          "rotulo": "Tipo",
+          "valor": "Construção em taipa de pilão"
+        },
+        {
+          "rotulo": "Local",
+          "valor": "Santo Antônio do Pinhal, SP"
+        },
+        {
+          "rotulo": "Ano",
+          "valor": "2024"
+        },
+        {
+          "rotulo": "Arquitetura",
+          "valor": "Chahinian Arquitetura"
+        },
+        {
+          "rotulo": "Construção",
+          "valor": "Marquinhos e equipe"
+        },
+        {
+          "rotulo": "Taipa de pilão",
+          "valor": "Goya Arquitetura"
+        }
+      ]
+    },
+    {
+      "nome": "Casa Itaparica",
+      "categoria": "construção",
+      "local": "Ilha de Itaparica, BA",
+      "ano": "2024",
+      "capa": "/imagens/casa-itaparica/07.jpg",
+      "fotos": [
+        "/imagens/casa-itaparica/01.jpg",
+        "/imagens/casa-itaparica/02.jpg",
+        "/imagens/casa-itaparica/03.jpg",
+        "/imagens/casa-itaparica/04.jpg",
+        "/imagens/casa-itaparica/05.jpg",
+        "/imagens/casa-itaparica/06.jpg",
+        "/imagens/casa-itaparica/07.jpg",
+        "/imagens/casa-itaparica/08.jpg",
+        "/imagens/casa-itaparica/09.jpg",
+        "/imagens/casa-itaparica/10.jpg",
+        "/imagens/casa-itaparica/11.jpg",
+        "/imagens/casa-itaparica/12.jpg"
+      ],
+      "resumo": "Casa de 220 m² à beira-mar, com todas as paredes em taipa de pilão ao redor de um pátio central.",
+      "destaque": "À beira-mar na Bahia, um pátio central emoldurado por paredes de terra organiza toda a casa.",
+      "memoria": "Projetada pelos próprios clientes, arquitetos do escritório Butikofer de Oliveira, a casa se organiza em torno de um pátio central que enquadra a paisagem pelos vãos entre as paredes. A fundação em concreto ciclópico reduz o uso de concreto e aço, e a casa tem apenas 8 pilares de concreto.\n\nTodas as paredes dos 220 m² são em taipa de pilão, executadas por uma equipe local de 6 pessoas, das quais só 2 eram da construção civil. Em duas semanas de treinamento, a equipe aprendeu a selecionar o solo, misturar, controlar a umidade e compactar manualmente, garantindo a resistência para apoiar a estrutura de madeira e o telhado cerâmico.",
+      "ficha": [
+        {
+          "rotulo": "Tipo",
+          "valor": "Construção em taipa de pilão"
+        },
+        {
+          "rotulo": "Local",
+          "valor": "Ilha de Itaparica, BA"
+        },
+        {
+          "rotulo": "Ano",
+          "valor": "2024"
+        },
+        {
+          "rotulo": "Área",
+          "valor": "220 m²"
+        },
+        {
+          "rotulo": "Arquitetura",
+          "valor": "Butikofer de Oliveira Architectes"
+        },
+        {
+          "rotulo": "Construção",
+          "valor": "Nozinho e equipe"
+        },
+        {
+          "rotulo": "Taipa de pilão",
+          "valor": "Goya Arquitetura"
+        }
+      ]
+    },
+    {
+      "nome": "Escola Rural Mogi das Cruzes",
+      "categoria": "construção",
+      "local": "Mogi das Cruzes, SP",
+      "ano": "2025",
+      "capa": "/imagens/escola-mogi-das-cruzes/16.jpg",
+      "fotos": [
+        "/imagens/escola-mogi-das-cruzes/01.jpg",
+        "/imagens/escola-mogi-das-cruzes/02.jpg",
+        "/imagens/escola-mogi-das-cruzes/03.jpg",
+        "/imagens/escola-mogi-das-cruzes/04.jpg",
+        "/imagens/escola-mogi-das-cruzes/05.jpg",
+        "/imagens/escola-mogi-das-cruzes/06.jpg",
+        "/imagens/escola-mogi-das-cruzes/07.jpg",
+        "/imagens/escola-mogi-das-cruzes/08.jpg",
+        "/imagens/escola-mogi-das-cruzes/09.jpg",
+        "/imagens/escola-mogi-das-cruzes/10.jpg",
+        "/imagens/escola-mogi-das-cruzes/11.jpg",
+        "/imagens/escola-mogi-das-cruzes/12.jpg",
+        "/imagens/escola-mogi-das-cruzes/13.jpg",
+        "/imagens/escola-mogi-das-cruzes/14.jpg",
+        "/imagens/escola-mogi-das-cruzes/15.jpg",
+        "/imagens/escola-mogi-das-cruzes/16.jpg",
+        "/imagens/escola-mogi-das-cruzes/17.jpg",
+        "/imagens/escola-mogi-das-cruzes/18.jpg",
+        "/imagens/escola-mogi-das-cruzes/19.jpg",
+        "/imagens/escola-mogi-das-cruzes/20.jpg",
+        "/imagens/escola-mogi-das-cruzes/25.jpg"
+      ],
+      "resumo": "Salão multiuso de 12 lados para uma escola pública rural, erguido com mais de 100 voluntários.",
+      "destaque": "Um salão de doze lados para uma escola rural, construído em 40 dias por mais de cem voluntários.",
+      "memoria": "Projeto social realizado em 40 dias, da escavação ao acabamento, com mais de 100 voluntários do Brasil e da América do Sul. Um dodecágono forma o salão multiuso da escola, e as paredes de taipa foram levantadas em apenas 8 dias de trabalho intenso.\n\nA mistura usou terra de uma jazida próxima, pedra britada em dois tamanhos e 10% de cimento, garantindo a capacidade estrutural necessária para a cobertura de madeira maciça.",
+      "ficha": [
+        {
+          "rotulo": "Tipo",
+          "valor": "Construção em taipa de pilão"
+        },
+        {
+          "rotulo": "Local",
+          "valor": "Mogi das Cruzes, SP"
+        },
+        {
+          "rotulo": "Ano",
+          "valor": "2025"
+        },
+        {
+          "rotulo": "Arquitetura",
+          "valor": "Estúdio Aberto Arquitetura"
+        },
+        {
+          "rotulo": "Construção",
+          "valor": "Tagma e equipe"
+        },
+        {
+          "rotulo": "Taipa de pilão",
+          "valor": "Goya Arquitetura"
+        }
+      ]
+    },
+    {
+      "nome": "Casa Cuiabá",
+      "categoria": "construção",
+      "local": "Cuiabá, MT",
+      "ano": "2025",
+      "capa": "/imagens/casa-cuiaba/07.jpg",
+      "fotos": [
+        "/imagens/casa-cuiaba/02.jpg",
+        "/imagens/casa-cuiaba/03.jpg",
+        "/imagens/casa-cuiaba/04.jpg",
+        "/imagens/casa-cuiaba/05.jpg",
+        "/imagens/casa-cuiaba/06.jpg",
+        "/imagens/casa-cuiaba/07.jpg",
+        "/imagens/casa-cuiaba/08.jpg",
+        "/imagens/casa-cuiaba/09.jpg",
+        "/imagens/casa-cuiaba/10.jpg",
+        "/imagens/casa-cuiaba/11.jpg",
+        "/imagens/casa-cuiaba/12.jpg",
+        "/imagens/casa-cuiaba/13.jpg",
+        "/imagens/casa-cuiaba/14.jpg",
+        "/imagens/casa-cuiaba/15.jpg",
+        "/imagens/casa-cuiaba/16.jpg",
+        "/imagens/casa-cuiaba/01.jpg"
+      ],
+      "resumo": "Fachada de taipa de pilão com quase 5 m de altura e cobertura em madeira laminada colada.",
+      "destaque": "Uma fachada de terra com quase cinco metros de altura define a arquitetura desta casa em Cuiabá.",
+      "memoria": "A fachada em taipa de pilão, com quase 5 metros de altura, e as demais paredes de terra, junto com a cobertura em madeira laminada colada, definem a estética contemporânea proposta pelo escritório Truvian Arquitetura.\n\nUma equipe local de 4 pessoas foi treinada na primeira semana de obra e passou por um novo treinamento para as paredes junto à contenção de concreto existente. A mistura usou solo do próprio terreno e areia grossa de rio com seixos, buscando um acabamento mais claro e uniforme, com variações de cor conforme a umidade.",
+      "ficha": [
+        {
+          "rotulo": "Tipo",
+          "valor": "Construção em taipa de pilão"
+        },
+        {
+          "rotulo": "Local",
+          "valor": "Cuiabá, MT"
+        },
+        {
+          "rotulo": "Ano",
+          "valor": "2025"
+        },
+        {
+          "rotulo": "Arquitetura",
+          "valor": "Truvian Arquitetura"
+        },
+        {
+          "rotulo": "Construção",
+          "valor": "Ricardo e equipe"
+        },
+        {
+          "rotulo": "Taipa de pilão",
+          "valor": "Goya Arquitetura"
+        }
+      ]
+    },
+    {
+      "nome": "Casa Atibaia",
+      "categoria": "construção",
+      "local": "Atibaia, SP",
+      "ano": "",
+      "capa": "/imagens/casa-atibaia/03.jpg",
+      "fotos": [
+        "/imagens/casa-atibaia/01.jpg",
+        "/imagens/casa-atibaia/02.jpg",
+        "/imagens/casa-atibaia/03.jpg",
+        "/imagens/casa-atibaia/04.jpg",
+        "/imagens/casa-atibaia/05.jpg",
+        "/imagens/casa-atibaia/06.jpg",
+        "/imagens/casa-atibaia/07.jpg",
+        "/imagens/casa-atibaia/08.jpg",
+        "/imagens/casa-atibaia/09.jpg",
+        "/imagens/casa-atibaia/10.jpg",
+        "/imagens/casa-atibaia/11.jpg",
+        "/imagens/casa-atibaia/12.jpg",
+        "/imagens/casa-atibaia/13.jpg",
+        "/imagens/casa-atibaia/14.jpg",
+        "/imagens/casa-atibaia/15.jpg",
+        "/imagens/casa-atibaia/16.jpg"
+      ],
+      "resumo": "Paredes de taipa de pilão em projeto de R2 Arquitetura.",
+      "destaque": "",
+      "memoria": "",
+      "ficha": [
+        {
+          "rotulo": "Tipo",
+          "valor": "Construção em taipa de pilão"
+        },
+        {
+          "rotulo": "Local",
+          "valor": "Atibaia, SP"
+        },
+        {
+          "rotulo": "Arquitetura",
+          "valor": "R2 Arquitetura"
+        },
+        {
+          "rotulo": "Taipa de pilão",
+          "valor": "Goya Arquitetura"
+        }
+      ]
+    },
+    {
+      "nome": "Casa Campinas",
+      "categoria": "construção",
+      "local": "Campinas, SP",
+      "ano": "",
+      "capa": "/imagens/casa-campinas/11.jpg",
+      "fotos": [
+        "/imagens/casa-campinas/03.jpg",
+        "/imagens/casa-campinas/04.jpg",
+        "/imagens/casa-campinas/05.jpg",
+        "/imagens/casa-campinas/06.jpg",
+        "/imagens/casa-campinas/07.jpg",
+        "/imagens/casa-campinas/08.jpg",
+        "/imagens/casa-campinas/09.jpg",
+        "/imagens/casa-campinas/10.jpg",
+        "/imagens/casa-campinas/11.jpg",
+        "/imagens/casa-campinas/12.jpg",
+        "/imagens/casa-campinas/13.jpg",
+        "/imagens/casa-campinas/14.jpg",
+        "/imagens/casa-campinas/15.jpg",
+        "/imagens/casa-campinas/16.jpg",
+        "/imagens/casa-campinas/17.jpg",
+        "/imagens/casa-campinas/18.jpg",
+        "/imagens/casa-campinas/01.jpg",
+        "/imagens/casa-campinas/02.jpg"
+      ],
+      "resumo": "Paredes de taipa de pilão em projeto de Brasil Arquitetura.",
+      "destaque": "",
+      "memoria": "",
+      "ficha": [
+        {
+          "rotulo": "Tipo",
+          "valor": "Construção em taipa de pilão"
+        },
+        {
+          "rotulo": "Local",
+          "valor": "Campinas, SP"
+        },
+        {
+          "rotulo": "Arquitetura",
+          "valor": "Brasil Arquitetura"
+        },
+        {
+          "rotulo": "Taipa de pilão",
+          "valor": "Goya Arquitetura"
+        }
+      ]
+    },
+    {
+      "nome": "Casa São Francisco Xavier",
+      "categoria": "construção",
+      "local": "São Francisco Xavier, SP",
+      "ano": "",
+      "capa": "/imagens/casa-sao-francisco-xavier/05.jpg",
+      "fotos": [
+        "/imagens/casa-sao-francisco-xavier/02.jpg",
+        "/imagens/casa-sao-francisco-xavier/03.jpg",
+        "/imagens/casa-sao-francisco-xavier/04.jpg",
+        "/imagens/casa-sao-francisco-xavier/05.jpg",
+        "/imagens/casa-sao-francisco-xavier/06.jpg",
+        "/imagens/casa-sao-francisco-xavier/07.jpg",
+        "/imagens/casa-sao-francisco-xavier/08.jpg",
+        "/imagens/casa-sao-francisco-xavier/09.jpg",
+        "/imagens/casa-sao-francisco-xavier/10.jpg",
+        "/imagens/casa-sao-francisco-xavier/11.jpg",
+        "/imagens/casa-sao-francisco-xavier/12.jpg",
+        "/imagens/casa-sao-francisco-xavier/13.jpg",
+        "/imagens/casa-sao-francisco-xavier/14.jpg",
+        "/imagens/casa-sao-francisco-xavier/15.jpg",
+        "/imagens/casa-sao-francisco-xavier/16.jpg",
+        "/imagens/casa-sao-francisco-xavier/17.jpg",
+        "/imagens/casa-sao-francisco-xavier/18.jpg",
+        "/imagens/casa-sao-francisco-xavier/19.jpg",
+        "/imagens/casa-sao-francisco-xavier/01.jpg"
+      ],
+      "resumo": "Paredes de taipa de pilão em projeto de Gui Paolielo Arquitetura.",
+      "destaque": "",
+      "memoria": "",
+      "ficha": [
+        {
+          "rotulo": "Tipo",
+          "valor": "Construção em taipa de pilão"
+        },
+        {
+          "rotulo": "Local",
+          "valor": "São Francisco Xavier, SP"
+        },
+        {
+          "rotulo": "Arquitetura",
+          "valor": "Gui Paolielo Arquitetura"
+        },
+        {
+          "rotulo": "Taipa de pilão",
+          "valor": "Goya Arquitetura"
+        }
+      ]
+    },
+    {
+      "nome": "UFSCar",
+      "categoria": "construção",
+      "local": "SP",
+      "ano": "",
+      "capa": "/imagens/ufscar/07.jpg",
+      "fotos": [
+        "/imagens/ufscar/01.jpg",
+        "/imagens/ufscar/02.jpg",
+        "/imagens/ufscar/03.jpg",
+        "/imagens/ufscar/04.jpg",
+        "/imagens/ufscar/05.jpg",
+        "/imagens/ufscar/06.jpg",
+        "/imagens/ufscar/07.jpg",
+        "/imagens/ufscar/08.jpg",
+        "/imagens/ufscar/09.jpg",
+        "/imagens/ufscar/10.jpg",
+        "/imagens/ufscar/11.jpg",
+        "/imagens/ufscar/12.jpg",
+        "/imagens/ufscar/13.jpg",
+        "/imagens/ufscar/14.jpg",
+        "/imagens/ufscar/15.jpg",
+        "/imagens/ufscar/16.jpg",
+        "/imagens/ufscar/17.jpg",
+        "/imagens/ufscar/18.jpg",
+        "/imagens/ufscar/19.jpg",
+        "/imagens/ufscar/20.jpg"
+      ],
+      "resumo": "Paredes de taipa de pilão em projeto de Kaan Architecten e Triptyque Arquitetura.",
+      "destaque": "",
+      "memoria": "",
+      "ficha": [
+        {
+          "rotulo": "Tipo",
+          "valor": "Construção em taipa de pilão"
+        },
+        {
+          "rotulo": "Arquitetura",
+          "valor": "Kaan Architecten & Triptyque Arquitetura"
+        },
+        {
+          "rotulo": "Taipa de pilão",
+          "valor": "Goya Arquitetura"
+        }
+      ]
+    },
+    {
+      "nome": "Casa Holambra",
+      "categoria": "arquitetura",
+      "local": "Holambra, SP",
+      "ano": "",
+      "capa": "/imagens/casa-holambra/07.jpg",
+      "fotos": [
+        "/imagens/casa-holambra/01.jpg",
+        "/imagens/casa-holambra/02.jpg",
+        "/imagens/casa-holambra/03.jpg",
+        "/imagens/casa-holambra/04.jpg",
+        "/imagens/casa-holambra/05.jpg",
+        "/imagens/casa-holambra/06.jpg",
+        "/imagens/casa-holambra/07.jpg",
+        "/imagens/casa-holambra/08.jpg",
+        "/imagens/casa-holambra/09.jpg"
+      ],
+      "resumo": "Projeto de arquitetura em Holambra, SP.",
+      "destaque": "",
+      "memoria": "",
+      "ficha": [
+        {
+          "rotulo": "Tipo",
+          "valor": "Arquitetura"
+        },
+        {
+          "rotulo": "Local",
+          "valor": "Holambra, SP"
+        },
+        {
+          "rotulo": "Projeto",
+          "valor": "Goya Arquitetura"
+        }
+      ]
+    },
+    {
+      "nome": "Casa Itupeva",
+      "categoria": "arquitetura",
+      "local": "Itupeva, SP",
+      "ano": "",
+      "capa": "/imagens/casa-itupeva/04.jpg",
+      "fotos": [
+        "/imagens/casa-itupeva/01.jpg",
+        "/imagens/casa-itupeva/02.jpg",
+        "/imagens/casa-itupeva/03.jpg",
+        "/imagens/casa-itupeva/04.jpg",
+        "/imagens/casa-itupeva/05.jpg"
+      ],
+      "resumo": "Projeto de arquitetura em Itupeva, SP.",
+      "destaque": "",
+      "memoria": "",
+      "ficha": [
+        {
+          "rotulo": "Tipo",
+          "valor": "Arquitetura"
+        },
+        {
+          "rotulo": "Local",
+          "valor": "Itupeva, SP"
+        },
+        {
+          "rotulo": "Projeto",
+          "valor": "Goya Arquitetura"
+        }
+      ]
+    },
+    {
+      "nome": "Casa Rio das Ostras",
+      "categoria": "arquitetura",
+      "local": "Rio das Ostras, RJ",
+      "ano": "",
+      "capa": "/imagens/casa-rio-das-ostras/02.jpg",
+      "fotos": [
+        "/imagens/casa-rio-das-ostras/01.jpg",
+        "/imagens/casa-rio-das-ostras/02.jpg",
+        "/imagens/casa-rio-das-ostras/03.jpg",
+        "/imagens/casa-rio-das-ostras/04.jpg",
+        "/imagens/casa-rio-das-ostras/05.jpg",
+        "/imagens/casa-rio-das-ostras/06.jpg",
+        "/imagens/casa-rio-das-ostras/07.jpg"
+      ],
+      "resumo": "Projeto de arquitetura em Rio das Ostras, RJ.",
+      "destaque": "",
+      "memoria": "",
+      "ficha": [
+        {
+          "rotulo": "Tipo",
+          "valor": "Arquitetura"
+        },
+        {
+          "rotulo": "Local",
+          "valor": "Rio das Ostras, RJ"
+        },
+        {
+          "rotulo": "Projeto",
+          "valor": "Goya Arquitetura"
+        }
       ]
     }
   ]
