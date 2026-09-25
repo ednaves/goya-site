@@ -11,6 +11,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="imagens/site/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="imagens/site/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="imagens/site/apple-touch-icon.png">
 <style>
   :root {
     --bg: #faf9f6;
@@ -36,8 +39,8 @@
     position: fixed; inset: 0 auto 0 0; width: var(--side);
     padding: 56px 0 40px 40px; display: flex; flex-direction: column; z-index: 10;
   }
-  .logo { font-size: 30px; font-weight: 500; letter-spacing: -0.02em; line-height: 1; }
-  .logo small { display: block; font-size: 10px; font-weight: 400; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+  .logo { display: inline-block; line-height: 1; }
+  .logo img { display: block; width: 104px; height: auto; object-fit: contain; }
   .nav { margin-top: 64px; display: flex; flex-direction: column; gap: 10px; }
   .nav a {
     font-size: 13px; letter-spacing: .14em; text-transform: uppercase; font-weight: 400;
@@ -265,8 +268,7 @@
       position: sticky; top: 0; width: 100%; height: auto; flex-direction: row; align-items: center;
       padding: 18px 16px; background: var(--bg); border-bottom: 1px solid var(--line); inset: 0 0 auto 0;
     }
-    .logo { font-size: 24px; }
-    .logo small { display: none; }
+    .logo img { width: 68px; }
     .burger { display: block; margin-left: auto; background: none; border: 0; font: inherit; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink); cursor: pointer; }
     .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); margin: 0; padding: 12px 16px 24px; border-bottom: 1px solid var(--line); gap: 14px; }
     .side.open .nav { display: flex; }
@@ -299,7 +301,7 @@
 <body>
 
 <aside class="side" id="side">
-  <a href="#home" class="logo">goya<small>arquitetura</small></a>
+  <a href="#home" class="logo" aria-label="Goya Arquitetura — início"><img src="imagens/site/logo.svg" alt="GOYA" width="104" height="49"></a>
   <button class="burger" id="burger" aria-label="Abrir menu">Menu</button>
   <nav class="nav" id="nav">
     <a href="#projetos" data-p="projetos">Projetos</a>
@@ -338,7 +340,7 @@
     <div class="services">
       <div class="svc rv" style="--d:0.00s">
         <span class="n">01</span>
-        <h3>Projeto</h3>
+        <h3>Arquitetura</h3>
         <p>Arquitetura residencial e institucional com projeto executivo pensado para a taipa de pilão: formas, juntas, reforços e conexões com madeira e metal.</p>
       </div>
       <div class="svc rv" style="--d:0.15s">
@@ -359,7 +361,6 @@
   <section class="sec" id="projetos">
     <h2 class="title rv">Projetos</h2>
     <div class="filters rv" id="filters">
-      <button class="on" data-f="all">Todos</button>
       <!-- demais botões são gerados a partir das categorias dos projetos (só aparece aba com projeto) -->
     </div>
 
@@ -510,12 +511,14 @@
     const presentes = [...new Set(projetos.map(p => p.cat))]
       .sort((a, b) => ((ORDEM_CATS.indexOf(a) + 1) || 99) - ((ORDEM_CATS.indexOf(b) + 1) || 99));
     const box = document.getElementById("filters");
-    box.querySelectorAll("button:not([data-f=all])").forEach(b => b.remove());
+    box.querySelectorAll("button").forEach(b => b.remove());
     for (const c of presentes) {
       const b = document.createElement("button");
       b.dataset.f = c; b.textContent = c.charAt(0).toUpperCase() + c.slice(1);
       box.appendChild(b);
     }
+    if (!presentes.includes(filtro)) filtro = presentes[0] || "";
+    box.querySelectorAll("button").forEach(b => b.classList.toggle("on", b.dataset.f === filtro));
   }
   const montaGrid = () => grid.innerHTML = projetos.map((p, i) => `
     <a class="card rv" style="--d:${(i % 3) * 0.12}s" href="${projUrl(p.slug)}" data-cat="${p.cat}">
@@ -588,7 +591,7 @@
 
   // ---------- Filtro + carregar mais (6 por vez, como na referência) ----------
   const STEP = 6;
-  let filtro = "all", limite = STEP;
+  let filtro = "", limite = STEP;   // começa na primeira aba (definida em montaFiltros)
 
   // Volta ao mesmo ponto: guarda filtro, quantos projetos estavam abertos ("+") e a posição do card clicado.
   // Fica no sessionStorage, então funciona mesmo se a página do projeto for recarregada.
@@ -601,8 +604,8 @@
   }
   function restauraRetorno() {
     if (!retorno) return false;
-    const existe = f => f === "all" || [...document.querySelectorAll("#filters button")].some(b => b.dataset.f === f);
-    filtro = existe(retorno.filtro) ? retorno.filtro : "all";
+    const abas = [...document.querySelectorAll("#filters button")].map(b => b.dataset.f);
+    filtro = abas.includes(retorno.filtro) ? retorno.filtro : (abas[0] || "");
     limite = Math.max(STEP, retorno.limite || STEP);
     document.querySelectorAll("#filters button").forEach(b => b.classList.toggle("on", b.dataset.f === filtro));
     aplicaGrid();
@@ -619,7 +622,7 @@
     let n = 0;
     const cards = [...grid.querySelectorAll(".card")];
     cards.forEach(c => {
-      const match = filtro === "all" || c.dataset.cat === filtro;
+      const match = !filtro || c.dataset.cat === filtro;
       const show = match && n < limite;
       if (match) n++;
       c.classList.toggle("hide", !show);

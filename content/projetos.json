@@ -2,7 +2,7 @@
   "projetos": [
     {
       "nome": "Casa Terezópolis",
-      "categoria": "construção",
+      "categoria": "consultoria",
       "local": "Terezópolis de Goiás, GO",
       "ano": "2023",
       "capa": "/imagens/casa-terezopolis/07.jpg",
@@ -13,7 +13,7 @@
       "ficha": [
         {
           "rotulo": "Tipo",
-          "valor": "Construção em taipa de pilão"
+          "valor": "Consultoria em taipa de pilão"
         },
         {
           "rotulo": "Local",
@@ -29,7 +29,7 @@
         },
         {
           "rotulo": "Construção",
-          "valor": "Mathias Monios, Renan Reis e Rodrigo Rocha"
+          "valor": "Mathias Monios, Renan Reis e GOYA"
         }
       ],
       "fotos": [
@@ -47,7 +47,7 @@
     },
     {
       "nome": "Casa Cuiabá",
-      "categoria": "construção",
+      "categoria": "consultoria",
       "local": "Cuiabá, MT",
       "ano": "2025",
       "capa": "/imagens/casa-cuiaba/07.jpg",
@@ -58,7 +58,7 @@
       "ficha": [
         {
           "rotulo": "Tipo",
-          "valor": "Construção em taipa de pilão"
+          "valor": "Consultoria em taipa de pilão"
         },
         {
           "rotulo": "Local",
@@ -78,7 +78,7 @@
         },
         {
           "rotulo": "Taipa de pilão",
-          "valor": "Goya Arquitetura"
+          "valor": "GOYA"
         }
       ],
       "fotos": [
@@ -124,8 +124,8 @@
           "valor": "2018–2021"
         },
         {
-          "rotulo": "Projeto",
-          "valor": "Rodrigo Rocha"
+          "rotulo": "Arquitetura",
+          "valor": "GOYA"
         },
         {
           "rotulo": "Construção",
@@ -155,7 +155,7 @@
     },
     {
       "nome": "Escola Rural Mogi das Cruzes",
-      "categoria": "construção",
+      "categoria": "consultoria",
       "local": "Mogi das Cruzes, SP",
       "ano": "2025",
       "capa": "/imagens/escola-mogi-das-cruzes/16.jpg",
@@ -166,7 +166,7 @@
       "ficha": [
         {
           "rotulo": "Tipo",
-          "valor": "Construção em taipa de pilão"
+          "valor": "Consultoria em taipa de pilão"
         },
         {
           "rotulo": "Local",
@@ -186,7 +186,7 @@
         },
         {
           "rotulo": "Taipa de pilão",
-          "valor": "Goya Arquitetura"
+          "valor": "GOYA"
         }
       ],
       "fotos": [
@@ -237,12 +237,12 @@
           "valor": "2023"
         },
         {
-          "rotulo": "Projeto",
+          "rotulo": "Arquitetura",
           "valor": "Ecosapiens"
         },
         {
           "rotulo": "Consultoria",
-          "valor": "Goya Arquitetura"
+          "valor": "GOYA"
         }
       ],
       "fotos": [
@@ -278,7 +278,7 @@
           "valor": "2022"
         },
         {
-          "rotulo": "Projeto",
+          "rotulo": "Arquitetura",
           "valor": "QG Studio"
         },
         {
@@ -287,7 +287,7 @@
         },
         {
           "rotulo": "Consultoria",
-          "valor": "Rodrigo Rocha"
+          "valor": "GOYA"
         }
       ],
       "fotos": [
@@ -331,7 +331,7 @@
         },
         {
           "rotulo": "Capacitação e consultoria",
-          "valor": "Rodrigo Rocha"
+          "valor": "GOYA"
         }
       ],
       "fotos": [
@@ -391,7 +391,7 @@
         },
         {
           "rotulo": "Execução em pau a pique",
-          "valor": "Rodrigo Rocha"
+          "valor": "GOYA"
         }
       ],
       "fotos": [
@@ -426,8 +426,8 @@
           "valor": "2019–2023"
         },
         {
-          "rotulo": "Projeto",
-          "valor": "Rodrigo Rocha"
+          "rotulo": "Arquitetura",
+          "valor": "GOYA"
         },
         {
           "rotulo": "Projeto estrutural",
@@ -494,8 +494,8 @@
           "valor": "2019–2023"
         },
         {
-          "rotulo": "Projeto",
-          "valor": "Rodrigo Rocha"
+          "rotulo": "Arquitetura",
+          "valor": "GOYA"
         },
         {
           "rotulo": "Construção",
@@ -557,8 +557,8 @@
           "valor": "2016–2017"
         },
         {
-          "rotulo": "Projeto",
-          "valor": "Rodrigo Rocha"
+          "rotulo": "Arquitetura",
+          "valor": "GOYA"
         },
         {
           "rotulo": "Construção",
@@ -607,16 +607,16 @@
           "valor": "2019"
         },
         {
-          "rotulo": "Projeto",
+          "rotulo": "Arquitetura",
           "valor": "Base Bioarquitectura"
         },
         {
           "rotulo": "Consultoria estrutural",
-          "valor": "Rodrigo Rocha"
+          "valor": "GOYA"
         },
         {
           "rotulo": "Capacitação",
-          "valor": "Rodrigo Rocha"
+          "valor": "GOYA"
         }
       ],
       "fotos": [
@@ -663,7 +663,7 @@
         },
         {
           "rotulo": "Projeto e execução",
-          "valor": "Rodrigo Rocha"
+          "valor": "GOYA"
         },
         {
           "rotulo": "Consultoria estrutural",
@@ -684,7 +684,7 @@
     },
     {
       "nome": "Casa Selby",
-      "categoria": "construção",
+      "categoria": "consultoria",
       "local": "Selby, Austrália",
       "ano": "2019",
       "capa": "/imagens/selby/02.jpg",
@@ -706,7 +706,7 @@
           "valor": "2019"
         },
         {
-          "rotulo": "Projeto",
+          "rotulo": "Arquitetura",
           "valor": "Steffen Welsch Architects"
         },
         {
@@ -728,7 +728,7 @@
     },
     {
       "nome": "Casa Woodend",
-      "categoria": "construção",
+      "categoria": "consultoria",
       "local": "Woodend, Austrália",
       "ano": "2020",
       "capa": "/imagens/woodend/03.jpg",
@@ -750,7 +750,7 @@
           "valor": "2020"
         },
         {
-          "rotulo": "Projeto",
+          "rotulo": "Arquitetura",
           "valor": "Steffen Welsch Architects"
         },
         {
@@ -769,7 +769,7 @@
     },
     {
       "nome": "Casa Santo Antônio do Pinhal",
-      "categoria": "construção",
+      "categoria": "consultoria",
       "local": "Santo Antônio do Pinhal, SP",
       "ano": "2024",
       "capa": "/imagens/casa-santo-antonio-do-pinhal/03.jpg",
@@ -780,7 +780,7 @@
       "ficha": [
         {
           "rotulo": "Tipo",
-          "valor": "Construção em taipa de pilão"
+          "valor": "Consultoria em taipa de pilão"
         },
         {
           "rotulo": "Local",
@@ -800,7 +800,7 @@
         },
         {
           "rotulo": "Taipa de pilão",
-          "valor": "Goya Arquitetura"
+          "valor": "GOYA"
         }
       ],
       "fotos": [
@@ -829,7 +829,7 @@
     },
     {
       "nome": "Casa Itaparica",
-      "categoria": "construção",
+      "categoria": "consultoria",
       "local": "Ilha de Itaparica, BA",
       "ano": "2024",
       "capa": "/imagens/casa-itaparica/07.jpg",
@@ -840,7 +840,7 @@
       "ficha": [
         {
           "rotulo": "Tipo",
-          "valor": "Construção em taipa de pilão"
+          "valor": "Consultoria em taipa de pilão"
         },
         {
           "rotulo": "Local",
@@ -864,7 +864,7 @@
         },
         {
           "rotulo": "Taipa de pilão",
-          "valor": "Goya Arquitetura"
+          "valor": "GOYA"
         }
       ],
       "fotos": [
@@ -907,7 +907,7 @@
         },
         {
           "rotulo": "Taipa de pilão",
-          "valor": "Goya Arquitetura"
+          "valor": "GOYA"
         }
       ],
       "fotos": [
@@ -931,7 +931,7 @@
     },
     {
       "nome": "Casa Campinas",
-      "categoria": "construção",
+      "categoria": "consultoria",
       "local": "Campinas, SP",
       "ano": "",
       "capa": "/imagens/casa-campinas/11.jpg",
@@ -942,7 +942,7 @@
       "ficha": [
         {
           "rotulo": "Tipo",
-          "valor": "Construção em taipa de pilão"
+          "valor": "Consultoria em taipa de pilão"
         },
         {
           "rotulo": "Local",
@@ -954,7 +954,7 @@
         },
         {
           "rotulo": "Taipa de pilão",
-          "valor": "Goya Arquitetura"
+          "valor": "GOYA"
         }
       ],
       "fotos": [
@@ -980,7 +980,7 @@
     },
     {
       "nome": "Casa São Francisco Xavier",
-      "categoria": "construção",
+      "categoria": "consultoria",
       "local": "São Francisco Xavier, SP",
       "ano": "",
       "capa": "/imagens/casa-sao-francisco-xavier/05.jpg",
@@ -991,7 +991,7 @@
       "ficha": [
         {
           "rotulo": "Tipo",
-          "valor": "Construção em taipa de pilão"
+          "valor": "Consultoria em taipa de pilão"
         },
         {
           "rotulo": "Local",
@@ -1003,7 +1003,7 @@
         },
         {
           "rotulo": "Taipa de pilão",
-          "valor": "Goya Arquitetura"
+          "valor": "GOYA"
         }
       ],
       "fotos": [
@@ -1030,7 +1030,7 @@
     },
     {
       "nome": "UFSCar",
-      "categoria": "construção",
+      "categoria": "consultoria",
       "local": "SP",
       "ano": "",
       "capa": "/imagens/ufscar/07.jpg",
@@ -1041,7 +1041,7 @@
       "ficha": [
         {
           "rotulo": "Tipo",
-          "valor": "Construção em taipa de pilão"
+          "valor": "Consultoria em taipa de pilão"
         },
         {
           "rotulo": "Arquitetura",
@@ -1049,7 +1049,7 @@
         },
         {
           "rotulo": "Taipa de pilão",
-          "valor": "Goya Arquitetura"
+          "valor": "GOYA"
         }
       ],
       "fotos": [
@@ -1095,8 +1095,8 @@
           "valor": "Holambra, SP"
         },
         {
-          "rotulo": "Projeto",
-          "valor": "Goya Arquitetura"
+          "rotulo": "Arquitetura",
+          "valor": "GOYA"
         }
       ],
       "fotos": [
@@ -1131,8 +1131,8 @@
           "valor": "Itupeva, SP"
         },
         {
-          "rotulo": "Projeto",
-          "valor": "Goya Arquitetura"
+          "rotulo": "Arquitetura",
+          "valor": "GOYA"
         }
       ],
       "fotos": [
@@ -1163,8 +1163,8 @@
           "valor": "Rio das Ostras, RJ"
         },
         {
-          "rotulo": "Projeto",
-          "valor": "Goya Arquitetura"
+          "rotulo": "Arquitetura",
+          "valor": "GOYA"
         }
       ],
       "fotos": [
