@@ -8,7 +8,7 @@ backend:
   # Serviço de login com GitHub (Cloudflare Worker "sveltia-cms-auth" na conta Cloudflare do projeto)
   base_url: https://sveltia-cms-auth.edsonnaves09.workers.dev
 
-logo_url: ../imagens/site/favicon.svg
+logo_url: ../imagens/site/favicon-goya.svg
 site_url: https://www.goyarq.com.br/
 display_url: https://www.goyarq.com.br/
 

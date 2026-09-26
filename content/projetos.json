@@ -28,8 +28,8 @@
           "valor": "Arquitetura Viva"
         },
         {
-          "rotulo": "Construção",
-          "valor": "Mathias Monios, Renan Reis e GOYA"
+          "rotulo": "Taipa de pilão",
+          "valor": "Rodrigo Rocha, Mathias Monios e Renan Reis"
         }
       ],
       "fotos": [
@@ -78,7 +78,7 @@
         },
         {
           "rotulo": "Taipa de pilão",
-          "valor": "GOYA"
+          "valor": "Rodrigo Rocha, Jadson e Bolívia"
         }
       ],
       "fotos": [
@@ -125,7 +125,7 @@
         },
         {
           "rotulo": "Arquitetura",
-          "valor": "GOYA"
+          "valor": "Rodrigo Rocha e Oliver Petrovic"
         },
         {
           "rotulo": "Construção",
@@ -134,6 +134,10 @@
         {
           "rotulo": "Taipa de pilão",
           "valor": "Olnee Constructions"
+        },
+        {
+          "rotulo": "Fotos",
+          "valor": "Jarrod Barnes"
         }
       ],
       "fotos": [
@@ -186,7 +190,7 @@
         },
         {
           "rotulo": "Taipa de pilão",
-          "valor": "GOYA"
+          "valor": "Rodrigo Rocha e voluntários Tayná"
         }
       ],
       "fotos": [
@@ -214,7 +218,7 @@
       ]
     },
     {
-      "nome": "Ecosapiens",
+      "nome": "Casa Paraisópolis",
       "categoria": "consultoria",
       "local": "Paraisópolis, MG",
       "ano": "2023",
@@ -237,12 +241,12 @@
           "valor": "2023"
         },
         {
-          "rotulo": "Arquitetura",
+          "rotulo": "Arquitetura e Construção",
           "valor": "Ecosapiens"
         },
         {
-          "rotulo": "Consultoria",
-          "valor": "GOYA"
+          "rotulo": "Taipa de pilão",
+          "valor": "Rodrigo Rocha e equipe Ecosapiens"
         }
       ],
       "fotos": [
@@ -255,7 +259,7 @@
       ]
     },
     {
-      "nome": "QG Studio",
+      "nome": "Casa Palco",
       "categoria": "consultoria",
       "local": "São Paulo, SP",
       "ano": "2022",
@@ -279,15 +283,15 @@
         },
         {
           "rotulo": "Arquitetura",
-          "valor": "QG Studio"
+          "valor": "Quinta e Gaia Arquitetura"
         },
         {
           "rotulo": "Estrutural",
           "valor": "Telecki Arquitetura"
         },
         {
-          "rotulo": "Consultoria",
-          "valor": "GOYA"
+          "rotulo": "Taipa de pilão",
+          "valor": "Equipe Juviniano (consultoria remota Rodrigo Rocha)"
         }
       ],
       "fotos": [
@@ -406,7 +410,7 @@
       "nome": "Jardins Capri",
       "categoria": "arquitetura",
       "local": "Senador Canedo, GO",
-      "ano": "2019–2023",
+      "ano": "2025",
       "capa": "/imagens/jardins-capri/06.jpg",
       "topo": "",
       "resumo": "Residência em taipa de pilão no cerrado goiano. Projeto e acompanhamento de Rodrigo Rocha.",
@@ -423,11 +427,11 @@
         },
         {
           "rotulo": "Ano",
-          "valor": "2019–2023"
+          "valor": "2025"
         },
         {
           "rotulo": "Arquitetura",
-          "valor": "GOYA"
+          "valor": "Rodrigo Rocha e Karla Amaral"
         },
         {
           "rotulo": "Projeto estrutural",
@@ -438,7 +442,7 @@
           "valor": "Danilo Angelo, GO Engenharia"
         },
         {
-          "rotulo": "Fotografia",
+          "rotulo": "Fotos",
           "valor": "Maurício Araújo"
         }
       ],
@@ -495,7 +499,7 @@
         },
         {
           "rotulo": "Arquitetura",
-          "valor": "GOYA"
+          "valor": "Rodrigo Rocha e Oliver Petrovic"
         },
         {
           "rotulo": "Construção",
@@ -504,6 +508,10 @@
         {
           "rotulo": "Taipa de pilão",
           "valor": "Olnee Constructions"
+        },
+        {
+          "rotulo": "Fotos",
+          "valor": "Marcelo Zerwes"
         }
       ],
       "fotos": [
@@ -558,7 +566,7 @@
         },
         {
           "rotulo": "Arquitetura",
-          "valor": "GOYA"
+          "valor": "Rodrigo Rocha e Oliver Petrovic"
         },
         {
           "rotulo": "Construção",
@@ -567,6 +575,10 @@
         {
           "rotulo": "Taipa de pilão",
           "valor": "Olnee Constructions"
+        },
+        {
+          "rotulo": "Fotos",
+          "valor": "Jarrod Barnes e Rodrigo Rocha"
         }
       ],
       "fotos": [
@@ -584,7 +596,7 @@
       ]
     },
     {
-      "nome": "Base Bioarquitectura",
+      "nome": "Casa Pedro Damian",
       "categoria": "consultoria",
       "local": "Valle de Bravo, México",
       "ano": "2019",
@@ -612,11 +624,11 @@
         },
         {
           "rotulo": "Consultoria estrutural",
-          "valor": "GOYA"
+          "valor": "Rodrigo Rocha"
         },
         {
           "rotulo": "Capacitação",
-          "valor": "GOYA"
+          "valor": "Rodrigo Rocha"
         }
       ],
       "fotos": [
@@ -800,7 +812,7 @@
         },
         {
           "rotulo": "Taipa de pilão",
-          "valor": "GOYA"
+          "valor": "Rodrigo Rocha"
         }
       ],
       "fotos": [
@@ -864,7 +876,7 @@
         },
         {
           "rotulo": "Taipa de pilão",
-          "valor": "GOYA"
+          "valor": "Rodrigo Rocha"
         }
       ],
       "fotos": [
@@ -883,10 +895,10 @@
       ]
     },
     {
-      "nome": "Casa Atibaia",
+      "nome": "Casa Nawi",
       "categoria": "consultoria",
       "local": "Atibaia, SP",
-      "ano": "",
+      "ano": "2025",
       "capa": "/imagens/casa-atibaia/03.jpg",
       "topo": "",
       "resumo": "Paredes de taipa de pilão em projeto de R2 Arquitetura.",
@@ -902,12 +914,20 @@
           "valor": "Atibaia, SP"
         },
         {
+          "rotulo": "Ano",
+          "valor": "2025"
+        },
+        {
           "rotulo": "Arquitetura",
           "valor": "R2 Arquitetura"
         },
         {
+          "rotulo": "Construção",
+          "valor": "José e João"
+        },
+        {
           "rotulo": "Taipa de pilão",
-          "valor": "GOYA"
+          "valor": "Rodrigo Rocha"
         }
       ],
       "fotos": [
@@ -930,10 +950,10 @@
       ]
     },
     {
-      "nome": "Casa Campinas",
+      "nome": "Casa Santa Margarida",
       "categoria": "consultoria",
       "local": "Campinas, SP",
-      "ano": "",
+      "ano": "2025–2026",
       "capa": "/imagens/casa-campinas/11.jpg",
       "topo": "",
       "resumo": "Paredes de taipa de pilão em projeto de Brasil Arquitetura.",
@@ -949,12 +969,24 @@
           "valor": "Campinas, SP"
         },
         {
+          "rotulo": "Ano",
+          "valor": "2025–2026"
+        },
+        {
           "rotulo": "Arquitetura",
           "valor": "Brasil Arquitetura"
         },
         {
+          "rotulo": "Administração de obra",
+          "valor": "Carpegiani Dias Projetos e Obras"
+        },
+        {
+          "rotulo": "Construção",
+          "valor": "Cido e equipe"
+        },
+        {
           "rotulo": "Taipa de pilão",
-          "valor": "GOYA"
+          "valor": "Rodrigo Rocha"
         }
       ],
       "fotos": [
@@ -979,10 +1011,10 @@
       ]
     },
     {
-      "nome": "Casa São Francisco Xavier",
+      "nome": "Ateliê Kiko Farias e Carla Café",
       "categoria": "consultoria",
       "local": "São Francisco Xavier, SP",
-      "ano": "",
+      "ano": "2026",
       "capa": "/imagens/casa-sao-francisco-xavier/05.jpg",
       "topo": "",
       "resumo": "Paredes de taipa de pilão em projeto de Gui Paolielo Arquitetura.",
@@ -998,12 +1030,20 @@
           "valor": "São Francisco Xavier, SP"
         },
         {
+          "rotulo": "Ano",
+          "valor": "2026"
+        },
+        {
           "rotulo": "Arquitetura",
           "valor": "Gui Paolielo Arquitetura"
         },
         {
+          "rotulo": "Construção",
+          "valor": "Marcão e equipe"
+        },
+        {
           "rotulo": "Taipa de pilão",
-          "valor": "GOYA"
+          "valor": "Rodrigo Rocha"
         }
       ],
       "fotos": [
@@ -1029,10 +1069,10 @@
       ]
     },
     {
-      "nome": "UFSCar",
+      "nome": "Biblioteca Pública UFSCar",
       "categoria": "consultoria",
-      "local": "SP",
-      "ano": "",
+      "local": "Buri, SP",
+      "ano": "2026–2027",
       "capa": "/imagens/ufscar/07.jpg",
       "topo": "",
       "resumo": "Paredes de taipa de pilão em projeto de Kaan Architecten e Triptyque Arquitetura.",
@@ -1044,12 +1084,28 @@
           "valor": "Consultoria em taipa de pilão"
         },
         {
+          "rotulo": "Local",
+          "valor": "Buri, SP"
+        },
+        {
+          "rotulo": "Ano",
+          "valor": "2026–2027"
+        },
+        {
           "rotulo": "Arquitetura",
           "valor": "Kaan Architecten & Triptyque Arquitetura"
         },
         {
+          "rotulo": "Construção",
+          "valor": "Fratella Engenharia"
+        },
+        {
           "rotulo": "Taipa de pilão",
-          "valor": "GOYA"
+          "valor": "Rodrigo Rocha, Norair Chahinian e Vitor Pena"
+        },
+        {
+          "rotulo": "Fotos",
+          "valor": "Stepan Norair Chahinian"
         }
       ],
       "fotos": [
@@ -1076,10 +1132,10 @@
       ]
     },
     {
-      "nome": "Casa Holambra",
+      "nome": "Sagui",
       "categoria": "arquitetura",
       "local": "Holambra, SP",
-      "ano": "",
+      "ano": "2026–2027",
       "capa": "/imagens/casa-holambra/07.jpg",
       "topo": "",
       "resumo": "Projeto de arquitetura em Holambra, SP.",
@@ -1088,15 +1144,19 @@
       "ficha": [
         {
           "rotulo": "Tipo",
-          "valor": "Arquitetura"
+          "valor": "Residencial e comercial"
         },
         {
           "rotulo": "Local",
           "valor": "Holambra, SP"
         },
         {
+          "rotulo": "Ano",
+          "valor": "2026–2027"
+        },
+        {
           "rotulo": "Arquitetura",
-          "valor": "GOYA"
+          "valor": "Rodrigo Rocha, Vitor Pena e Gabriela Peronti"
         }
       ],
       "fotos": [
@@ -1115,7 +1175,7 @@
       "nome": "Casa Itupeva",
       "categoria": "arquitetura",
       "local": "Itupeva, SP",
-      "ano": "",
+      "ano": "2025–2027",
       "capa": "/imagens/casa-itupeva/04.jpg",
       "topo": "",
       "resumo": "Projeto de arquitetura em Itupeva, SP.",
@@ -1131,8 +1191,12 @@
           "valor": "Itupeva, SP"
         },
         {
+          "rotulo": "Ano",
+          "valor": "2025–2027"
+        },
+        {
           "rotulo": "Arquitetura",
-          "valor": "GOYA"
+          "valor": "Rodrigo Rocha"
         }
       ],
       "fotos": [
@@ -1147,7 +1211,7 @@
       "nome": "Casa Rio das Ostras",
       "categoria": "arquitetura",
       "local": "Rio das Ostras, RJ",
-      "ano": "",
+      "ano": "2026–2027",
       "capa": "/imagens/casa-rio-das-ostras/02.jpg",
       "topo": "",
       "resumo": "Projeto de arquitetura em Rio das Ostras, RJ.",
@@ -1163,8 +1227,12 @@
           "valor": "Rio das Ostras, RJ"
         },
         {
+          "rotulo": "Ano",
+          "valor": "2026–2027"
+        },
+        {
           "rotulo": "Arquitetura",
-          "valor": "GOYA"
+          "valor": "Rodrigo Rocha e Gabriela Peronti"
         }
       ],
       "fotos": [
