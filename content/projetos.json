@@ -101,6 +101,52 @@
       ]
     },
     {
+      "nome": "Vila Sagui",
+      "categoria": "arquitetura",
+      "local": "Holambra, SP",
+      "ano": "2026–2027",
+      "capa": "/imagens/casa-holambra/07.jpg",
+      "topo": "",
+      "resumo": "Pátios e paredes curvas de taipa de pilão em um conjunto de uso misto em Holambra, SP.",
+      "destaque": "Pátios que prolongam o interior e paredes curvas de terra que emergem do terreno e conduzem o olhar para a paisagem.",
+      "memoria": "A ideia central foi projetar pátios como uma extensão do interior, sem perder a sensação acolhedora de estar entre paredes de terra. Aproveitar a inclinação natural do terreno para implantar cada edifício em seu próprio ambiente é um princípio do projeto, alinhado ao plano diretor da área, que define um lugar para cada atividade.\n\nO edifício principal reúne cinco usos sob um único telhado leve: cozinha profissional, escritório, oficina de costura, cozinha coletiva e área de serviços. Paredes curvas de taipa de pilão emergem do solo como barreiras sólidas que orientam a vista para a paisagem ao redor e convidam o olhar para o horizonte a partir de diferentes pontos.\n\nO uso de recursos locais foi uma premissa desde o início. O solo retirado na terraplanagem e na abertura das áreas úmidas, criadas para controlar e armazenar a água da chuva, é abundante o bastante para se tornar o principal material da obra. As paredes externas são de taipa de pilão e as internas, de tijolos de solo-cimento, somadas a soluções coerentes de projeto: planta compacta, luz solar indireta nos interiores, massa térmica e aberturas entre os ambientes para a ventilação cruzada natural.",
+      "ficha": [
+        {
+          "rotulo": "Tipo",
+          "valor": "Residencial e comercial"
+        },
+        {
+          "rotulo": "Local",
+          "valor": "Holambra, SP"
+        },
+        {
+          "rotulo": "Ano",
+          "valor": "2026–2027"
+        },
+        {
+          "rotulo": "Arquitetura",
+          "valor": "Rodrigo Rocha, Vitor Pena e Gabriela Peronti"
+        },
+        {
+          "rotulo": "Premiação",
+          "valor": "Architecture Hunter Awards · selecionado na categoria Projetos não construídos"
+        }
+      ],
+      "fotos": [
+        "/imagens/casa-holambra/01.jpg",
+        "/imagens/casa-holambra/02.jpg",
+        "/imagens/casa-holambra/03.jpg",
+        "/imagens/casa-holambra/04.jpg",
+        "/imagens/casa-holambra/05.jpg",
+        "/imagens/casa-holambra/06.jpg",
+        "/imagens/casa-holambra/07.jpg",
+        "/imagens/casa-holambra/08.jpg",
+        "/imagens/casa-holambra/09.jpg"
+      ],
+      "selo": "architecture-hunter-awards",
+      "premio": "Selecionado na categoria Projetos não construídos"
+    },
+    {
       "nome": "Casa Kanowna",
       "categoria": "arquitetura",
       "local": "Melbourne, Austrália",
@@ -1129,46 +1175,6 @@
         "/imagens/ufscar/18.jpg",
         "/imagens/ufscar/19.jpg",
         "/imagens/ufscar/20.jpg"
-      ]
-    },
-    {
-      "nome": "Sagui",
-      "categoria": "arquitetura",
-      "local": "Holambra, SP",
-      "ano": "2026–2027",
-      "capa": "/imagens/casa-holambra/07.jpg",
-      "topo": "",
-      "resumo": "Projeto de arquitetura em Holambra, SP.",
-      "destaque": "",
-      "memoria": "",
-      "ficha": [
-        {
-          "rotulo": "Tipo",
-          "valor": "Residencial e comercial"
-        },
-        {
-          "rotulo": "Local",
-          "valor": "Holambra, SP"
-        },
-        {
-          "rotulo": "Ano",
-          "valor": "2026–2027"
-        },
-        {
-          "rotulo": "Arquitetura",
-          "valor": "Rodrigo Rocha, Vitor Pena e Gabriela Peronti"
-        }
-      ],
-      "fotos": [
-        "/imagens/casa-holambra/01.jpg",
-        "/imagens/casa-holambra/02.jpg",
-        "/imagens/casa-holambra/03.jpg",
-        "/imagens/casa-holambra/04.jpg",
-        "/imagens/casa-holambra/05.jpg",
-        "/imagens/casa-holambra/06.jpg",
-        "/imagens/casa-holambra/07.jpg",
-        "/imagens/casa-holambra/08.jpg",
-        "/imagens/casa-holambra/09.jpg"
       ]
     },
     {

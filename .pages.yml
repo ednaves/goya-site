@@ -81,6 +81,15 @@ content:
             label: Foto do topo da página (opcional)
             type: image
             description: Foto grande no alto da página do projeto. Use uma foto horizontal (deitada) e de boa resolução. Se ficar vazio, o site escolhe sozinho a melhor foto horizontal da galeria.
+          - name: selo
+            label: Selo de premiação (opcional)
+            type: select
+            options:
+              values:
+                - architecture-hunter-awards
+          - name: premio
+            label: Texto do prêmio (opcional)
+            type: string
           - name: resumo
             label: Resumo
             type: text

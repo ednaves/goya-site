@@ -40,7 +40,9 @@
     padding: 56px 0 40px 40px; display: flex; flex-direction: column; z-index: 10;
   }
   .logo { display: inline-block; line-height: 1; }
-  .logo img { display: block; width: 150px; height: auto; object-fit: contain; }
+  .logo img { display: block; height: auto; object-fit: contain; }
+  .logo .logo-total { width: 160px; }
+  .logo .logo-wm, .logo-simbolo { display: none; }
   .nav { margin-top: 64px; display: flex; flex-direction: column; gap: 10px; }
   .nav a {
     font-size: 13px; letter-spacing: .14em; text-transform: uppercase; font-weight: 400;
@@ -141,6 +143,9 @@
     position: absolute; top: 14px; left: 14px; background: var(--bg); color: var(--ink);
     font-size: 10px; letter-spacing: .2em; text-transform: uppercase; padding: 6px 10px; font-weight: 500;
   }
+  /* Selo de premiação no canto superior direito da foto do card */
+  .selo-tag { position: absolute; top: 0; right: 14px; width: 38px; height: auto; object-fit: contain; z-index: 1; }
+  .card .ph img.selo-tag { width: 38px; height: auto; transition: none; transform: none; }
   .card h3 { font-size: 15px; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; margin-top: 16px; }
   .card .meta { font-size: 13px; color: var(--muted); margin-top: 2px; }
   .card p { font-size: 14px; color: var(--muted); margin-top: 10px; max-width: 42ch; }
@@ -232,6 +237,10 @@
   .back:hover { color: var(--ink); }
   .d-hero { position: relative; aspect-ratio: 16 / 8.5; overflow: hidden; background: var(--line); }
   .d-info { display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(32px, 5vw, 80px); padding: 64px 0 72px; }
+  /* Premiação na página do projeto */
+  .premio { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; padding: 26px 0; border-bottom: 1px solid var(--line); }
+  .premio img { width: auto; height: 40px; object-fit: contain; }
+  .premio p { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
   .d-info.so-ficha { grid-template-columns: minmax(0, 520px); }
   .d-lead { font-size: clamp(20px, 1.9vw, 26px); line-height: 1.35; margin: 16px 0 24px; color: var(--ink); }
   .d-mem p:not(.d-lead) { color: #54473f; max-width: 62ch; }
@@ -268,7 +277,10 @@
       position: sticky; top: 0; width: 100%; height: auto; flex-direction: row; align-items: center;
       padding: 18px 16px; background: var(--bg); border-bottom: 1px solid var(--line); inset: 0 0 auto 0;
     }
-    .logo img { width: 96px; }
+    .logo .logo-total { display: none; }
+    .logo .logo-wm { display: block; width: 62px; }
+    .logo-simbolo { display: block; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); line-height: 0; }
+    .logo-simbolo img { width: 40px; height: 40px; }
     .burger { display: block; margin-left: auto; background: none; border: 0; font: inherit; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink); cursor: pointer; }
     .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); margin: 0; padding: 12px 16px 24px; border-bottom: 1px solid var(--line); gap: 14px; }
     .side.open .nav { display: flex; }
@@ -293,6 +305,8 @@
     .lb { padding: 56px 8px; }
     .row .y { text-align: left; }
     .f-row { grid-template-columns: 1fr; gap: 24px; }
+    .card .ph img.selo-tag { width: 30px; }
+    .selo-tag { right: 10px; }
     .c-list, .contact.sem-form .c-list { grid-template-columns: 1fr 1fr; gap: 24px 20px; }
   }
   @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
@@ -301,7 +315,12 @@
 <body>
 
 <aside class="side" id="side">
-  <a href="#home" class="logo" aria-label="Goya Arquitetura — início"><img src="imagens/site/logo-goya.svg" alt="GOYA" width="150" height="51"></a>
+  <a href="#home" class="logo" aria-label="Goya Arquitetura — início">
+    <img class="logo-total" src="imagens/site/logo-total.svg" alt="GOYA" width="160" height="56">
+    <img class="logo-wm" src="imagens/site/logo-wm.svg" alt="GOYA" width="62" height="29">
+  </a>
+  <!-- no celular: símbolo centralizado no topo -->
+  <a href="#home" class="logo-simbolo" aria-hidden="true" tabindex="-1"><img src="imagens/site/logo-simbolo.svg" alt="" width="40" height="40"></a>
   <button class="burger" id="burger" aria-label="Abrir menu">Menu</button>
   <nav class="nav" id="nav">
     <a href="#projetos" data-p="projetos">Projetos</a>
@@ -484,6 +503,19 @@
   let projetos = [];
   // Categorias: ordem das abas e compatibilidade com o nome antigo "obra"
   const ORDEM_CATS = ["arquitetura", "consultoria", "arte", "construção"];
+  // Selos de premiação (campo "selo" do projeto no painel)
+  const SELOS = {
+    "architecture-hunter-awards": {
+      nome: "Architecture Hunter Awards",
+      tag: "imagens/selos/architecture-hunter-awards-tag.svg",
+      logo: "imagens/selos/architecture-hunter-awards-logo.png",
+    },
+  };
+  const seloTag = p => p.selo ? `<img class="selo-tag" src="${SELOS[p.selo].tag}" alt="${SELOS[p.selo].nome}">` : "";
+  const premioBloco = p => p.selo ? `<div class="premio rv">
+        <img src="${SELOS[p.selo].logo}" alt="${SELOS[p.selo].nome}">
+        ${p.premio ? `<p>${p.premio}</p>` : ""}
+      </div>` : "";
   const normCat = c => { const x = (c || "arquitetura").trim().toLowerCase(); return x === "obra" ? "construção" : x; };
   async function carregaProjetos() {
     const r = await fetch("content/projetos.json", { cache: "no-cache" });
@@ -498,6 +530,7 @@
         local: p.local || "", ano: p.ano || "",
         img: p.capa || (p.fotos || [])[0] || "",
         topo: p.topo || "",
+        selo: SELOS[p.selo] ? p.selo : "", premio: p.premio || "",
         txt: p.resumo || "", lead: p.destaque || "",
         memoria: (p.memoria || "").split(/\n\s*\n/).map(t => t.trim()).filter(Boolean),
         ficha: (p.ficha || []).filter(f => f && f.rotulo).map(f => [f.rotulo, f.valor || ""]),
@@ -525,6 +558,7 @@
       <div class="ph">
         ${thumb(p.img, p.nome)}
         <span class="tag">${p.cat}</span>
+        ${seloTag(p)}
       </div>
       <h3>${p.nome}</h3>
       <div class="meta">${p.local} · ${p.ano}</div>
@@ -544,6 +578,7 @@
         <h2 class="title rv">${p.nome}</h2>
       </div>
       <div class="d-hero rv"><img src="${W(p.topo || p.img)}" alt="${p.nome}"><span class="tag">${p.cat}</span></div>
+      ${premioBloco(p)}
       <div class="d-info${p.lead || p.memoria.length ? "" : " so-ficha"}">
         ${p.lead || p.memoria.length ? `<div class="d-mem rv">
           <span class="eyebrow">Memória do projeto</span>
@@ -561,7 +596,7 @@
         <h3>Outros projetos</h3>
         <div class="grid">${outros.map(o => `
           <a class="card rv" href="${projUrl(o.slug)}">
-            <div class="ph">${thumb(o.img, o.nome)}<span class="tag">${o.cat}</span></div>
+            <div class="ph">${thumb(o.img, o.nome)}<span class="tag">${o.cat}</span>${seloTag(o)}</div>
             <h3>${o.nome}</h3><div class="meta">${o.local} · ${o.ano}</div>
           </a>`).join("")}</div>
       </div>`;

@@ -44,6 +44,13 @@ collections:
                 widget: image
                 required: false
                 hint: "Foto grande no alto da página do projeto. Use uma foto horizontal (deitada) e de boa resolução. Se ficar vazio, o site escolhe sozinho a melhor foto horizontal da galeria."
+              - name: selo
+                label: Selo de premiação (opcional)
+                widget: select
+                required: false
+                options: [architecture-hunter-awards]
+                hint: "Mostra o selo do prêmio no canto da foto do card e o logo do prêmio na página do projeto."
+              - { name: premio, label: Texto do prêmio (opcional), widget: string, required: false, hint: "Ex.: Selecionado na categoria Projetos não construídos" }
               - { name: resumo, label: Resumo, widget: text, required: false, hint: "Uma ou duas frases. Aparece abaixo da foto, na lista de projetos." }
               - { name: destaque, label: Frase de destaque, widget: text, required: false, hint: "Frase em letra grande no início da Memória do projeto." }
               - { name: memoria, label: Memória do projeto, widget: text, required: false, hint: "Texto do projeto. Deixe uma linha em branco entre os parágrafos." }
