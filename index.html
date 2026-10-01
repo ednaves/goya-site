@@ -167,6 +167,23 @@
   .minus:hover { transform: none; }
   .plus:hover span::before, .plus:hover span::after { background: var(--bg); }
 
+  /* Aviso de cookies (Clarity) */
+  .cookies {
+    position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 40;
+    width: min(560px, calc(100% - 32px)); background: var(--bg); color: var(--ink);
+    border: 1px solid var(--line); box-shadow: 0 8px 30px rgba(46,36,31,.12);
+    padding: 18px 20px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+  }
+  .cookies[hidden] { display: none; }
+  .cookies p { flex: 1 1 260px; font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .cookies-bt { display: flex; gap: 10px; }
+  .cookies button {
+    font: inherit; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; font-weight: 400;
+    padding: 10px 16px; border: 1px solid var(--ink); background: none; color: var(--ink); cursor: pointer;
+  }
+  .cookies button.aceitar { background: var(--ink); color: var(--bg); }
+  .cookies button:hover { background: var(--earth); border-color: var(--earth); color: var(--bg); }
+
   /* ---------- Sobre ---------- */
   .about { display: grid; grid-template-columns: 1fr 1.25fr; gap: clamp(32px, 5vw, 80px); align-items: start; }
   .about .ph { aspect-ratio: 3 / 4; overflow: hidden; background: var(--line); }
@@ -328,13 +345,13 @@
     <a href="#contato" data-p="contato">Contato</a>
   </nav>
   <div class="side-foot">
-    <a href="https://www.instagram.com/goya.terra/" target="_blank" rel="noopener" aria-label="Instagram">
+    <a href="https://www.instagram.com/goya.terra/" target="_blank" rel="noopener" aria-label="Instagram" data-umami-event="Instagram" data-umami-event-local="menu">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>
     </a>
-    <a href="https://wa.me/5519996153063" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <a href="https://wa.me/5519996153063" target="_blank" rel="noopener" aria-label="WhatsApp" data-umami-event="WhatsApp" data-umami-event-local="menu">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/><path d="M9 9.5c.3 2 2.5 4.2 4.5 4.5l1.2-1.2 1.8.8-.4 1.6c-3.6.4-7.9-3.9-7.5-7.5l1.6-.4.8 1.8z" stroke-width="1.1"/></svg>
     </a>
-    <a href="mailto:goya@goyarq.com.br" aria-label="E-mail">
+    <a href="mailto:goya@goyarq.com.br" aria-label="E-mail" data-umami-event="E-mail" data-umami-event-local="menu">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 6l9 7 9-7"/></svg>
     </a>
   </div>
@@ -346,7 +363,7 @@
   <!-- ===================== HOME ===================== -->
   <section class="sec" id="home">
     <div class="hero rv" id="hero">
-      <div class="slide on"><img src="imagens/site/abertura.jpg" alt="Casa Jardins Capri, paredes de taipa de pilão"></div>
+      <div class="slide on"><img src="imagens/site/abertura.jpg.webp" alt="Casa Jardins Capri, paredes de taipa de pilão"></div>
       <a class="hero-cap" id="heroCap" href="projetos/jardins-capri/"><span id="heroNome">Jardins Capri</span> →</a>
       <div class="hero-dots" id="heroDots"></div>
     </div>
@@ -395,7 +412,7 @@
     <h2 class="title rv">Sobre</h2>
     <div class="about">
       <div class="ph rv">
-        <img src="imagens/site/rodrigo-retrato.jpg" alt="Retrato de Rodrigo Rocha, arquiteto fundador da Goya">
+        <img src="imagens/site/rodrigo-retrato.jpg.webp" alt="Retrato de Rodrigo Rocha, arquiteto fundador da Goya">
       </div>
       <div class="rv" style="--d:.15s">
         <span class="eyebrow">Fundador</span>
@@ -445,10 +462,10 @@
         <h2>Vamos conversar sobre o seu projeto em terra.</h2>
         <p class="lead">Projetos, obras, consultorias e capacitação de equipes em todo o Brasil.</p>
         <dl class="c-list">
-          <div><dt>WhatsApp</dt><dd><a href="https://wa.me/5519996153063" target="_blank" rel="noopener">(19) 99615-3063 <span>↗</span></a></dd></div>
-          <div><dt>E-mail</dt><dd><a href="mailto:goya@goyarq.com.br" data-copiar="goya@goyarq.com.br">goya@goyarq.com.br <span>↗</span></a><em class="copiado" aria-live="polite"></em></dd></div>
+          <div><dt>WhatsApp</dt><dd><a href="https://wa.me/5519996153063" target="_blank" rel="noopener" data-umami-event="WhatsApp" data-umami-event-local="contato">(19) 99615-3063 <span>↗</span></a></dd></div>
+          <div><dt>E-mail</dt><dd><a href="mailto:goya@goyarq.com.br" data-copiar="goya@goyarq.com.br" data-umami-event="E-mail" data-umami-event-local="contato">goya@goyarq.com.br <span>↗</span></a><em class="copiado" aria-live="polite"></em></dd></div>
           <div><dt>Endereço</dt><dd><a href="https://maps.google.com/?q=Rua+Formosa,+51,+Centro+Hist%C3%B3rico,+S%C3%A3o+Paulo,+SP" target="_blank" rel="noopener">Rua Formosa, 51<br>Centro Histórico<br>São Paulo, SP <span>↗</span></a></dd></div>
-          <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/goya.terra/" target="_blank" rel="noopener">@goya.terra <span>↗</span></a></dd></div>
+          <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/goya.terra/" target="_blank" rel="noopener" data-umami-event="Instagram" data-umami-event-local="contato">@goya.terra <span>↗</span></a></dd></div>
         </dl>
       </div>
 
@@ -481,6 +498,14 @@
   </footer>
 </main>
 
+<div class="cookies" id="cookies" hidden role="dialog" aria-label="Aviso de cookies">
+  <p>Usamos cookies do Microsoft Clarity para entender como o site é usado e melhorá-lo. Você pode aceitar ou recusar.</p>
+  <div class="cookies-bt">
+    <button type="button" data-cookies="nao">Recusar</button>
+    <button type="button" data-cookies="sim" class="aceitar">Aceitar</button>
+  </div>
+</div>
+
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Galeria de fotos">
   <img alt="">
   <button class="lb-x" aria-label="Fechar">Fechar ✕</button>
@@ -492,10 +517,19 @@
 <script>
   // ---------- Conteúdo: os projetos vêm de content/projetos.json (editado pelo painel) ----------
   const img = src => (src || "").replace(/^\//, "");          // caminho relativo: funciona em qualquer endereço
-  const W = src => img(src), F = src => img(src);
+  // Fotos em WebP (geradas na publicação como foto.jpg.webp); se faltar, o navegador cai no original
+  const wp = s => /\.(jpe?g|png)$/i.test(s) ? s + ".webp" : s;
+  const W = src => wp(img(src)), F = src => wp(img(src));
+  document.addEventListener("error", e => {
+    const el = e.target;
+    if (!(el instanceof HTMLImageElement)) return;
+    const atual = el.getAttribute("src") || "";
+    if (atual.endsWith(".webp")) el.src = atual.slice(0, -5);                                   // WebP → original
+    else if (atual.includes("imagens/_cards/")) el.src = atual.replace("imagens/_cards/", "imagens/"); // miniatura → foto
+  }, true);
   // Miniatura dos cards (gerada automaticamente no GitHub em imagens/_cards/); se não existir, usa a original
-  const T = src => img(src).replace(/^imagens\//, "imagens/_cards/");
-  const thumb = (src, alt) => `<img loading="lazy" src="${T(src)}" onerror="this.onerror=null;this.src='${W(src)}'" alt="${alt}">`;
+  const T = src => wp(img(src).replace(/^imagens\//, "imagens/_cards/"));
+  const thumb = (src, alt) => `<img loading="lazy" src="${T(src)}" alt="${alt}">`;
   // Endereço de verdade de cada projeto: projetos/<nome>/ (página própria, boa para Google e WhatsApp)
   const ROOT = new URL(".", document.baseURI).href;
   const projUrl = slug => `projetos/${slug}/`;
@@ -816,7 +850,7 @@
     slides = lista.map((x, i) => {
       const el = document.createElement("div");
       el.className = "slide" + (i === 0 ? " on" : "");
-      el.innerHTML = `<img src="${img(x.foto)}" alt="${x.projeto || "Goya Arquitetura"}" ${i ? 'loading="lazy"' : ""}>`;
+      el.innerHTML = `<img src="${W(x.foto)}" alt="${x.projeto || "Goya Arquitetura"}" ${i ? 'loading="lazy"' : ""}>`;
       hero.insertBefore(el, heroCap);
       return { el, ...x };
     });
@@ -868,6 +902,31 @@
     clearTimeout(a._t); a._t = setTimeout(() => aviso.classList.remove("on"), 2500);
   }));
 
+  // ---------- Microsoft Clarity: só carrega se a pessoa aceitar os cookies (LGPD) ----------
+  (() => {
+    const id = window.GOYA_CLARITY;
+    if (!id) return;                                   // sem código cadastrado: nada aparece
+    const caixa = document.getElementById("cookies");
+    let escolha = null;
+    try { escolha = localStorage.getItem("goya-cookies"); } catch (_) {}
+    const carrega = () => {
+      (function (c, l, a, r, i, t, y) {
+        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+        t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", id);
+    };
+    if (escolha === "sim") return carrega();
+    if (escolha === "nao") return;
+    caixa.hidden = false;
+    caixa.addEventListener("click", e => {
+      const b = e.target.closest("[data-cookies]"); if (!b) return;
+      try { localStorage.setItem("goya-cookies", b.dataset.cookies); } catch (_) {}
+      caixa.hidden = true;
+      if (b.dataset.cookies === "sim") carrega();
+    });
+  })();
+
   // ---------- Formulário de contato (Web3Forms) ----------
   // A chave fica em content/contato.json (editável no painel). Ela só permite enviar para o e-mail cadastrado.
   const form = document.getElementById("form"), formStatus = document.getElementById("formStatus");
@@ -916,6 +975,7 @@
       if (!r.ok || !data.success) throw new Error(data.message || "falha");
       form.reset();
       status("Mensagem enviada. Obrigado! Responderemos em breve.", "ok");
+      if (window.umami) umami.track("Formulário enviado");
     } catch (_) {
       status("Não foi possível enviar agora. Tente de novo ou fale pelo WhatsApp (19) 99615-3063.", "falha");
     } finally {

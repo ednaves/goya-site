@@ -60,6 +60,17 @@ for await (const orig of arquivos(RAIZ)) {
 
 // ---------- 2. Dados ----------
 const lerJson = async f => JSON.parse(await fs.readFile(path.join(RAIZ, f), "utf8"));
+// Códigos das ferramentas externas (Search Console, Umami, Clarity). Vazios = ferramenta desligada.
+const INTEG = await lerJson("content/integracoes.json").catch(() => ({}));
+// Dados do escritório para o Google (dados estruturados Schema.org)
+const ESCRITORIO = {
+  nome: "Goya Arquitetura",
+  telefone: "+55 19 99615-3063",
+  email: "goya@goyarq.com.br",
+  endereco: { rua: "Rua Formosa, 51", bairro: "Centro Histórico", cidade: "São Paulo", estado: "SP", pais: "BR" },
+  instagram: "https://www.instagram.com/goya.terra/",
+  fundador: "Rodrigo Rocha",
+};
 const usados = new Set();
 const projetos = ((await lerJson("content/projetos.json")).projetos || []).filter(p => p && p.nome).map(p => {
   let slug = slugify(p.nome), n = 2;
@@ -125,11 +136,44 @@ for (const p of projetos) {
 }
 const aberturaOg = (await gera("imagens/site/abertura.jpg", "imagens/_og/site.jpg", OG)) ? "imagens/_og/site.jpg" : null;
 
+// ---------- 3b. Versão WebP de cada foto (30–50% mais leve; o site usa e cai no JPG/PNG se faltar) ----------
+// Ex.: imagens/casa/01.jpg → imagens/casa/01.jpg.webp. As imagens de prévia (_og) ficam só em JPG (WhatsApp).
+let webps = 0;
+async function* fotosPublicadas(dir) {
+  for (const e of await fs.readdir(dir, { withFileTypes: true })) {
+    const p = path.join(dir, e.name);
+    if (e.isDirectory()) { if (e.name !== "_og") yield* fotosPublicadas(p); }
+    else if (/\.(jpe?g|png)$/i.test(e.name)) yield p;
+  }
+}
+for await (const f of fotosPublicadas(path.join(SAIDA, "imagens"))) {
+  await sharp(f).rotate().webp({ quality: 80, effort: 4 }).toFile(f + ".webp");
+  webps++;
+}
+
 // ---------- 4. Páginas ----------
 const modelo = await fs.readFile(path.join(RAIZ, "index.html"), "utf8");
 const DESCRICAO = "Goya Arquitetura: projeto, construção e consultoria em taipa de pilão e arquitetura com terra.";
 
-function seo({ titulo, descricao, url, imagem }) {
+const jsonLd = obj => `<script type="application/ld+json">${JSON.stringify(obj).replace(/</g, "\\u003c")}</script>`;
+const escritorioLd = {
+  "@type": "ProfessionalService",
+  "@id": SITE_URL + "#escritorio",
+  name: ESCRITORIO.nome,
+  url: SITE_URL,
+  image: SITE_URL + "imagens/_og/site.jpg",
+  logo: SITE_URL + "imagens/site/apple-touch-icon-goya-v2.png",
+  telephone: ESCRITORIO.telefone,
+  email: ESCRITORIO.email,
+  description: "Projeto, construção e consultoria em taipa de pilão e arquitetura com terra.",
+  address: { "@type": "PostalAddress", streetAddress: ESCRITORIO.endereco.rua + ", " + ESCRITORIO.endereco.bairro,
+    addressLocality: ESCRITORIO.endereco.cidade, addressRegion: ESCRITORIO.endereco.estado, addressCountry: ESCRITORIO.endereco.pais },
+  sameAs: [ESCRITORIO.instagram],
+  founder: { "@type": "Person", name: ESCRITORIO.fundador },
+  areaServed: "BR",
+  knowsAbout: ["Taipa de pilão", "Arquitetura com terra", "Construção com terra", "Consultoria em taipa de pilão"],
+};
+function seo({ titulo, descricao, url, imagem, dados }) {
   return [
     `<title>${esc(titulo)}</title>`,
     `<meta name="description" content="${esc(descricao)}">`,
@@ -144,6 +188,12 @@ function seo({ titulo, descricao, url, imagem }) {
     imagem && `<meta property="og:image:width" content="${OG.width}"><meta property="og:image:height" content="${OG.height}">`,
     `<meta name="twitter:card" content="summary_large_image">`,
     NOINDEX && `<meta name="robots" content="noindex, nofollow">`,
+    !NOINDEX && INTEG.google_verificacao && `<meta name="google-site-verification" content="${esc(INTEG.google_verificacao)}">`,
+    // Umami (visitas e metas, sem cookies) — só no site oficial
+    !NOINDEX && INTEG.umami_id && `<script defer src="https://cloud.umami.is/script.js" data-website-id="${esc(INTEG.umami_id)}" data-domains="www.goyarq.com.br"></script>`,
+    // Clarity: o código só é carregado pelo site se a pessoa aceitar os cookies (aviso no rodapé)
+    !NOINDEX && INTEG.clarity_id && `<script>window.GOYA_CLARITY=${JSON.stringify(String(INTEG.clarity_id))}</script>`,
+    dados && jsonLd({ "@context": "https://schema.org", "@graph": dados }),
   ].filter(Boolean).join("\n");
 }
 const montaPagina = (cabecalho, extra = h => h) =>
@@ -153,7 +203,8 @@ const montaPagina = (cabecalho, extra = h => h) =>
 
 // Página inicial
 await fs.writeFile(path.join(SAIDA, "index.html"),
-  montaPagina(seo({ titulo: "Goya Arquitetura — arquitetura em terra e taipa de pilão", descricao: DESCRICAO, url: SITE_URL, imagem: aberturaOg })));
+  montaPagina(seo({ titulo: "Goya Arquitetura — arquitetura em terra e taipa de pilão", descricao: DESCRICAO, url: SITE_URL, imagem: aberturaOg,
+    dados: [escritorioLd, { "@type": "WebSite", "@id": SITE_URL + "#site", url: SITE_URL, name: ESCRITORIO.nome, inLanguage: "pt-BR", publisher: { "@id": SITE_URL + "#escritorio" } }] })));
 
 // Uma página por projeto. O conteúdo já vem escrito no HTML (Google lê mesmo sem rodar o JavaScript);
 // no navegador, o JavaScript monta a mesma página com as animações e a galeria.
@@ -172,7 +223,27 @@ for (const p of projetos) {
       </dl></div></div>
   </section>`;
   const html = montaPagina(
-    seo({ titulo: `${p.nome} | Goya Arquitetura`, descricao, url, imagem: p.og }),
+    seo({ titulo: `${p.nome} | Goya Arquitetura`, descricao, url, imagem: p.og, dados: [
+      {
+        "@type": "CreativeWork",
+        "@id": url + "#projeto",
+        name: p.nome,
+        url,
+        description: descricao,
+        image: [p.topo, p.capa].filter(Boolean).map(f => SITE_URL + f),
+        ...(p.ano ? { dateCreated: String(p.ano).split(/[–-]/)[0].trim() } : {}),
+        ...(p.local ? { locationCreated: { "@type": "Place", name: p.local } } : {}),
+        genre: p.categoria,
+        creator: { "@id": SITE_URL + "#escritorio" },
+        ...(p.selo && p.premio ? { award: "Architecture Hunter Awards — " + p.premio } : {}),
+      },
+      escritorioLd,
+      { "@type": "BreadcrumbList", itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Início", item: SITE_URL },
+        { "@type": "ListItem", position: 2, name: "Projetos", item: SITE_URL + "#projetos" },
+        { "@type": "ListItem", position: 3, name: p.nome, item: url },
+      ] },
+    ] }),
     h => h.replace("<body>", `<body class="detail">`).replace('<section id="projeto"></section>', estatico));
   await fs.mkdir(path.join(SAIDA, "projetos", p.slug), { recursive: true });
   await fs.writeFile(path.join(SAIDA, "projetos", p.slug, "index.html"), html);
@@ -192,5 +263,6 @@ await fs.writeFile(path.join(SAIDA, "robots.txt"), NOINDEX
   ? `User-agent: *\nDisallow: /\n`
   : `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}sitemap.xml\n`);
 
-console.log(`✓ ${projetos.length} páginas de projeto · ${cards} miniaturas · ${reduzidas} fotos reduzidas · ${copiadas} arquivos copiados`);
+console.log(`✓ ${projetos.length} páginas de projeto · ${cards} miniaturas · ${webps} WebP · ${reduzidas} fotos reduzidas · ${copiadas} arquivos copiados`);
+console.log(`  integrações: Search Console ${INTEG.google_verificacao ? "✓" : "—"} · Umami ${INTEG.umami_id ? "✓" : "—"} · Clarity ${INTEG.clarity_id ? "✓" : "—"}`);
 console.log(`  endereço: ${SITE_URL}${NOINDEX ? "  (escondido do Google)" : ""}`);
