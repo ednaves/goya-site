@@ -27,7 +27,7 @@
     --text: #4A3423;    /* texto corrido */
     --side: clamp(190px, 14.7vw, 300px);
     --pad: clamp(16px, 3.7vw, 72px);
-    /* telas ultra-wide: o site para de crescer em 1920px e fica centralizado */
+    /* telas ultra-wide: o site para de crescer e fica centralizado (o JS ajusta pela altura da tela) */
     --max: 1920px;
     --gutter: max(0px, (100vw - var(--max)) / 2);
     --top: clamp(20px, 3.7vw, 72px);   /* margem do topo */
@@ -762,9 +762,12 @@
     const px = v => { const t = document.createElement("div"); t.style.cssText = `position:absolute;visibility:hidden;height:${v}`; document.body.appendChild(t); const h = t.offsetHeight; t.remove(); return h; };
     const pad = px(cs.getPropertyValue("--pad")), top = px(cs.getPropertyValue("--top")), gtH = px(cs.getPropertyValue("--gt-h"));
     // largura do logo: acompanha o conteúdo (máx. 1920px de site) e nunca passa de ~22% da altura da tela
-    raiz.style.setProperty("--gutter", Math.max(0, (raiz.clientWidth - 1920) / 2) + "px");   // sem a barra de rolagem
-    const util = Math.min(raiz.clientWidth, 1920) - 2 * pad;
-    const W0 = mobile ? util : Math.min(util, innerHeight * 1.75), u0 = W0 / 1768, u1 = gtH / 218;
+    // Largura do site: até 1920px e, em telas largas e baixas (ultra-wide), proporcional à altura,
+    // para o logo continuar indo de uma borda à outra do conteúdo sem ficar alto demais (~25% da tela).
+    const cw = raiz.clientWidth;
+    const larg = mobile ? cw : Math.min(cw, 1920, Math.round(innerHeight * 2 + 2 * pad));
+    raiz.style.setProperty("--gutter", (cw - larg) / 2 + "px");
+    const W0 = larg - 2 * pad, u0 = W0 / 1768, u1 = gtH / 218;
     const D = Math.round(221 * u0 + (mobile ? 18 : 55 * u0));
     const topC = mobile ? (side.offsetHeight - gtH) / 2 - 2.8 * u1 : top;    // no celular: centralizado na barra
     M = { mobile, pad, top, topC, W0, k1: u1 / u0, D, navC: top + gtH * 2.05 - (top + D) };
