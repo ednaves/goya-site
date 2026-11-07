@@ -27,6 +27,9 @@
     --text: #4A3423;    /* texto corrido */
     --side: clamp(190px, 14.7vw, 300px);
     --pad: clamp(16px, 3.7vw, 72px);
+    /* telas ultra-wide: o site para de crescer em 1920px e fica centralizado */
+    --max: 1920px;
+    --gutter: max(0px, (100vw - var(--max)) / 2);
     --top: clamp(20px, 3.7vw, 72px);   /* margem do topo */
     --gt-h: clamp(38px, 3.8vw, 70px);  /* altura do G do logo compacto (G·T) */
     --hero-h: max(360px, calc(100svh - var(--top) - var(--pad)));
@@ -46,11 +49,11 @@
   /* ---------- Sidebar (estilo CoDA) ---------- */
   .side {
     position: fixed; inset: 0 auto 0 0; width: var(--side);
-    padding: var(--top) 0 40px var(--pad); display: flex; flex-direction: column; z-index: 10;
+    padding: var(--top) 0 40px var(--pad); left: var(--gutter); display: flex; flex-direction: column; z-index: 10;
   }
   /* Logo GOYA TERRA: grande no topo da home, encolhe para G·T ao rolar (posição e escala vêm do JS) */
   .marca {
-    position: fixed; left: var(--pad); top: var(--top); z-index: 12; color: var(--earth);
+    position: fixed; left: calc(var(--pad) + var(--gutter)); top: var(--top); z-index: 12; color: var(--earth);
     transform-origin: 0 0; line-height: 0; will-change: transform;
   }
   .marca-svg { display: block; width: 100%; height: auto; overflow: visible; }
@@ -68,7 +71,7 @@
 
   .burger { display: none; }
 
-  main { margin-left: var(--side); padding: var(--top) var(--pad) 80px 0; min-height: 100vh; }
+  main { margin-left: calc(var(--side) + var(--gutter)); margin-right: var(--gutter); padding: var(--top) var(--pad) 80px 0; min-height: 100vh; }
   /* Página única: seções empilhadas; o detalhe do projeto é uma vista à parte */
   .sec { scroll-margin-top: 40px; }
   .sec + .sec { padding-top: clamp(96px, 12vw, 160px); }
@@ -758,7 +761,10 @@
     const cs = getComputedStyle(raiz), mobile = innerWidth <= 860;
     const px = v => { const t = document.createElement("div"); t.style.cssText = `position:absolute;visibility:hidden;height:${v}`; document.body.appendChild(t); const h = t.offsetHeight; t.remove(); return h; };
     const pad = px(cs.getPropertyValue("--pad")), top = px(cs.getPropertyValue("--top")), gtH = px(cs.getPropertyValue("--gt-h"));
-    const W0 = raiz.clientWidth - 2 * pad, u0 = W0 / 1768, u1 = gtH / 218;
+    // largura do logo: acompanha o conteúdo (máx. 1920px de site) e nunca passa de ~22% da altura da tela
+    raiz.style.setProperty("--gutter", Math.max(0, (raiz.clientWidth - 1920) / 2) + "px");   // sem a barra de rolagem
+    const util = Math.min(raiz.clientWidth, 1920) - 2 * pad;
+    const W0 = mobile ? util : Math.min(util, innerHeight * 1.75), u0 = W0 / 1768, u1 = gtH / 218;
     const D = Math.round(221 * u0 + (mobile ? 18 : 55 * u0));
     const topC = mobile ? (side.offsetHeight - gtH) / 2 - 2.8 * u1 : top;    // no celular: centralizado na barra
     M = { mobile, pad, top, topC, W0, k1: u1 / u0, D, navC: top + gtH * 2.05 - (top + D) };
