@@ -190,7 +190,7 @@ function seo({ titulo, descricao, url, imagem, dados }) {
     NOINDEX && `<meta name="robots" content="noindex, nofollow">`,
     !NOINDEX && INTEG.google_verificacao && `<meta name="google-site-verification" content="${esc(INTEG.google_verificacao)}">`,
     // Umami (visitas e metas, sem cookies) — só no site oficial
-    !NOINDEX && INTEG.umami_id && `<script defer src="https://cloud.umami.is/script.js" data-website-id="${esc(INTEG.umami_id)}" data-domains="www.goyarq.com.br"></script>`,
+    !NOINDEX && INTEG.umami_id && `<script defer src="https://cloud.umami.is/script.js" data-website-id="${esc(INTEG.umami_id)}" data-domains="www.goyaterra.com"></script>`,
     // Clarity: o código só é carregado pelo site se a pessoa aceitar os cookies (aviso no rodapé)
     !NOINDEX && INTEG.clarity_id && `<script>window.GOYA_CLARITY=${JSON.stringify(String(INTEG.clarity_id))}</script>`,
     dados && jsonLd({ "@context": "https://schema.org", "@graph": dados }),

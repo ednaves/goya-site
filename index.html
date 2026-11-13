@@ -10,25 +10,37 @@
 <!--SEO:fim-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ancizar+Sans:wght@300..700&display=swap" rel="stylesheet">
 <link rel="icon" href="imagens/site/favicon-goya-v2.svg" type="image/svg+xml">
 <link rel="icon" href="imagens/site/favicon-goya-v2-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="imagens/site/apple-touch-icon-goya-v2.png">
 <style>
   :root {
-    --bg: #faf9f6;
-    --ink: #2e241f;
-    --muted: #8a7f78;
-    --line: #e6e1da;
-    --earth: #a0674a;
-    --side: 220px;
-    --pad: clamp(16px, 4vw, 56px);
+    /* Paleta Goya Terra */
+    --bg: #FFF7E6;      /* creme */
+    --ink: #342113;     /* marrom escuro */
+    --earth: #A7482A;   /* terracota */
+    --muted: #85634E;   /* marrom médio */
+    --sand: #CDAE88;    /* areia */
+    --line: #EBDDC4;    /* linhas finas (areia clara) */
+    --panel: #F8ECD6;   /* fundo de caixas (ficha, formulário) */
+    --text: #4A3423;    /* texto corrido */
+    --side: clamp(190px, 14.7vw, 300px);
+    --pad: clamp(16px, 3.7vw, 72px);
+    /* telas ultra-wide: o site para de crescer e fica centralizado (o JS ajusta pela altura da tela) */
+    --max: 1920px;
+    --gutter: max(0px, (100vw - var(--max)) / 2);
+    --top: clamp(20px, 3.7vw, 72px);   /* margem do topo */
+    --gt-h: clamp(38px, 3.8vw, 70px);  /* altura do G do logo compacto (G·T) */
+    --hero-h: max(360px, calc(100svh - var(--top) - var(--pad)));
+    --p: 0;     /* progresso da animação do logo (0 = grande, 1 = G·T) — controlado pelo JS */
+    --d: 0px;   /* quanto a página rola até a foto chegar ao topo */
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
     background: var(--bg); color: var(--ink);
-    font-family: "Inter", system-ui, sans-serif; font-weight: 300;
+    font-family: "Ancizar Sans", system-ui, sans-serif; font-weight: 300;
     font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased;
   }
   a { color: inherit; text-decoration: none; }
@@ -37,18 +49,21 @@
   /* ---------- Sidebar (estilo CoDA) ---------- */
   .side {
     position: fixed; inset: 0 auto 0 0; width: var(--side);
-    padding: 56px 0 40px 40px; display: flex; flex-direction: column; z-index: 10;
+    padding: var(--top) 0 40px var(--pad); left: var(--gutter); display: flex; flex-direction: column; z-index: 10;
   }
-  .logo { display: inline-block; line-height: 1; }
-  .logo img { display: block; height: auto; object-fit: contain; }
-  .logo .logo-total { width: 160px; }
-  .logo .logo-wm, .logo-simbolo { display: none; }
-  .nav { margin-top: 64px; display: flex; flex-direction: column; gap: 10px; }
+  /* Logo GOYA TERRA: grande no topo da home, encolhe para G·T ao rolar (posição e escala vêm do JS) */
+  .marca {
+    position: fixed; left: calc(var(--pad) + var(--gutter)); top: var(--top); z-index: 12; color: var(--earth);
+    transform-origin: 0 0; line-height: 0; will-change: transform;
+  }
+  .marca-svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .marca-svg path { transition: none; }
+  .nav { margin-top: 0; display: flex; flex-direction: column; gap: 10px; transform: translateY(var(--nav-y, 0px)); will-change: transform; }
   .nav a {
-    font-size: 13px; letter-spacing: .14em; text-transform: uppercase; font-weight: 400;
-    color: var(--muted); transition: color .2s;
+    font-size: 15px; letter-spacing: .06em; text-transform: uppercase; font-weight: 400;
+    color: var(--ink); transition: color .2s;
   }
-  .nav a:hover, .nav a.on { color: var(--ink); }
+  .nav a:hover, .nav a.on { color: var(--earth); }
   .side-foot { margin-top: auto; display: flex; gap: 14px; }
   .side-foot a { width: 20px; height: 20px; color: var(--muted); transition: color .2s; }
   .side-foot a:hover { color: var(--ink); }
@@ -56,7 +71,7 @@
 
   .burger { display: none; }
 
-  main { margin-left: var(--side); padding: 56px var(--pad) 80px 0; min-height: 100vh; }
+  main { margin-left: calc(var(--side) + var(--gutter)); margin-right: var(--gutter); padding: var(--top) var(--pad) 80px 0; min-height: 100vh; }
   /* Página única: seções empilhadas; o detalhe do projeto é uma vista à parte */
   .sec { scroll-margin-top: 40px; }
   .sec + .sec { padding-top: clamp(96px, 12vw, 160px); }
@@ -83,7 +98,12 @@
   .eyebrow { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
 
   /* ---------- Home ---------- */
-  .hero { position: relative; aspect-ratio: 16 / 8.5; overflow: hidden; background: var(--line); }
+  /* A foto fica parada enquanto o logo encolhe e "cresce" para cima até o topo; depois rola normalmente */
+  .hero-pin { height: calc(var(--hero-h) + var(--d)); }
+  .hero {
+    position: sticky; top: var(--top); height: var(--hero-h); overflow: hidden; background: var(--line);
+    clip-path: inset(var(--hero-off, var(--d)) 0 0 0);
+  }
   /* Sequência de fotos da abertura: troca com fade */
   .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.6s ease; }
   .slide.on { opacity: 1; z-index: 1; }
@@ -102,7 +122,7 @@
   .hero-dots button.on::before { background: #faf9f6; }
   .claim {
     display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: end;
-    padding: 72px 0 88px; border-bottom: 1px solid var(--line);
+    padding: 96px 0 88px; border-bottom: 1px solid var(--line);
   }
   .claim h1 {
     font-size: clamp(30px, 3.6vw, 50px); font-weight: 300; line-height: 1.12; letter-spacing: -0.015em;
@@ -171,7 +191,7 @@
   .cookies {
     position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 40;
     width: min(560px, calc(100% - 32px)); background: var(--bg); color: var(--ink);
-    border: 1px solid var(--line); box-shadow: 0 8px 30px rgba(46,36,31,.12);
+    border: 1px solid var(--line); box-shadow: 0 8px 30px rgba(52,33,19,.12);
     padding: 18px 20px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
   }
   .cookies[hidden] { display: none; }
@@ -190,7 +210,7 @@
   .about .ph img { object-position: 50% 20%; }
   .about h2 { font-size: clamp(26px, 2.6vw, 36px); font-weight: 300; letter-spacing: -0.01em; margin: 10px 0 24px; }
   .about p + p { margin-top: 16px; }
-  .about .bio { color: #54473f; }
+  .about .bio { color: var(--text); }
   .creds { margin-top: 88px; }
   .creds h3 { font-size: 13px; letter-spacing: .2em; text-transform: uppercase; font-weight: 400; margin-bottom: 8px; }
   .row {
@@ -220,7 +240,7 @@
   .contact.sem-form .c-list { grid-template-columns: repeat(4, auto); justify-content: start; gap: 32px clamp(32px, 5vw, 72px); }
 
   /* Formulário de contato (enviado pelo Web3Forms para o e-mail do escritório) */
-  .form { display: grid; gap: 24px; background: #f2efe9; padding: clamp(24px, 3vw, 40px); }
+  .form { display: grid; gap: 24px; background: var(--panel); padding: clamp(24px, 3vw, 40px); }
   .form[hidden] { display: none; }
   .form .eyebrow { margin-bottom: 4px; }
   .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
@@ -228,7 +248,7 @@
   .f span { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
   .f input, .f textarea {
     font: inherit; font-size: 16px; color: var(--ink); background: transparent; border: 0;
-    border-bottom: 1px solid #d9d2c8; padding: 8px 0; border-radius: 0; resize: vertical; transition: border-color .2s;
+    border-bottom: 1px solid var(--sand); padding: 8px 0; border-radius: 0; resize: vertical; transition: border-color .2s;
   }
   .f input:focus, .f textarea:focus { outline: none; border-bottom-color: var(--ink); }
   .f.erro input, .f.erro textarea { border-bottom-color: #b5452f; }
@@ -260,9 +280,9 @@
   .premio p { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
   .d-info.so-ficha { grid-template-columns: minmax(0, 520px); }
   .d-lead { font-size: clamp(20px, 1.9vw, 26px); line-height: 1.35; margin: 16px 0 24px; color: var(--ink); }
-  .d-mem p:not(.d-lead) { color: #54473f; max-width: 62ch; }
+  .d-mem p:not(.d-lead) { color: var(--text); max-width: 62ch; }
   .d-mem p + p { margin-top: 14px; }
-  .d-ficha { background: #f2efe9; padding: 28px 28px 20px; align-self: start; }
+  .d-ficha { background: var(--panel); padding: 28px 28px 20px; align-self: start; }
   .d-ficha dl { margin-top: 14px; }
   .d-ficha dl div { padding: 12px 0; border-top: 1px solid var(--line); }
   .d-ficha dt { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
@@ -277,10 +297,10 @@
   .similar { margin-top: 72px; }
   .similar > h3 { font-size: 13px; letter-spacing: .2em; text-transform: uppercase; font-weight: 400; margin-bottom: 24px; }
 
-  .lb { position: fixed; inset: 0; z-index: 50; background: rgba(24, 19, 16, .96); display: none; align-items: center; justify-content: center; padding: 56px 72px; }
+  .lb { position: fixed; inset: 0; z-index: 50; background: rgba(30, 19, 11, .96); display: none; align-items: center; justify-content: center; padding: 56px 72px; }
   .lb.on { display: flex; }
   .lb img { width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain; }
-  .lb button { position: absolute; background: none; border: 0; color: #f2efe9; font: inherit; cursor: pointer; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; padding: 12px; }
+  .lb button { position: absolute; background: none; border: 0; color: var(--bg); font: inherit; cursor: pointer; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; padding: 12px; }
   .lb-x { top: 12px; right: 16px; }
   .lb-prev, .lb-next { top: 50%; transform: translateY(-50%); font-size: 24px !important; }
   .lb-prev { left: 12px; } .lb-next { right: 12px; }
@@ -290,19 +310,19 @@
   @media (max-width: 1100px) { .grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 860px) {
     :root { --side: 0px; }
+    :root { --pad: 16px; --bar: 58px; --top: var(--bar); --gt-h: 26px; --hero-h: min(calc(100svh - var(--bar) - 16px), 125vw); }
     .side {
-      position: sticky; top: 0; width: 100%; height: auto; flex-direction: row; align-items: center;
-      padding: 18px 16px; background: var(--bg); border-bottom: 1px solid var(--line); inset: 0 0 auto 0;
+      position: fixed; top: 0; width: 100%; height: var(--bar); flex-direction: row; align-items: center;
+      padding: 0 16px; background: var(--bg); border-bottom: 1px solid transparent; inset: 0 0 auto 0;
+      transition: border-color .3s;
     }
-    .logo .logo-total { display: none; }
-    .logo .logo-wm { display: block; width: 62px; }
-    .logo-simbolo { display: block; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); line-height: 0; }
-    .logo-simbolo img { width: 40px; height: 40px; }
+    body.compacto .side { border-bottom-color: var(--line); }
+    .nav { transform: none; }
     .burger { display: block; margin-left: auto; background: none; border: 0; font: inherit; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink); cursor: pointer; }
     .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); margin: 0; padding: 12px 16px 24px; border-bottom: 1px solid var(--line); gap: 14px; }
     .side.open .nav { display: flex; }
     .side-foot { display: none; }
-    main { margin: 0; padding: 24px 16px 64px; }
+    main { margin: 0; padding: var(--top) 16px 64px; }
     .title { text-align: left; }
     .filters { justify-content: flex-start; top: var(--hdr, 61px); gap: 6px 18px; padding: 12px 0 10px; }
     .claim, .about, .contact { grid-template-columns: 1fr; }
@@ -310,7 +330,7 @@
     .claim p { justify-self: start; }
     .services { grid-template-columns: 1fr; }
     .svc, .svc + .svc { padding: 32px 0; border-right: 0; border-bottom: 1px solid var(--line); }
-    .hero { aspect-ratio: 4 / 3; }
+    .claim h1 { font-size: 30px; }
     .hero-cap { left: 10px; bottom: 10px; }
     .hero-dots { right: 10px; bottom: 16px; gap: 5px; }
     .hero-dots button { width: 14px; }
@@ -331,13 +351,25 @@
 </head>
 <body>
 
+<a href="#home" class="marca" id="marca" aria-label="Goya Terra — início">
+<svg class="marca-svg" id="marcaSvg" viewBox="71 71 1768 221" fill="currentColor" aria-hidden="true" focusable="false">
+<defs><clipPath id="marcaClip"><rect x="0" y="62" width="2000" height="236"/></clipPath></defs>
+<g clip-path="url(#marcaClip)">
+<path class="some" data-l="O" d="M403.287 71C425.433 71 444.414 76.0148 460.139 86.0444C475.864 96.0739 487.681 109.261 495.59 125.698C503.499 142.136 507.407 159.595 507.407 178.261C507.407 196.927 503.313 215.686 495.125 232.68C486.937 249.675 474.747 263.512 458.65 274.192C442.553 284.871 423.293 290.165 400.868 290.165C378.444 290.165 358.439 285.057 342.063 274.749C325.593 264.534 313.311 250.975 304.937 234.166C296.656 217.358 292.469 199.434 292.469 180.397C292.469 161.359 296.284 145.015 304.007 128.949C311.729 112.883 323.267 99.51 338.806 89.0161C354.345 78.5222 373.047 72.5787 395.006 71.2786C396.867 71.0929 399.659 71 403.287 71ZM448.415 258.312C459.023 251.44 466.838 242.246 471.956 230.823C477.074 219.308 479.679 206.864 479.679 193.305C479.679 176.868 476.143 160.895 469.072 145.2C462 129.506 451.858 116.69 438.738 106.754C425.619 96.8169 410.359 91.8021 393.145 91.8021C389.237 91.8021 386.26 91.895 384.213 92.0807C363.091 94.3095 347.087 102.389 336.201 116.226C325.314 130.063 319.918 146.779 319.918 166.467C319.918 182.904 323.639 198.97 330.99 214.757C338.341 230.545 348.855 243.453 362.44 253.483C376.025 263.512 391.471 268.527 408.963 268.527C424.781 268.527 437.994 265.091 448.508 258.219L448.415 258.312Z"/>
+<path class="some" data-l="Y" d="M675.244 93.005C668.079 104.613 656.82 121.608 641.654 144.174C624.626 169.62 615.508 183.921 614.205 187.172V286.446H579.126C579.312 281.524 579.592 276.602 579.871 271.494C580.15 266.48 580.522 261.465 580.987 256.543C582.383 242.241 583.127 229.983 583.127 219.953C583.127 209.924 582.383 200.544 580.987 192.001L505.898 74.0602L547.211 74.7103L603.877 171.199C605.924 168.32 613.833 153.554 627.604 126.901C634.21 114.643 640.444 102.942 646.399 91.8906C652.354 80.8395 655.704 74.9889 656.541 74.3388C657.751 73.6888 662.962 73.4102 672.266 73.4102C679.617 73.4102 683.525 73.5959 683.99 74.0602C685.386 75.0818 682.594 81.3967 675.337 93.005H675.244Z"/>
+<path class="some" data-l="A1" d="M817.23 290.446L792.293 223.117C791.084 222.282 786.525 221.724 778.709 221.26C770.893 220.889 761.96 220.61 751.911 220.61C740.373 220.61 730.324 220.889 721.764 221.353C713.111 221.91 708.551 222.56 707.9 223.396L686.964 290.353L659.516 291.003L745.491 78.06C751.818 75.8312 756.657 74.7168 760.006 74.7168C764.938 74.7168 768.66 76.667 771.079 80.5674L855.193 291.096L817.323 290.446H817.23ZM739.629 143.252C734.046 156.161 729.58 167.212 726.23 176.313C722.88 185.414 720.461 194.7 718.973 204.173L785.222 204.173L752.004 113.535C748.934 121.521 744.84 131.458 739.722 143.345L739.629 143.252Z"/>
+<path class="some" data-l="E" d="M1253.63 269.927C1254.56 273.641 1255.03 277.635 1255.03 281.906C1255.03 284.971 1254.84 286.921 1254.38 287.757C1253.73 288.407 1248.98 288.686 1239.86 288.686C1238 288.686 1225.35 288.407 1201.99 287.757L1185.99 287.479C1179.85 287.85 1175.01 288.314 1171.47 288.686C1168.59 289.057 1164.68 289.522 1159.75 289.893C1157.05 290.264 1154.26 290.729 1151.28 291.1C1148.3 291.472 1145.7 291.75 1143.47 291.75C1140.95 291.75 1138.53 291.472 1136.11 290.822C1131.83 289.8 1129.6 287.664 1129.6 284.414C1129.6 283.207 1129.79 281.814 1130.07 280.235C1130.35 278.656 1130.72 277.077 1131.18 275.499C1132.39 267.698 1133.04 257.668 1133.04 245.41C1133.04 240.117 1132.86 232.316 1132.39 222.008L1132.11 199.255V75L1254.38 75L1250.66 102.953C1247.77 102.953 1241.54 101.931 1231.86 99.8882C1219.58 97.6594 1209.34 95.9878 1201.25 94.7806C1193.15 93.6662 1185.71 93.109 1178.92 93.109C1166.36 93.109 1160.12 95.8021 1160.12 101.095V167.495C1160.12 171.024 1166.36 172.696 1178.92 172.696C1182.82 172.696 1188.03 172.51 1194.64 172.045L1204.5 171.767C1207.2 171.767 1208.69 171.953 1209.16 172.417C1209.34 173.81 1209.44 176.224 1209.44 179.475C1209.44 182.725 1209.34 185.604 1209.16 188.111C1208.97 189.504 1206.55 190.247 1202.09 190.247L1190.08 189.597C1185.15 188.947 1180.13 188.669 1175.01 188.669C1165.15 188.669 1160.21 190.804 1160.21 195.076V264.819C1160.21 270.577 1166.08 273.456 1177.8 273.456C1187.01 273.456 1202.74 271.227 1224.88 266.676C1230.46 265.655 1235.49 264.726 1240.14 263.89C1244.79 263.055 1247.68 262.869 1248.89 263.24C1251.12 263.89 1252.7 266.026 1253.63 269.741V269.927Z"/>
+<path class="some" data-l="R1" d="M1440.29 272.338C1445.31 280.975 1447.17 285.618 1445.96 286.454C1445.12 286.825 1441.87 287.104 1436.1 287.104C1430.33 287.104 1424.47 286.918 1418.42 286.454C1412.37 286.082 1408.74 285.432 1407.44 284.597C1405.58 279.025 1402.79 273.36 1398.97 267.416C1395.16 261.473 1389.3 252.929 1381.29 241.878C1371.43 228.319 1363.99 217.175 1358.96 208.353C1353.94 199.531 1351.43 191.544 1351.43 184.394C1351.43 177.243 1353.19 171.299 1356.82 166.563C1360.45 161.827 1365.85 156.719 1373.01 151.147C1379.34 146.04 1384.18 141.582 1387.34 137.775C1390.51 133.967 1392.46 129.231 1393.02 123.473C1393.2 119.387 1392.37 115.115 1390.41 110.565C1388.46 106.107 1385.67 102.3 1382.13 99.2351C1378.5 96.1705 1374.78 94.5918 1370.87 94.5918L1316.63 94.5918L1315.7 117.994C1315.32 127.652 1314.95 137.217 1314.58 146.69C1314.21 156.162 1314.11 165.82 1314.11 175.386C1314.11 189.966 1314.49 203.06 1315.32 214.761L1319.6 280.882C1318.95 283.111 1317.19 284.689 1314.21 285.525C1311.23 286.361 1307.32 286.732 1302.39 286.732C1298.11 286.732 1294.85 286.64 1292.81 286.454C1288.06 286.082 1284.34 286.082 1281.73 286.454L1285.08 73.6968C1290.67 74.3469 1296.62 74.6255 1302.95 74.6255C1309.28 74.6255 1318.77 74.254 1331.89 73.4182C1344.63 72.5824 1354.03 72.2109 1360.27 72.2109C1367.06 72.2109 1374.04 72.6753 1381.2 73.7897C1393.48 75.8327 1403.72 81.4047 1411.81 90.5056C1419.91 99.6065 1424 109.915 1424 121.43C1424 130.438 1421.3 138.982 1416 146.968C1414.14 149.847 1411.81 152.448 1408.93 154.769C1406.04 157.091 1401.95 160.155 1396.65 163.87C1390.04 168.421 1385.02 172.414 1381.57 175.85C1378.04 179.379 1376.36 183.094 1376.36 187.18C1376.36 190.058 1377.29 192.752 1379.15 195.352C1381.02 197.952 1383.34 200.46 1386.23 203.06C1389.11 205.66 1391.81 207.889 1394.23 209.932C1406.79 221.169 1418.33 235.749 1429.03 253.579C1431.54 257.48 1435.26 263.702 1440.29 272.338Z"/>
+<path class="some" data-l="R2" d="M1629.64 272.338C1634.66 280.975 1636.52 285.618 1635.31 286.454C1634.48 286.825 1631.22 287.104 1625.45 287.104C1619.68 287.104 1613.82 286.918 1607.77 286.454C1601.72 286.082 1598.09 285.432 1596.79 284.597C1594.93 279.025 1592.14 273.36 1588.32 267.416C1584.51 261.473 1578.65 252.929 1570.65 241.878C1560.78 228.319 1553.34 217.175 1548.31 208.353C1543.29 199.531 1540.78 191.544 1540.78 184.394C1540.78 177.243 1542.55 171.299 1546.17 166.563C1549.8 161.827 1555.2 156.719 1562.36 151.147C1568.69 146.04 1573.53 141.582 1576.69 137.775C1579.86 133.967 1581.81 129.231 1582.37 123.473C1582.56 119.387 1581.72 115.115 1579.76 110.565C1577.81 106.107 1575.02 102.3 1571.48 99.2351C1567.85 96.1705 1564.13 94.5918 1560.22 94.5918L1505.98 94.5918L1505.05 117.994C1504.68 127.652 1504.3 137.217 1503.93 146.69C1503.56 156.162 1503.47 165.82 1503.47 175.386C1503.47 189.966 1503.84 203.06 1504.68 214.761L1508.96 280.882C1508.3 283.111 1506.54 284.689 1503.56 285.525C1500.58 286.361 1496.67 286.732 1491.74 286.732C1487.46 286.732 1484.21 286.64 1482.16 286.454C1477.41 286.082 1473.69 286.082 1471.09 286.454L1474.44 73.6968C1480.02 74.3469 1485.97 74.6255 1492.3 74.6255C1498.63 74.6255 1508.12 74.254 1521.24 73.4182C1533.99 72.5824 1543.38 72.2109 1549.62 72.2109C1556.41 72.2109 1563.39 72.6753 1570.55 73.7897C1582.84 75.8327 1593.07 81.4047 1601.17 90.5056C1609.26 99.6065 1613.35 109.915 1613.35 121.43C1613.35 130.438 1610.66 138.982 1605.35 146.968C1603.49 149.847 1601.17 152.448 1598.28 154.769C1595.4 157.091 1591.3 160.155 1586 163.87C1579.39 168.421 1574.37 172.414 1570.93 175.85C1567.39 179.379 1565.71 183.093 1565.71 187.18C1565.71 190.058 1566.65 192.752 1568.51 195.352C1570.37 197.952 1572.69 200.46 1575.58 203.06C1578.46 205.66 1581.16 207.889 1583.58 209.932C1596.14 221.169 1607.68 235.749 1618.38 253.579C1620.89 257.48 1624.61 263.702 1629.64 272.338Z"/>
+<path class="some" data-l="A2" d="M1801.03 290.436L1776.09 223.108C1774.88 222.272 1770.32 221.715 1762.51 221.25C1754.69 220.879 1745.76 220.6 1735.71 220.6C1724.17 220.6 1714.12 220.879 1705.56 221.343C1696.91 221.9 1692.35 222.55 1691.7 223.386L1670.76 290.343L1643.31 290.993L1729.29 78.0502C1735.62 75.8214 1740.45 74.707 1743.8 74.707C1748.73 74.707 1752.46 76.6572 1754.88 80.5576L1838.99 291.086L1801.12 290.436H1801.03ZM1723.43 143.242C1717.84 156.151 1713.38 167.202 1710.03 176.303C1706.68 185.404 1704.26 194.69 1702.77 204.163L1769.02 204.163L1735.8 113.525C1732.73 121.512 1728.64 131.448 1723.52 143.335L1723.43 143.242Z"/>
+</g>
+<path class="fica" data-l="G" d="M265.003 245.306L265.933 253.942C265.933 258.028 264.258 261.743 261.002 265.179C257.745 268.522 251.232 272.794 241.555 277.902C223.876 287.096 204.522 291.739 183.308 291.739C164.791 291.739 147.391 288.024 130.922 280.688C114.453 273.351 100.961 262.579 90.2607 248.556C79.7464 234.44 73.5123 217.817 71.6513 198.594C71.2791 193.3 71 189.4 71 186.893C71 165.626 76.2106 146.31 86.5388 128.944C96.867 111.671 110.731 98.1123 128.131 88.3613C145.437 78.6103 164.233 73.7813 184.331 73.7813C201.824 73.7813 218.479 77.4959 234.576 84.8324C238.112 86.6897 243.137 89.4757 249.65 93.0975C256.256 96.8121 259.699 98.9481 260.071 99.5981C260.723 100.62 259.978 103.034 257.931 106.842C255.884 110.649 253.372 114.271 250.394 117.707C247.417 121.236 245.184 123 243.788 123.279C242.113 123.651 240.252 123.279 238.205 122.165C236.158 121.05 233.925 119.564 231.599 117.707C229.273 115.85 227.226 114.457 225.551 113.435C221.271 110.556 216.804 107.678 212.152 104.799C207.5 101.92 203.033 99.5981 198.753 97.7408C191.961 95.0477 184.61 93.7475 176.608 93.7475C169.444 93.7475 162.279 94.7691 155.021 96.8121C147.857 98.8552 141.25 101.641 135.295 105.077C124.037 112.042 115.569 121.607 109.894 133.773C104.218 145.938 101.426 159.126 101.426 173.241C101.426 184.942 103.38 196.644 107.288 208.252C113.615 227.104 124.409 242.148 139.482 253.478C154.556 264.715 171.677 270.38 190.751 270.38C196.055 270.38 200.893 270.008 205.267 269.172C217.177 267.315 225.365 263.972 229.738 259.143C234.111 254.314 236.344 247.999 236.344 240.198C236.344 237.505 236.065 234.44 235.6 230.818C235.042 227.197 234.669 223.668 234.204 220.232C232.343 210.574 231.413 202.401 231.413 195.622C231.413 193.579 231.599 190.514 232.064 186.428H267.143C267.329 189.493 267.143 193.022 266.678 196.922C266.119 200.823 265.747 204.537 265.282 207.973C263.886 215.588 263.142 221.996 263.142 227.29C263.142 233.047 263.793 238.991 265.003 245.12V245.306Z"/>
+<path class="fica" data-l="ponto" data-dx="-65.9" d="M401.502 203.519C413.322 203.519 422.903 193.956 422.903 182.16C422.903 170.364 413.322 160.801 401.502 160.801C389.683 160.801 380.102 170.364 380.102 182.16C380.102 193.956 389.683 203.519 401.502 203.519Z"/>
+<path class="fica" data-l="T" data-dx="-562.6" d="M1081.58 98.4006C1066.79 94.5002 1056.37 92.55 1050.13 92.55C1042.5 92.55 1038.78 94.9646 1038.78 99.8865V286.455H1003.7C1003.33 282.741 1003.05 279.119 1003.05 275.404C1003.05 263.703 1004.35 241.879 1007.05 209.933C1010.31 170.186 1011.98 141.769 1011.98 124.775C1011.98 107.78 1010.59 97.5648 1007.7 93.3858C1006.68 91.7142 1003.98 90.9713 999.702 90.9713C995.98 90.9713 991.142 91.7142 985.094 93.1072C979.046 94.5931 973.091 96.079 967.415 97.7506C953.644 101.651 946.014 102.951 944.618 101.744L937.547 73.791L1108.75 73.791L1101.4 101.465C1100.01 102.487 1093.4 101.465 1081.68 98.4006H1081.58Z"/>
+</svg>
+</a>
+
 <aside class="side" id="side">
-  <a href="#home" class="logo" aria-label="Goya Arquitetura — início">
-    <img class="logo-total" src="imagens/site/logo-total.svg" alt="GOYA" width="160" height="56">
-    <img class="logo-wm" src="imagens/site/logo-wm.svg" alt="GOYA" width="62" height="29">
-  </a>
-  <!-- no celular: símbolo centralizado no topo -->
-  <a href="#home" class="logo-simbolo" aria-hidden="true" tabindex="-1"><img src="imagens/site/logo-simbolo.svg" alt="" width="40" height="40"></a>
   <button class="burger" id="burger" aria-label="Abrir menu">Menu</button>
   <nav class="nav" id="nav">
     <a href="#projetos" data-p="projetos">Projetos</a>
@@ -362,10 +394,12 @@
 
   <!-- ===================== HOME ===================== -->
   <section class="sec" id="home">
+    <div class="hero-pin" id="heroPin">
     <div class="hero rv" id="hero">
       <div class="slide on"><img src="imagens/site/abertura.jpg.webp" alt="Casa Jardins Capri, paredes de taipa de pilão"></div>
       <a class="hero-cap" id="heroCap" href="projetos/jardins-capri/"><span id="heroNome">Jardins Capri</span> →</a>
       <div class="hero-dots" id="heroDots"></div>
+    </div>
     </div>
 
     <div class="claim">
@@ -715,6 +749,81 @@
   const side = document.getElementById("side");
   document.getElementById("burger").onclick = () => side.classList.toggle("open");
 
+  // ---------- Logo: GOYA TERRA grande no topo → G·T na lateral ao rolar ----------
+  // O desenho do logo usa a mesma unidade do slide de referência (1920 de largura):
+  // a palavra ocupa 1768 unidades; o G tem 218 de altura; a foto começa 55 unidades abaixo da palavra.
+  // No G·T as letras O, Y, A, E, R, R, A somem, o ponto (centro do O) e o T se aproximam do G.
+  const marca = document.getElementById("marca"), marcaSvg = document.getElementById("marcaSvg");
+  const somem = [...marcaSvg.querySelectorAll(".some")], ficam = [...marcaSvg.querySelectorAll("[data-dx]")];
+  const raiz = document.documentElement;
+  let M = null;
+  function medeMarca() {
+    const cs = getComputedStyle(raiz), mobile = innerWidth <= 860;
+    const px = v => { const t = document.createElement("div"); t.style.cssText = `position:absolute;visibility:hidden;height:${v}`; document.body.appendChild(t); const h = t.offsetHeight; t.remove(); return h; };
+    const pad = px(cs.getPropertyValue("--pad")), top = px(cs.getPropertyValue("--top")), gtH = px(cs.getPropertyValue("--gt-h"));
+    // largura do logo: acompanha o conteúdo (máx. 1920px de site) e nunca passa de ~22% da altura da tela
+    // Largura do site: até 1920px e, em telas largas e baixas (ultra-wide), proporcional à altura,
+    // para o logo continuar indo de uma borda à outra do conteúdo sem ficar alto demais (~25% da tela).
+    const cw = raiz.clientWidth;
+    const larg = mobile ? cw : Math.min(cw, 1920, Math.round(innerHeight * 2 + 2 * pad));
+    raiz.style.setProperty("--gutter", (cw - larg) / 2 + "px");
+    const W0 = larg - 2 * pad, u0 = W0 / 1768, u1 = gtH / 218;
+    const D = Math.round(221 * u0 + (mobile ? 18 : 55 * u0));
+    const topC = mobile ? (side.offsetHeight - gtH) / 2 - 2.8 * u1 : top;    // no celular: centralizado na barra
+    M = { mobile, pad, top, topC, W0, k1: u1 / u0, D, navC: top + gtH * 2.05 - (top + D) };
+    marca.style.width = W0 + "px";
+    raiz.style.setProperty("--d", D + "px");
+    animaMarca(true);
+  }
+  // A rolagem define o alvo; a animação persegue esse alvo suavemente (sem trancos de roda do mouse).
+  // Coreografia em duas etapas, sem letras transparentes se cruzando:
+  //   1) O, Y, A, E, R, R, A afundam uma a uma por baixo da linha de base (como se entrassem na terra);
+  //   2) com o caminho livre, o ponto e o T deslizam até o G enquanto o logo encolhe para a lateral.
+  const lim = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const suave = t => t * t * (3 - 2 * t);
+  const easeInOut = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  let pAtual = 0, pAlvo = 0, rafMarca = 0;
+  function alvoMarca() {
+    return document.body.classList.contains("detail") ? 1 : lim(scrollY / M.D);
+  }
+  function desenhaMarca(p) {
+    const detalhe = document.body.classList.contains("detail");
+    const e = easeInOut(p);
+    const k = 1 + (M.k1 - 1) * e, y = (M.topC - M.top) * e;
+    marca.style.transform = `translate3d(0, ${y}px, 0) scale(${k})`;
+    somem.forEach((el, i) => {
+      const q = easeInOut(lim((p - i * 0.03) / 0.26));
+      el.style.transform = `translate(0, ${q * 250}px)`;
+      el.style.opacity = 1 - lim((q - 0.8) / 0.2);   // cor cheia: a letra é cortada pela linha de base, não fica transparente
+    });
+    const m = suave(lim((p - 0.3) / 0.55));
+    ficam.forEach(el => el.style.transform = `translate(${el.dataset.dx * m}px, 0)`);
+    raiz.style.setProperty("--p", p);
+    // a foto acompanha a base do logo (sem passar por baixo das letras) e só no final sobe até o topo
+    raiz.style.setProperty("--hero-off", M.D * k * (1 - suave(lim((p - 0.72) / 0.28))) + "px");
+    raiz.style.setProperty("--nav-y", M.mobile ? "0px" : (detalhe ? M.navC + M.D : M.D + M.navC * e) + "px");
+    document.body.classList.toggle("compacto", p >= .999);
+  }
+  function passoMarca() {
+    pAtual += (pAlvo - pAtual) * 0.14;
+    if (Math.abs(pAlvo - pAtual) < 0.0008) pAtual = pAlvo;
+    desenhaMarca(pAtual);
+    rafMarca = pAtual === pAlvo ? 0 : requestAnimationFrame(passoMarca);
+  }
+  function animaMarca(imediato) {
+    if (!M) return;
+    pAlvo = alvoMarca();
+    const reduz = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (imediato === true || reduz || document.body.classList.contains("detail")) {
+      cancelAnimationFrame(rafMarca); rafMarca = 0; pAtual = pAlvo; desenhaMarca(pAtual); return;
+    }
+    if (!rafMarca) rafMarca = requestAnimationFrame(passoMarca);
+  }
+  addEventListener("scroll", animaMarca, { passive: true });
+  addEventListener("resize", medeMarca);
+  document.fonts && document.fonts.ready.then(medeMarca);
+  medeMarca();
+
   // ---------- Revelação ao rolar ----------
   const revealIO = new IntersectionObserver(entries => entries.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add("in"); revealIO.unobserve(e.target); }
@@ -772,6 +881,7 @@
   function showOnepage() {
     document.body.classList.remove("detail");
     document.title = "Goya Arquitetura";
+    animaMarca();
   }
   // Qual projeto está no endereço? projetos/<nome>/ (ou o formato antigo #projeto/<nome>)
   function slugDaUrl() {
@@ -792,6 +902,7 @@
       // links antigos com # viram o endereço novo
       if (location.hash.startsWith("#projeto/")) history.replaceState(null, "", ROOT + projUrl(slug));
       document.body.classList.add("detail");
+      animaMarca();
       setNav("projetos");
       window.scrollTo({ top: 0, behavior: "instant" });
       observeReveal(detail);
