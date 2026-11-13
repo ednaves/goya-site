@@ -9,8 +9,8 @@ backend:
   base_url: https://sveltia-cms-auth.edsonnaves09.workers.dev
 
 logo_url: ../imagens/site/favicon-goya-v2.svg
-site_url: https://www.goyarq.com.br/
-display_url: https://www.goyarq.com.br/
+site_url: https://www.goyaterra.com/
+display_url: https://www.goyaterra.com/
 
 media_folder: imagens
 public_folder: /imagens
